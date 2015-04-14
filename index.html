@@ -5,12 +5,32 @@
     <title>Beer the 'Diff</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <style>
-        html, body, #vis {
+        html, body {
             margin: 0px;
             padding: 0px;
             height: 100%;
             width: 100%;
+        }
+
+        #venues, #breweries, #beers, #styles {
+            width: 50%;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        #venues, #breweries {
+            float: left;
+        }
+
+        #beers, #styles {
+            float: right;
+        }
+
+        .vis {
+            width: 100%;
+            height: 100%;
         }
 
         .axis path,
@@ -28,74 +48,82 @@
     </style>
 </head>
 <body>
-    <div id="vis"></div>
+    <section id="venues">
+        <h1>Venues</h1>
+        <div class="vis"></div>
+    </section>
+    <section id="breweries">
+        <h1>Breweries</h1>
+        <div class="vis"></div>
+    </section>
+    <section id="styles">
+        <h1>Styles</h1>
+        <div class="vis"></div>
+    </section>
+    <section id="beers">
+        <h1>Beers</h1>
+        <div class="vis"></div>
+    </section>
     <script>
 
         // the width and height of the visualisation
         var width;
         var height;
 
-
         var padding = {
-            top: 10,
-            bottom: 100,
+            top: 30,
+            bottom: 150,
             left: 100,
             right: 20
         }
 
         var transition_duration = 2000;
 
-        // the svg element that will hold the visualisation
-        var svg;
+        var draw_plot = function(element, data, value_label, x_label) {
 
-        // a scale of colours
-        var colour_scale = d3.scale.quantile().range(colorbrewer.Blues[9]);
+            var g = document.getElementById(element);
+            g = g.getElementsByClassName("vis")[0];
+            width = g.clientWidth;
+            height = g.clientHeight;
+            height = height - padding.bottom;
 
-        // define x-scale and y-scale
-        var x_scale = d3.scale.ordinal();
-        var y_scale = d3.scale.linear();
+            console.log(height);
+            console.log(width);
 
-        // define xaxis
-        var x_axis = d3.svg.axis()
-          .scale(x_scale)
-          .orient("bottom")
-          .ticks(8);
+            // the svg element that will hold the visualisation
+            var svg;
 
-        // define Y axis
-        var y_axis = d3.svg.axis()
-          .scale(y_scale)
-          .orient("left")
-          .ticks(8);
+            // a scale of colours
+            var colour_scale = d3.scale.quantile().range(colorbrewer.YlGnBu[9]);
 
+            // define x-scale and y-scale
+            var x_scale = d3.scale.ordinal();
+            var y_scale = d3.scale.linear();
 
-        var set_sizes = function() {
-            var w = window,
-                d = document,
-                e = d.documentElement,
-                g = d.getElementById("vis"),
-                x = w.innerWidth || e.clientWidth || g.clientWidth,
-                y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-            
-            width = x;
-            height = y;
-            height = height - padding.top - padding.bottom;
+            // define xaxis
+            var x_axis = d3.svg.axis()
+              .scale(x_scale)
+              .orient("bottom")
+              .ticks(8);
 
-        }
-
-        var init_plot = function() {
+            // define Y axis
+            var y_axis = d3.svg.axis()
+              .scale(y_scale)
+              .orient("left")
+              .ticks(8);
 
             x_scale.rangeRoundBands([padding.left, width-padding.right], 0.1);
-            y_scale.range([height, padding.bottom]);
+            y_scale.range([height, padding.top]);
 
-            svg = d3.select("#vis")
+            svg = d3.select("#" + element + " .vis")
                 .append("svg")
                 .attr("height", height+padding.top+padding.bottom)
                 .attr("width", width);
 
-            svg.append("rect")
-                .attr("height", height+padding.top+padding.bottom)
-                .attr("width", width)
-                .attr("fill", "white");
+            // svg.append("rect")
+            //     .attr("height", height+padding.top+padding.bottom)
+            //     .attr("width", width)
+            //     .attr("fill", "#eee");
 
             svg.append("g")
                 .attr("class", "x axis")
@@ -105,54 +133,52 @@
                 .attr("class", "y axis")
                 .attr("transform", "translate(" + padding.left + ",0)");
 
-        }
-
-        var draw_plot = function(data) {
-
-            data = data.filter(function(d, i) {
-                return d.count > 5;
-            })
+            console.log(data);
 
             data.sort(function(a, b){
-                if (a.count > b.count) {
+                if (a[value_label] > b[value_label]) {
                     return -1;
                 }
-                if (a.count < b.count) {
+                if (a[value_label] < b[value_label]) {
                     return 1;
                 }
                 return 0;
             })
 
-            var names = data.map(function(d){ return d.venue_name; });
+            console.log(data);
+
+            data = data.slice(0,20);
+
+            var names = data.map(function(d){ return d[x_label]; });
             console.log(names);
 
-            var largest_data_value = d3.max(data, function(d){ return d.count; })
+            var largest_data_value = d3.max(data, function(d){ return d[value_label]; })
 
             x_scale.domain(names);
             y_scale.domain([0, largest_data_value]);
             colour_scale.domain([0, largest_data_value]);
 
-            var bars = d3.select("svg")
+            var bars = svg
                 .selectAll(".bar")
                 .data(data);               
 
             bars
                 .enter()
                 .append("rect")
-                .attr("x", function(d){ return x_scale(d.venue_name); })
+                .attr("x", function(d){ return x_scale(d[x_label]); })
                 .attr("y", height)
                 .attr("width", x_scale.rangeBand())
                 .attr("height", 0 )
                 .attr("fill", function(d) {
-                    return colour_scale(d.count);
+                    return colour_scale(d[value_label]);
                 })
                 .attr("class", "bar");
 
             bars       
                 .transition()
                 .duration(transition_duration)
-                .attr("y", function(d){ return y_scale(d.count); })
-                .attr("height", function(d){ return height - y_scale(d.count)})
+                .attr("y", function(d){ return y_scale(d[value_label]); })
+                .attr("height", function(d){ return height - y_scale(d[value_label])})
 
             bars
                 .exit()
@@ -169,10 +195,10 @@
                 .call(x_axis)
                 .selectAll("text")  
                     .style("text-anchor", "end")
-                    .attr("dx", "-.8em")
-                    .attr("dy", ".15em")
+                    //.attr("dx", "-.8em")
+                    //.attr("dy", ".15em")
                     .attr("transform", function(d) {
-                        return "rotate(-65)" 
+                        return "rotate(-35)" 
                     });
             
             // create y-axis
@@ -182,14 +208,37 @@
                 .call(y_axis);
         }
 
-        var init = function() {
-            set_sizes();
-            init_plot();
-            d3.json('venues.json', function(data) {
-                console.log(data);
-                draw_plot(data);
-            })
-            
+        var init = function() { 
+            queue()
+                .defer(d3.json, "data/venues.json")
+                .defer(d3.json, "data/breweries.json")
+                .defer(d3.json, "data/beers.json")
+                .defer(d3.json, "data/checkins.json")
+                .await(function(error, venues, breweries, beers, checkins){
+                    console.log(venues);
+                    console.log(breweries);
+                    console.log(beers);
+                    console.log(checkins);
+
+
+                    styles = d3.nest()
+                    .key(function(d) {
+                      return d.beer_style;
+                    })
+                    .rollup(function(d) {
+                      return d3.sum(d, function(g) {
+                        return g.count;
+                      });
+                    })
+                    .entries(beers);
+
+                    console.log(styles);
+
+                    draw_plot("venues", venues, "count", "venue_name");
+                    draw_plot("breweries", breweries, "count", "brewery_name");
+                    draw_plot("beers", beers, "count", "beer_name");
+                    draw_plot("styles", styles, "values", "key");
+                })
         }();
     </script>
 </body>

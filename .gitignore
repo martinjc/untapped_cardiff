@@ -1,3 +1,4 @@
 
 _credentials.py
 data/cache/*
+*.json

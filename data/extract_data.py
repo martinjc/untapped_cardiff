@@ -20,26 +20,76 @@ from collections import defaultdict
 from file_cache import JSONFileCache
 
 
-def get_venue_counts(drinks):
+def get_venues(drinks):
 
     venues = []
     venue_ids = set()
     venue_count = defaultdict(int)
 
     for drink in drinks:
-        
-        foursq_id = drink['venue']['parent_category_id']
 
         if not drink['venue']['venue_id'] in venue_ids:
             venues.append(drink['venue'])
             venue_ids.add(drink['venue']['venue_id'])
         venue_count[drink['venue']['venue_id']] += 1
 
-        for venue in venues:
-            venue['count'] = venue_count[venue['venue_id']]
-
-    print(venues)
+    for venue in venues:
+        venue['count'] = venue_count[venue['venue_id']]
     json.dump(venues, open('venues.json', 'w'))
+
+
+def get_breweries(drinks):
+
+    breweries = []
+    brewery_ids = set()
+    brewery_count = defaultdict(int)
+
+    for drink in drinks:
+
+        if not drink['brewery']['brewery_id'] in brewery_ids:
+            breweries.append(drink['brewery'])
+            brewery_ids.add(drink['brewery']['brewery_id'])
+        brewery_count[drink['brewery']['brewery_id']] += 1
+
+    for brewery in breweries:
+        brewery['count'] = brewery_count[brewery['brewery_id']]
+
+    json.dump(breweries, open('breweries.json', 'w'))
+
+
+def get_beers(drinks):
+
+    beers = []
+    beer_ids = set()
+    beer_count = defaultdict(int)
+
+    for drink in drinks:
+
+        if not drink['beer']['bid'] in beer_ids:
+            beers.append(drink['beer'])
+            beer_ids.add(drink['beer']['bid'])
+        beer_count[drink['beer']['bid']] += 1
+
+    for beer in beers:
+        beer['count'] = beer_count[beer['bid']]
+
+    json.dump(beers, open('beers.json', 'w'))
+
+
+def get_checkins(drinks):
+
+    checkins = []
+    
+    for drink in drinks:
+        checkins.append({
+            'beer': drink['beer']['bid'],
+            'brewery': drink['brewery']['brewery_id'],
+            'venue': drink['venue']['venue_id'],
+            'time': drink['created_at']
+        })
+
+    json.dump(checkins, open('checkins.json', 'w'))
+
 
 def load_drinks():
 
@@ -54,4 +104,7 @@ def load_drinks():
 if __name__ == "__main__":
 
     drinks = load_drinks()
-    get_venue_counts(drinks)
+    get_venues(drinks)
+    get_beers(drinks)
+    get_breweries(drinks)
+    get_checkins(drinks)
