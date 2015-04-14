@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beer the 'Diff</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <style>
+        html, body, #vis {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="vis"></div>
+    <script>
+
+        // the width and height of the visualisation
+        var width;
+        var height;
+
+
+        var padding = {
+            top: 10,
+            bottom: 100,
+            left: 100,
+            right: 20
+        }
+
+        var transition_duration = 2000;
+
+        // the svg element that will hold the visualisation
+        var svg;
+
+        // a scale of colours
+        var colour_scale = d3.scale.quantile().range(colorbrewer.Blues[9]);
+
+        // define x-scale and y-scale
+        var x_scale = d3.scale.ordinal();
+        var y_scale = d3.scale.linear();
+
+        // define xaxis
+        var x_axis = d3.svg.axis()
+          .scale(x_scale)
+          .orient("bottom")
+          .ticks(8);
+
+        // define Y axis
+        var y_axis = d3.svg.axis()
+          .scale(y_scale)
+          .orient("left")
+          .ticks(8);
+
+
+        var set_sizes = function() {
+            var w = window,
+                d = document,
+                e = d.documentElement,
+                g = d.getElementById("vis"),
+                x = w.innerWidth || e.clientWidth || g.clientWidth,
+                y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+            
+            width = x;
+            height = y;
+            height = height - padding.top - padding.bottom;
+
+        }
+
+        var init_plot = function() {
+
+            x_scale.rangeRoundBands([padding.left, width-padding.right], 0.1);
+            y_scale.range([height, padding.bottom]);
+
+            svg = d3.select("#vis")
+                .append("svg")
+                .attr("height", height+padding.top+padding.bottom)
+                .attr("width", width);
+
+            svg.append("rect")
+                .attr("height", height+padding.top+padding.bottom)
+                .attr("width", width)
+                .attr("fill", "white");
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")");
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + padding.left + ",0)");
+
+        }
+
+        var draw_plot = function(data) {
+
+            data = data.filter(function(d, i) {
+                return d.count > 5;
+            })
+
+            data.sort(function(a, b){
+                if (a.count > b.count) {
+                    return -1;
+                }
+                if (a.count < b.count) {
+                    return 1;
+                }
+                return 0;
+            })
+
+            var names = data.map(function(d){ return d.venue_name; });
+            console.log(names);
+
+            var largest_data_value = d3.max(data, function(d){ return d.count; })
+
+            x_scale.domain(names);
+            y_scale.domain([0, largest_data_value]);
+            colour_scale.domain([0, largest_data_value]);
+
+            var bars = d3.select("svg")
+                .selectAll(".bar")
+                .data(data);               
+
+            bars
+                .enter()
+                .append("rect")
+                .attr("x", function(d){ return x_scale(d.venue_name); })
+                .attr("y", height)
+                .attr("width", x_scale.rangeBand())
+                .attr("height", 0 )
+                .attr("fill", function(d) {
+                    return colour_scale(d.count);
+                })
+                .attr("class", "bar");
+
+            bars       
+                .transition()
+                .duration(transition_duration)
+                .attr("y", function(d){ return y_scale(d.count); })
+                .attr("height", function(d){ return height - y_scale(d.count)})
+
+            bars
+                .exit()
+                .transition()
+                .duration(transition_duration)
+                .attr("y", height)
+                .attr("height", 0)
+                .remove();
+
+            // create x-axis
+            svg.select(".x.axis")
+                .transition()
+                .duration(transition_duration)
+                .call(x_axis)
+                .selectAll("text")  
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".15em")
+                    .attr("transform", function(d) {
+                        return "rotate(-65)" 
+                    });
+            
+            // create y-axis
+            svg.select(".y.axis")
+                .transition()
+                .duration(transition_duration)
+                .call(y_axis);
+        }
+
+        var init = function() {
+            set_sizes();
+            init_plot();
+            d3.json('venues.json', function(data) {
+                console.log(data);
+                draw_plot(data);
+            })
+            
+        }();
+    </script>
+</body>
+</html>

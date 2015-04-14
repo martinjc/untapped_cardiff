@@ -14,31 +14,32 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import json
 from collections import defaultdict
 
 from file_cache import JSONFileCache
-from category_utils import CategoryTree
+
 
 def get_venue_counts(drinks):
 
-    cat_tree = CategoryTree()
-
-    venues = {}
+    venues = []
+    venue_ids = set()
     venue_count = defaultdict(int)
 
     for drink in drinks:
         
         foursq_id = drink['venue']['parent_category_id']
-        root_node = cat_tree.get_root_node_for_id(foursq_id)
-        if root_node is not None:
-            if root_node['foursq_id'] == '4e67e38e036454776db1fb3a':
-                print(drink['venue'])
 
-        venues[drink['venue']['venue_id']] = drink['venue']
+        if not drink['venue']['venue_id'] in venue_ids:
+            venues.append(drink['venue'])
+            venue_ids.add(drink['venue']['venue_id'])
         venue_count[drink['venue']['venue_id']] += 1
 
-    print(venue_count)
+        for venue in venues:
+            venue['count'] = venue_count[venue['venue_id']]
 
+    print(venues)
+    json.dump(venues, open('venues.json', 'w'))
 
 def load_drinks():
 
