@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Beer the 'Diff</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <style>
         html, body {
+            font-family: 'Open Sans', sans-serif;
             margin: 0px;
             padding: 0px;
             height: 100%;
@@ -26,6 +28,10 @@
 
         #beers, #styles {
             float: right;
+        }
+
+        h1 {
+            padding-left: 50px;
         }
 
         .vis {
@@ -71,7 +77,7 @@
         var height;
 
         var padding = {
-            top: 30,
+            top: 10,
             bottom: 150,
             left: 100,
             right: 20
