@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Beer the 'Diff</title>
+    <title>Drinking in the 'Diff</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
@@ -14,6 +14,10 @@
             padding: 0px;
             height: 100%;
             width: 100%;
+        }
+
+        header {
+            padding: 30px;
         }
 
         #venues, #breweries, #beers, #styles {
@@ -30,7 +34,7 @@
             float: right;
         }
 
-        h1 {
+        h2 {
             padding-left: 50px;
         }
 
@@ -51,25 +55,78 @@
             font-size: 11px;
         }
 
+        .utplogo {
+            float: right;
+            padding: 30px;
+            height: 60px;
+        }
+
+        .description {
+            width: 70%;
+            float: left;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 50px;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        #intro {
+            margin: 5px;
+            width: 58%;
+        }
+
+        #explain {
+            margin: 5px;
+            width: 38%;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
     </style>
 </head>
 <body>
+    <header>
+        <h1>Drinking in the Diff!</h1>
+        <div class="left" id="intro">
+            <p>This page shows details of the beer drinking activity happening in Cardiff from <span id="from-date"></span> to <span id="to-date"></span>. Where has the beer been drunk, what have people been drinking, and which breweries have been most popular?</p>
+            <p>Please remember to drink responsibly.</p>
+            <p><small>This is v0.1 of this dashboard. Any suggestions for features/visualisations, <a href="http://martinjc.com/contact/">get in touch</a>; or better yet: <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
+        </div>
+        <div class="right" id="explain">
+            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that include a venue location. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers!</p>
+            <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small>
+        </div>
+        <div class="clearfix"></div>
+    </header>
     <section id="venues">
-        <h1>Venues</h1>
+        <h2>Venues</h2>
         <div class="vis"></div>
     </section>
     <section id="breweries">
-        <h1>Breweries</h1>
+        <h2>Breweries</h2>
         <div class="vis"></div>
     </section>
     <section id="styles">
-        <h1>Styles</h1>
+        <h2>Styles</h2>
         <div class="vis"></div>
     </section>
     <section id="beers">
-        <h1>Beers</h1>
+        <h2>Beers</h2>
         <div class="vis"></div>
     </section>
+    <footer>
+        <small class="description">Created by <a href="http://www.twitter.com/martinjc">@martinjc</a> for no other reason than he had an <a href="https://untappd.com/home">Untappd</a> API key that wasn't getting used. Find him on Untappd <a href="https://untappd.com/user/martinjc">here</a>. Some of the beers above were drunk by him, this much is guaranteed.</small>
+        <a href="https://untappd.com/home"><img class="utplogo" src="img/pbu_320_black.png"></a>
+    </footer>
     <script>
 
         // the width and height of the visualisation
@@ -93,14 +150,11 @@
             height = g.clientHeight;
             height = height - padding.bottom;
 
-            console.log(height);
-            console.log(width);
-
             // the svg element that will hold the visualisation
             var svg;
 
             // a scale of colours
-            var colour_scale = d3.scale.quantile().range(colorbrewer.YlGnBu[9]);
+            var colour_scale = d3.scale.quantile().range(colorbrewer.Reds[9]);
 
             // define x-scale and y-scale
             var x_scale = d3.scale.ordinal();
@@ -126,11 +180,6 @@
                 .attr("height", height+padding.top+padding.bottom)
                 .attr("width", width);
 
-            // svg.append("rect")
-            //     .attr("height", height+padding.top+padding.bottom)
-            //     .attr("width", width)
-            //     .attr("fill", "#eee");
-
             svg.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")");
@@ -138,8 +187,6 @@
             svg.append("g")
                 .attr("class", "y axis")
                 .attr("transform", "translate(" + padding.left + ",0)");
-
-            console.log(data);
 
             data.sort(function(a, b){
                 if (a[value_label] > b[value_label]) {
@@ -151,12 +198,9 @@
                 return 0;
             })
 
-            console.log(data);
-
             data = data.slice(0,20);
 
             var names = data.map(function(d){ return d[x_label]; });
-            console.log(names);
 
             var largest_data_value = d3.max(data, function(d){ return d[value_label]; })
 
@@ -239,6 +283,27 @@
                     .entries(beers);
 
                     console.log(styles);
+
+                    earliest = Date.parse(checkins[0].time);
+                    latest = earliest;
+                    checkins.forEach(function(d) {
+                        var t = Date.parse(d.time);
+                        if(t < earliest) {
+                            earliest = t;
+                        }
+                        if(t > latest) {
+                            latest = t;
+                        }
+                    })
+
+                    l = new Date(latest);
+                    e = new Date(earliest);
+
+                    l_string = l.toDateString();
+                    e_string = e.toDateString();
+
+                    d3.select('#from-date').text(e_string);
+                    d3.select('#to-date').text(l_string);
 
                     draw_plot("venues", venues, "count", "venue_name");
                     draw_plot("breweries", breweries, "count", "brewery_name");
