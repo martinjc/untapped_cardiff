@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Drinking in the 'Diff</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
@@ -21,24 +21,54 @@
             background-color: rgb(252,187,161);
         }
 
-        #venues, #breweries, #beers, #styles {
-            width: 50%;
+        section {
+            margin-top: 20px;
+        }
+
+        #where {
+            width: 60%;
+            padding-left:20%;
             height: 400px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        #venues, #breweries {
-            float: left;
+        #what {
+            width: 100%;
+            height: 400px;  
+            margin-bottom: 40px;    
         }
 
-        #beers, #styles {
-            float: right;
+        #when {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 40px;
         }
+
+        #breweries, #beers, #styles {
+            display: inline-block;
+            width: 33%;
+            height: 400px;
+        }
+
+        #day, #hour{
+            display: inline-block;
+            width: 48%;
+            height: 400px;
+        }
+
+        span.time {
+            font-weight: 700;
+        }
+
+        h1, h2, h3 {
+            margin: 0px;
+        }
+
         h1 {
             margin: 5px;
         }
 
-        section h2 {
+        section h2, h3 {
             padding-left: 50px;
         }
 
@@ -102,41 +132,47 @@
     <header>
         <h1>Drinking in the Diff!</h1>
         <div class="left" id="intro">
-            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span id="from-date"></span> to <span id="to-date"></span>. Where has the beer been drunk, what have people been drinking, and which breweries have been most popular?</p>
-            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
+            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span class="time" id="from-date"></span> to <span class="time" id="to-date"></span>. Where has the beer been drunk, what have people been drinking, and which breweries have been most popular?</p>
             <p>Please remember to drink responsibly.</p>
-            <p><small>This is v0.1 of this dashboard. Any suggestions for features/visualisations, <a href="http://martinjc.com/contact/">get in touch</a>; or better yet: <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
+            <p><small>This is a very early version of this dashboard. The code is a mess, and it's pretty dull. I've got a bunch of ideas for things I'd like to improve or include, but any other suggestions for features/visualisations are welcome: <a href="http://martinjc.com/contact/">get in touch</a> or better yet <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
+
         </div>
         <div class="right" id="explain">
-            <h2>Choose your dates</h2>
-            <small>This doesn't work yet!</small>
-            <form>
-                <label for="from-date-select">From: 
-                    <input type=date name="from-date-select">
-                </label>
-                <br />
-                <label for="to-date-select">To: 
-                    <input type=date name="to-date-select">
-                </label>
-            </form>
+                <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
+                
         </div>
         <div class="clearfix"></div>
     </header>
-    <section id="venues">
-        <h2>Venues</h2>
+    <section id="what">
+        <h2>What?</h2>
+        <div id="styles">
+            <h3>Styles</h2>
+            <div class="vis"></div>
+        </div>
+        <div id="beers">
+            <h3>Beers</h2>
+            <div class="vis"></div>
+        </div>
+        <div id="breweries">
+            <h3>Breweries</h2>
+            <div class="vis"></div>
+        </div>
+    </section>
+    <section id="where">
+        <h2>Where?</h2>
         <div class="vis"></div>
     </section>
-    <section id="breweries">
-        <h2>Breweries</h2>
-        <div class="vis"></div>
-    </section>
-    <section id="styles">
-        <h2>Styles</h2>
-        <div class="vis"></div>
-    </section>
-    <section id="beers">
-        <h2>Beers</h2>
-        <div class="vis"></div>
+
+    <section id="when">
+        <h2>When?</h2>
+        <div id="day">
+            <h3>Day</h3>
+            <div class="vis"></div>
+        </div>
+        <div id="hour">
+            <h3>Time</h3>
+            <div class="vis"></div>
+        </div>
     </section>
     <footer>
         <small class="description">Created by <a href="http://www.twitter.com/martinjc">@martinjc</a> for no other reason than he had an <a href="https://untappd.com/home">Untappd</a> API key that wasn't getting used. Find him on Untappd <a href="https://untappd.com/user/martinjc">here</a>. Some of the beers above were drunk by him, this much is guaranteed.</small>
@@ -157,7 +193,64 @@
 
         var transition_duration = 2000;
 
-        var draw_plot = function(element, data, value_label, x_label) {
+        var calc_time = function(checkins) {
+
+            function zero(time) {
+                return (time < 10 ? "0" : "") + time +  ":00";
+            }
+
+            days_seen = [];
+
+            var days = [
+            {'day': 'Monday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Tuesday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Wednesday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Thursday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Friday', 'count': 0, 'days_seen': 0, 'average': 0}, 
+            {'day': 'Saturday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Sunday', 'count': 0, 'days_seen': 0, 'average': 0}
+            ]
+            var times = d3.range(0, 23);
+
+            var times = []
+            for(i in d3.range(0, 24)) {
+                times.push({'time': zero(i), 'count': 0, 'average': 0});
+            }
+
+            console.log(days);
+            console.log(times);
+
+            checkins.forEach(function(c) {
+                d = new Date(c.time);
+                d_string = d.toDateString();
+                if(days_seen.indexOf(d_string) === -1) {
+                    days_seen.push(d_string);
+                    days[d.getDay()].days_seen +=1;
+                }
+                days[d.getDay()].count += 1;
+                times[d.getHours()].count += 1;
+            });
+
+            days.forEach(function(d) {
+                d.average = d.count / d.days_seen;
+            });
+
+            times.forEach(function(t) {
+                t.average = t.count / days_seen.length;
+            })
+
+            console.log(days);
+            console.log(times);
+
+            draw_plot('day', days, 'average', 'day', false, 'Average beers drunk per day');
+            draw_plot('hour', times, 'average', 'time', false, 'Average beers drunk per hour');
+
+
+
+
+        }
+
+        var draw_plot = function(element, data, value_label, x_label, sort, y_axis_label) {
 
             var g = document.getElementById(element);
             g = g.getElementsByClassName("vis")[0];
@@ -173,7 +266,7 @@
 
             // define x-scale and y-scale
             var x_scale = d3.scale.ordinal();
-            var y_scale = d3.scale.linear();
+            var y_scale = d3.scale.linear().nice();
 
             // define xaxis
             var x_axis = d3.svg.axis()
@@ -203,17 +296,21 @@
                 .attr("class", "y axis")
                 .attr("transform", "translate(" + padding.left + ",0)");
 
-            data.sort(function(a, b){
-                if (a[value_label] > b[value_label]) {
-                    return -1;
-                }
-                if (a[value_label] < b[value_label]) {
-                    return 1;
-                }
-                return 0;
-            })
+            if(sort) {
+                data.sort(function(a, b){
+                    if (a[value_label] > b[value_label]) {
+                        return -1;
+                    }
+                    if (a[value_label] < b[value_label]) {
+                        return 1;
+                    }
+                    return 0;
+                })
 
-            data = data.slice(0,20);
+                data = data.slice(0,20);                
+            }
+
+
 
             var names = data.map(function(d){ return d[x_label]; });
 
@@ -271,6 +368,14 @@
                 .transition()
                 .duration(transition_duration)
                 .call(y_axis);
+            svg.select(".y.axis")
+                .append("text")
+                .attr("class", "y label")
+                .attr("text-anchor", "end")
+                .attr("dx", "-4em")
+                .attr("dy", "-3.5em")
+                .attr("transform", "rotate(-90)")
+                .text(y_axis_label);
         }
 
         var init = function() { 
@@ -320,10 +425,12 @@
                     d3.select('#from-date').text(e_string);
                     d3.select('#to-date').text(l_string);
 
-                    draw_plot("venues", venues, "count", "venue_name");
-                    draw_plot("breweries", breweries, "count", "brewery_name");
-                    draw_plot("beers", beers, "count", "beer_name");
-                    draw_plot("styles", styles, "values", "key");
+                    draw_plot("where", venues, "count", "venue_name", true, "Number of beers drunk at Venue");
+                    draw_plot("breweries", breweries, "count", "brewery_name", true, "Number of beers drunk from brewery");
+                    draw_plot("beers", beers, "count", "beer_name", true, "Number of checkins per beer");
+                    draw_plot("styles", styles, "values", "key", true, "Number of beers drunk per style");
+
+                    calc_time(checkins);
                 })
         }();
     </script>
