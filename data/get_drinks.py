@@ -34,7 +34,8 @@ def _bootstrap_history(api):
     params = {"lat": 51.48, 
             "lng": -3.18, 
             "client_id": client_id, 
-            "client_secret": client_secret}
+            "client_secret": client_secret,
+            "radius": 15}
     
     drinks = api.query_get("thepub", "local", params)
 
@@ -43,7 +44,7 @@ def _bootstrap_history(api):
 
     drinks = drinks['response']['checkins']['items']
 
-    while count < 99:
+    while count < 99 & max_id != "":
 
             # make an api call to get the drinks prior 
             # to our earliest retrieved drink so far
@@ -60,6 +61,22 @@ def _bootstrap_history(api):
     return drinks
 
 
+def remove_non_cardiff(drinks):
+    to_remove = []
+
+    for drink in drinks:
+        if drink['venue']['location']['venue_state'] == 'Bristol' or drink['venue']['location']['venue_city'] == 'Bristol':
+            to_remove.append(drink)
+        if drink['venue']['location']['venue_state'] == 'Somerset':
+            to_remove.append(drink)
+
+    for drink in to_remove:
+        drinks.remove(drink)
+
+    return drinks
+
+
+
 def get_latest_drinks(api, drinks):
 
     # find the latest tweet retrieved
@@ -72,7 +89,8 @@ def get_latest_drinks(api, drinks):
     params = {"lat": 51.48, 
                 "lng": -3.18, 
                 "client_id": client_id, 
-                "client_secret": client_secret}
+                "client_secret": client_secret,
+                "radius": 15}
     params['min_id'] = latest_id
             
     new_drinks = api.query_get("thepub", "local", params)
@@ -120,7 +138,7 @@ def remove_duplicates(drinks):
         # if we've already seen this drink
         if drink["checkin_id"] in drink_ids:
             # add it to the list of drinks to remove
-            to_remove.append(drink)
+            to_remove.append(drink) 
         else:
             # otherwise add the ID to the list of drinks we've seen
             drink_ids.append(drink["checkin_id"])
@@ -154,6 +172,10 @@ if __name__ == "__main__":
     print(len(drinks))
 
     drinks = remove_duplicates(drinks)
+
+    print(len(drinks))
+
+    drinks = remove_non_cardiff(drinks)
 
     print(len(drinks))
         

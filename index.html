@@ -271,7 +271,7 @@
                     return (w0 + 1) * cellSize;
                  })
                 .attr("y", function(d){
-                    return height + cellSize/2;
+                    return 8 * cellSize;
                 });
                 
             function get_month(m) {
@@ -391,6 +391,14 @@
             height = g.clientHeight;
             height = height - padding.bottom;
 
+            if(width < 400) {
+                max_bars = 10;
+            } else if(width > 400 & width < 1000) {
+                max_bars = 15;
+            } else {
+                max_bars = 20;
+            }
+
             // the svg element that will hold the visualisation
             var svg;
 
@@ -440,7 +448,7 @@
                     return 0;
                 })
 
-                data = data.slice(0,20);                
+                data = data.slice(0,max_bars);                
             }
 
 
