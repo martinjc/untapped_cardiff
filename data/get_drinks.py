@@ -144,6 +144,8 @@ if __name__ == "__main__":
     else:
         drinks = []
 
+    print(len(drinks))
+
     if len(drinks) > 0:
         drinks = get_latest_drinks(ta, drinks)
     else:

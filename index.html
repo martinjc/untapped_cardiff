@@ -18,6 +18,7 @@
 
         header {
             padding: 30px;
+            background-color: rgb(252,187,161);
         }
 
         #venues, #breweries, #beers, #styles {
@@ -33,8 +34,11 @@
         #beers, #styles {
             float: right;
         }
+        h1 {
+            margin: 5px;
+        }
 
-        h2 {
+        section h2 {
             padding-left: 50px;
         }
 
@@ -79,12 +83,13 @@
 
         #intro {
             margin: 5px;
-            width: 58%;
+            padding: 5px;
+            width: 64%;
         }
 
         #explain {
             margin: 5px;
-            width: 38%;
+            width: 32%;
         }
 
         .clearfix {
@@ -97,13 +102,23 @@
     <header>
         <h1>Drinking in the Diff!</h1>
         <div class="left" id="intro">
-            <p>This page shows details of the beer drinking activity happening in Cardiff from <span id="from-date"></span> to <span id="to-date"></span>. Where has the beer been drunk, what have people been drinking, and which breweries have been most popular?</p>
+            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span id="from-date"></span> to <span id="to-date"></span>. Where has the beer been drunk, what have people been drinking, and which breweries have been most popular?</p>
+            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
             <p>Please remember to drink responsibly.</p>
             <p><small>This is v0.1 of this dashboard. Any suggestions for features/visualisations, <a href="http://martinjc.com/contact/">get in touch</a>; or better yet: <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
         </div>
         <div class="right" id="explain">
-            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that include a venue location. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers!</p>
-            <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small>
+            <h2>Choose your dates</h2>
+            <small>This doesn't work yet!</small>
+            <form>
+                <label for="from-date-select">From: 
+                    <input type=date name="from-date-select">
+                </label>
+                <br />
+                <label for="to-date-select">To: 
+                    <input type=date name="to-date-select">
+                </label>
+            </form>
         </div>
         <div class="clearfix"></div>
     </header>
@@ -245,8 +260,8 @@
                 .call(x_axis)
                 .selectAll("text")  
                     .style("text-anchor", "end")
-                    //.attr("dx", "-.8em")
-                    //.attr("dy", ".15em")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".15em")
                     .attr("transform", function(d) {
                         return "rotate(-35)" 
                     });
