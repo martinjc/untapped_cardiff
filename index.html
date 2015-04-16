@@ -40,7 +40,7 @@
 
         #when {
             width: 100%;
-            height: 400px;
+            height: 700px;
             margin-bottom: 40px;
         }
 
@@ -54,6 +54,12 @@
             display: inline-block;
             width: 48%;
             height: 400px;
+        }
+
+        #day_box {
+            width: 80%;
+            padding-left: 10%;
+            height: 300px;
         }
 
         span.time {
@@ -126,6 +132,13 @@
             clear: both;
         }
 
+        .month {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -173,6 +186,10 @@
             <h3>Time</h3>
             <div class="vis"></div>
         </div>
+        <div id="day_box">
+            <h3>Yearly</h3>
+            <div class="vis"></div>
+        </div>
     </section>
     <footer>
         <small class="description">Created by <a href="http://www.twitter.com/martinjc">@martinjc</a> for no other reason than he had an <a href="https://untappd.com/home">Untappd</a> API key that wasn't getting used. Find him on Untappd <a href="https://untappd.com/user/martinjc">here</a>. Some of the beers above were drunk by him, this much is guaranteed.</small>
@@ -186,12 +203,98 @@
 
         var padding = {
             top: 10,
-            bottom: 150,
+            bottom: 140,
             left: 100,
             right: 20
         }
 
         var transition_duration = 2000;
+
+        var do_year = function(checkins) {
+
+            var checkin_data = {};
+
+            var day = d3.time.format("%w");
+            var week = d3.time.format("%U");
+            var percent = d3.format(".1%");
+            var format = d3.time.format("%Y-%m-%d");
+
+            var colour_scale = d3.scale.quantile().range(colorbrewer.Reds[9]);
+
+            var g = document.getElementById("day_box");
+            g = g.getElementsByClassName("vis")[0];
+            width = g.clientWidth;
+            height = g.clientHeight;
+            height = height - padding.bottom;
+
+            var cellSize = width / 60;
+
+            // the svg element that will hold the visualisation
+            var svg = d3.select("#day_box .vis").selectAll('svg')
+                .data([2015])
+                .enter()
+                .append("svg")
+                .attr("height", height+padding.top+padding.bottom)
+                .attr("width", width);
+
+            svg.append("text")
+                .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+                .style("text-anchor", "middle")
+                .text(function(d) { return d; });
+
+            var rect = svg.selectAll(".day")
+                .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+              .enter().append("rect")
+                .attr("class", "day")
+                .attr("fill", "none")
+                .attr("stroke", "#ccc")
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .attr("x", function(d) { return week(d) * cellSize; })
+                .attr("y", function(d) { return day(d) * cellSize; })
+                .datum(format);
+
+            rect.append('title')
+                .text(function(d){return d;})
+            svg.selectAll(".month")
+                .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+              .enter().append("path")
+                .attr("class", "month")
+                .attr("d", monthPath);
+                
+            function monthPath(t0) {
+              var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+                  d0 = +day(t0), w0 = +week(t0),
+                  d1 = +day(t1), w1 = +week(t1);
+              return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+                  + "H" + w0 * cellSize + "V" + 7 * cellSize
+                  + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+                  + "H" + (w1 + 1) * cellSize + "V" + 0
+                  + "H" + (w0 + 1) * cellSize + "Z";
+            }
+
+            for(c in checkins) {
+                date = new Date(checkins[c].time);
+                date = date.toDateString();
+                if(!(date in checkin_data)) {
+                    checkin_data[date] = 1;
+                }
+                else {
+                    checkin_data[date] = checkin_data[date] + 1
+                }
+            }
+            var max = 0;
+            for(date in checkin_data) {
+                if(checkin_data[date] > max) {
+                    max = checkin_data[date];
+                }
+            }
+
+            colour_scale.domain([1, max]);
+
+            rect.filter(function(d) { return new Date(d).toDateString() in checkin_data; })
+              .attr("fill", function(d) { console.log(d); console.log(checkin_data[new Date(d).toDateString()]); return colour_scale(checkin_data[new Date(d).toDateString()]); });
+        }
 
         var calc_time = function(checkins) {
 
@@ -202,13 +305,13 @@
             days_seen = [];
 
             var days = [
+            {'day': 'Sunday', 'count': 0, 'days_seen': 0, 'average': 0},
             {'day': 'Monday', 'count': 0, 'days_seen': 0, 'average': 0},
             {'day': 'Tuesday', 'count': 0, 'days_seen': 0, 'average': 0},
             {'day': 'Wednesday', 'count': 0, 'days_seen': 0, 'average': 0},
             {'day': 'Thursday', 'count': 0, 'days_seen': 0, 'average': 0},
             {'day': 'Friday', 'count': 0, 'days_seen': 0, 'average': 0}, 
             {'day': 'Saturday', 'count': 0, 'days_seen': 0, 'average': 0},
-            {'day': 'Sunday', 'count': 0, 'days_seen': 0, 'average': 0}
             ]
             var times = d3.range(0, 23);
 
@@ -244,9 +347,6 @@
 
             draw_plot('day', days, 'average', 'day', false, 'Average beers drunk per day');
             draw_plot('hour', times, 'average', 'time', false, 'Average beers drunk per hour');
-
-
-
 
         }
 
@@ -431,6 +531,7 @@
                     draw_plot("styles", styles, "values", "key", true, "Number of beers drunk per style");
 
                     calc_time(checkins);
+                    do_year(checkins);
                 })
         }();
     </script>
