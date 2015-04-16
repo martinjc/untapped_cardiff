@@ -187,7 +187,7 @@
             <div class="vis"></div>
         </div>
         <div id="day_box">
-            <h3>Yearly</h3>
+            <h3>2015</h3>
             <div class="vis"></div>
         </div>
     </section>
@@ -256,12 +256,51 @@
 
             rect.append('title')
                 .text(function(d){return d;})
-            svg.selectAll(".month")
+            var months = svg.selectAll(".month")
                 .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
-              .enter().append("path")
-                .attr("class", "month")
+              .enter().append("g")
+                .attr("class", "month");
+
+            months.append('path')
                 .attr("d", monthPath);
+
+            months.append('text')
+                .text(function(d){ return get_month(d.getMonth()); })
+                .attr("x", function(d){
+                    w0 = +week(d);
+                    return (w0 + 1) * cellSize;
+                 })
+                .attr("y", function(d){
+                    return height + cellSize/2;
+                });
                 
+            function get_month(m) {
+                if(m === 0) {
+                    return "Jan";
+                } else if(m === 1) {
+                    return "Feb";
+                } else if(m === 2) {
+                    return "Mar";
+                } else if(m === 3) {
+                    return "Apr";
+                } else if(m === 4) {
+                    return "May";
+                } else if(m === 5) {
+                    return "Jun";
+                } else if(m === 6) {
+                    return "Jul";
+                } else if(m === 7) {
+                    return "Aug";
+                } else if(m === 8) {
+                    return "Sep";
+                } else if(m === 9) {
+                    return "Oct";
+                } else if(m === 10) {
+                    return "Nov";
+                } else if(m === 11) {
+                    return "Dec";
+                } 
+            }
             function monthPath(t0) {
               var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
                   d0 = +day(t0), w0 = +week(t0),
@@ -293,7 +332,7 @@
             colour_scale.domain([1, max]);
 
             rect.filter(function(d) { return new Date(d).toDateString() in checkin_data; })
-              .attr("fill", function(d) { console.log(d); console.log(checkin_data[new Date(d).toDateString()]); return colour_scale(checkin_data[new Date(d).toDateString()]); });
+              .attr("fill", function(d) {return colour_scale(checkin_data[new Date(d).toDateString()]); });
         }
 
         var calc_time = function(checkins) {
@@ -320,9 +359,6 @@
                 times.push({'time': zero(i), 'count': 0, 'average': 0});
             }
 
-            console.log(days);
-            console.log(times);
-
             checkins.forEach(function(c) {
                 d = new Date(c.time);
                 d_string = d.toDateString();
@@ -341,9 +377,6 @@
             times.forEach(function(t) {
                 t.average = t.count / days_seen.length;
             })
-
-            console.log(days);
-            console.log(times);
 
             draw_plot('day', days, 'average', 'day', false, 'Average beers drunk per day');
             draw_plot('hour', times, 'average', 'time', false, 'Average beers drunk per hour');
