@@ -37,8 +37,13 @@
             .attr("width", this.width);
     };
 
-    DayChart.prototype.re_draw = function(checkins) {
+    DayChart.prototype.add_data = function(checkins) {
 
+        this.checkins = checkins;
+    };
+
+    DayChart.prototype.draw = function() {
+        this.set_size();
         var chart = this;
 
         this.rect = this.svg.selectAll(".day")
@@ -82,8 +87,8 @@
              })
             .attr("y", 8 * chart.cellSize);
 
-        for(var c in checkins) {
-            var date = new Date(checkins[c].time);
+        for(var c in this.checkins) {
+            var date = new Date(this.checkins[c].time);
             date = date.toDateString();
             if(!(date in this.checkin_data)) {
                 this.checkin_data[date] = 1;
@@ -166,6 +171,8 @@ function BarChart(element_selector, padding) {
       .ticks(8);
 
     this.set_size();
+    this.data = undefined;
+    this.display_data = undefined;
 
 }
 
@@ -177,6 +184,7 @@ BarChart.prototype.set_size = function() {
     this.y_scale.range([this.height-this.padding.bottom, this.padding.top]);
 
     this.svg
+        .transition()
         .attr("height", this.height)
         .attr("width", this.width);
 
@@ -186,18 +194,16 @@ BarChart.prototype.set_size = function() {
     d3.select(".y.axis")
         .attr("transform", "translate(" + this.padding.left + ",0)");
 
-    if(this.width <= 500) {
-        this.num_bars = 5;
-    } else if(this.width > 500 && this.width <= 600) {
+    if(this.width <= 400) {
         this.num_bars = 10;
-    } else if(this.width > 600  && this.width <= 1000) {
+    } else if(this.width > 400 && this.width <= 600) {
         this.num_bars = 15;
     } else {
         this.num_bars = 20;
     }        
 };
 
-BarChart.prototype.re_draw = function(data, x, y, y_label, sorted_and_clipped) {
+BarChart.prototype.add_data = function(data, x, y, y_label, sorted_and_clipped) {
 
     this.set_size();
     var chart = this;
@@ -217,24 +223,30 @@ BarChart.prototype.re_draw = function(data, x, y, y_label, sorted_and_clipped) {
             return 0;
         });
 
-        chart.data = chart.data.slice(0, this.num_bars); 
+        chart.display_data = chart.data.slice(0, this.num_bars);
+    } else {
+        chart.display_data = chart.data;
     }
 
+    this.x_labels = this.display_data.map(function(d){ return d[x]; });
 
-
-    this.x_labels = this.data.map(function(d){ return d[x]; });
-
-    var largest_data_value = d3.max(this.data, function(d){ return d[chart.y]; });
+    var largest_data_value = d3.max(this.display_data, function(d){ return d[chart.y]; });
 
     this.x_scale.domain(this.x_labels);
     this.y_scale.domain([0, largest_data_value]);
     this.colour_scale.domain([0, largest_data_value]);
 
     this.y_label = y_label;
+};
+
+BarChart.prototype.draw = function() {
+
+    this.set_size();
+    var chart = this;
 
     var bars = this.svg
         .selectAll(".bar")
-        .data(chart.data);
+        .data(chart.display_data);
 
     bars
         .enter()
@@ -251,6 +263,11 @@ BarChart.prototype.re_draw = function(data, x, y, y_label, sorted_and_clipped) {
     bars       
         .transition()
         .duration(chart.transition_duration)
+        .attr("fill", function(d) {
+            return chart.colour_scale(d[chart.y]);
+        })
+        .attr("width", chart.x_scale.rangeBand())
+        .attr("x", function(d){ return chart.x_scale(d[chart.x]); })
         .attr("y", function(d){ return chart.y_scale(d[chart.y]); })
         .attr("height", function(d){ return chart.height-chart.padding.bottom - chart.y_scale(d[chart.y]);});
 

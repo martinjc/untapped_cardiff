@@ -161,10 +161,14 @@
                 .entries(beers);
 
 
-                beer_chart.re_draw(beers, "beer_name", "count", "Number of checkins per beer", true);
-                breweries_chart.re_draw(breweries, "brewery_name", "count", "Number of checkins per brewery", true);
-                styles_chart.re_draw(styles, "key", "values", "Number of checkins per style", true);
-                venues_chart.re_draw(venues, "venue_name", "count", "Number of checkins per venue", true);
+                beer_chart.add_data(beers, "beer_name", "count", "Number of checkins per beer", true);
+                breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true);
+                styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true);
+                venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true);
+                beer_chart.draw();
+                breweries_chart.draw();
+                styles_chart.draw();
+                venues_chart.draw();
                 calc_time(checkins);
             });
 
@@ -211,11 +215,25 @@
                 t.average = t.count / days_seen.length;
             })
 
-            day_chart.re_draw(days, 'day', 'average', 'Average beers drunk per day', false);
-            time_chart.re_draw(times, 'time', 'average', 'Average beers drunk per hour', false);
-            year_chart.re_draw(checkins);
+            day_chart.add_data(days, 'day', 'average', 'Average beers drunk per day', false);
+            time_chart.add_data(times, 'time', 'average', 'Average beers drunk per hour', false);
+            year_chart.add_data(checkins);
+            day_chart.draw();
+            time_chart.draw();
+            year_chart.draw();
 
         }
+
+        window.addEventListener("resize", function(){
+            console.log('resized');
+            day_chart.draw();
+            time_chart.draw();
+            year_chart.draw();            
+            beer_chart.draw();
+            breweries_chart.draw();
+            styles_chart.draw();
+            venues_chart.draw();
+        }) 
     </script>
 
 </body>
