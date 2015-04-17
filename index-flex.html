@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Drinking in the 'Diff</title>
+
+    <!-- Styles -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    
+
+    <!-- Good at all sizes! -->
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <header>
+        <h1>Drinking in the Diff!</h1>
+    </header>
+
+    <div id="main">
+
+        <!-- intro should always be top of the page -->
+        <section id="intro" class="flex-item text-box">
+            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span class="time" id="from-date"></span> to <span class="time" id="to-date"></span>, according to the beer-based social network/logging app <a href="https://untappd.com/home">Untappd</a>.</p>
+        <!-- #intro -->
+        </section>
+
+        <!-- dashboard presents the data -->
+        <section id="dashboard">
+
+            <section id="what">
+                <h2>What?</h2>
+                <div id="styles">
+                    <h3>Styles</h3>
+                    <div class="vis"></div>
+                </div>
+                <div id="beers">
+                    <h3>Beers</h3>
+                    <div class="vis"></div>
+                </div>
+                <div id="breweries">
+                    <h3>Breweries</h3>
+                    <div class="vis"></div>
+                </div>
+            </section>
+
+            <section id="where">
+                <h2>Where?</h2>
+                <div id="venues">
+                    <h3>Venues</h3>
+                    <div class="vis"></div>
+                </div>
+                
+            </section>
+
+            <section id="when">
+                <h2>When?</h2>
+                <div id="day">
+                    <h3>Day</h3>
+                    <div class="vis"></div>
+                </div>
+                <div id="time">
+                    <h3>Time</h3>
+                    <div class="vis"></div>
+                </div>
+                <div id="year">
+                    <h3>2015</h3>
+                    <div class="vis"></div>
+                </div>
+            </section>
+        
+        <!-- dashboard -->
+        </section>
+
+        <!-- data description is top of page on larger screens, bottom of page on smaller -->
+        <section id="data-description" class="flex-item text-box">
+            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
+        </section>
+
+        <!-- disclaimer is top of page on larger screens, bottom of page on smaller -->
+        <aside id="beta-disclaimer" class="flex-item text-box">
+            <p><small>This is a very early version of this dashboard. The code is a mess, and it's pretty dull. I've got a bunch of ideas for things I'd like to improve or include, but any other suggestions for features/visualisations are welcome: <a href="http://martinjc.com/contact/">get in touch</a> or better yet <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
+        </aside>
+
+    <!-- main -->
+    </div>
+
+    <footer>
+        <div id="description" class="flex-item text-box">
+            <small class="description">Created by <a href="http://www.twitter.com/martinjc">@martinjc</a> for no other reason than he had an <a href="https://untappd.com/home">Untappd</a> API key that wasn't getting used. Find him on Untappd <a href="https://untappd.com/user/martinjc">here</a>. Some of the beers above were drunk by him, this much is guaranteed.</small> 
+        </div>
+        <div id="untappd-logo" class="flex-item text-box">
+            <a href="https://untappd.com/home"><img class="utplogo" src="img/pbu_320_black.png"></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+
+</body>
+</html>

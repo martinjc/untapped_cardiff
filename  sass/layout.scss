@@ -1,0 +1,120 @@
+#main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#dashboard, #what, #where, #when {
+    @extend #main;
+    width: 100%;
+}
+
+.vis-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: stretch;
+    height: $vis-height;
+}
+
+#styles, #beers, #breweries {
+    @extend .vis-container;
+    flex-grow: 1;
+    flex-basis: $vis-width-1-3-small;
+}
+
+#day, #time {
+    @extend .vis-container;
+    flex-grow: 1;
+    flex-basis: $vis-width-1-2-small;
+}
+
+#venues {
+    @extend .vis-container;
+    flex-grow: 0;
+    flex-basis: $vis-width-solo-small;
+}
+
+#year {
+    @extend .vis-container;
+    flex-grow: 1;
+    flex-basis: $vis-width-solo-small;
+}
+
+h2 {
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flex-item {
+    display: flex;
+    align-items: center;
+}
+
+.vis {
+    width: 100%;
+    height: 100%;
+
+}
+
+@media only screen and (min-width: 1000px) {
+    #description {
+        flex-grow: 1;
+        width: 70%;
+    }
+
+    #intro {
+        flex-grow: 1;
+        width: 60%
+    }
+
+    #data-description {
+        flex-grow: 1;
+        width: 40%
+    }
+
+    #day, #time {
+        flex-grow: 1;
+        flex-basis: $vis-width-1-2-large;
+        width: 50%;
+    }
+
+    #year, #venues {
+        flex-grow: 0;
+        flex-basis: $vis-width-solo-large;
+        width: 70%;
+    }
+
+    #styles, #beers, #breweries {
+        flex-grow: 1;
+        flex-basis: $vis-width-1-3-large;
+    }
+
+}
+
+
+@media only screen and (min-width: 760px) {
+
+    #intro {
+        order: 0;
+    }
+    
+    #data-description {
+        order: 1;
+    }
+
+    #beta-disclaimer {
+        order: 2;
+    }
+
+    #dashboard {
+        order: 3;
+    }
+}

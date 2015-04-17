@@ -2,7 +2,7 @@
 _credentials.py
 data/cache/*
 *.json
+img/*
+config.*
 
-img/pbu_320_black.png
-
-img/pbu_320_yellow.png
+*.scssc
