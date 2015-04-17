@@ -33,8 +33,11 @@
         this.height = +d3.select(this.element_selector).node().getBoundingClientRect().height;
 
         this.svg
+            .transition()
             .attr("height", this.height)
             .attr("width", this.width);
+
+        this.cellSize = (this.width) / 53;
     };
 
     DayChart.prototype.add_data = function(checkins) {
@@ -44,20 +47,25 @@
 
     DayChart.prototype.draw = function() {
         this.set_size();
+
+        this.svg.selectAll(".day").remove();
+        this.svg.selectAll(".month").remove();
+
+
         var chart = this;
 
         this.rect = this.svg.selectAll(".day")
             .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
             .enter()
             .append("rect")
-                .attr("class", "day")
-                .attr("fill", "none")
-                .attr("stroke", "#ccc")
-                .attr("width", this.cellSize)
-                .attr("height", this.cellSize)
-                .attr("x", function(d) { return chart.week(d) * chart.cellSize; })
-                .attr("y", function(d) { return chart.day(d) * chart.cellSize; })
-                .datum(this.format);
+            .attr("class", "day")
+            .attr("fill", "none")
+            .attr("stroke", "#ccc")
+            .attr("width", this.cellSize)
+            .attr("height", this.cellSize)
+            .attr("x", function(d) { return (chart.week(d) * chart.cellSize); })
+            .attr("y", function(d) { return (chart.day(d) * chart.cellSize); })
+            .datum(this.format);
 
         var months = this.svg.selectAll(".month")
             .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
@@ -68,7 +76,7 @@
             var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
                 d0 = +chart.day(t0), w0 = +chart.week(t0),
                 d1 = +chart.day(t1), w1 = +chart.week(t1);
-            return "M" + (w0 + 1) * chart.cellSize + "," + d0 * chart.cellSize + 
+            return "M" + ((w0 + 1) * chart.cellSize) + "," + d0 * chart.cellSize + 
                 "H" + w0 * chart.cellSize + "V" + 7 * chart.cellSize + 
                 "H" + w1 * chart.cellSize + "V" + (d1 + 1) * chart.cellSize + 
                 "H" + (w1 + 1) * chart.cellSize + "V" + 0 +
@@ -163,7 +171,8 @@ function BarChart(element_selector, padding) {
 
     this.x_axis = d3.svg.axis()
       .scale(this.x_scale)
-      .orient("bottom");
+      .orient("bottom")
+      .ticks(10);
 
     this.y_axis = d3.svg.axis()
       .scale(this.y_scale)

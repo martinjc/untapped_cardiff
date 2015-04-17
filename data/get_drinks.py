@@ -67,7 +67,7 @@ def remove_non_cardiff(drinks):
     for drink in drinks:
         if drink['venue']['location']['venue_state'] == 'Bristol' or drink['venue']['location']['venue_city'] == 'Bristol':
             to_remove.append(drink)
-        if drink['venue']['location']['venue_state'] == 'Somerset':
+        if drink['venue']['location']['venue_state'] == 'Somerset' or drink['venue']['location']['venue_state'] == 'North Somerset':
             to_remove.append(drink)
 
     for drink in to_remove:

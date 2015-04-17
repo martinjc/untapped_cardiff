@@ -123,10 +123,6 @@
             .defer(d3.json, "data/beers.json")
             .defer(d3.json, "data/checkins.json")
             .await(function(error, venues, breweries, beers, checkins){
-                console.log(venues);
-                console.log(breweries);
-                console.log(beers);
-                console.log(checkins);
 
                 earliest = Date.parse(checkins[0].time);
                 latest = earliest;
@@ -225,7 +221,6 @@
         }
 
         window.addEventListener("resize", function(){
-            console.log('resized');
             day_chart.draw();
             time_chart.draw();
             year_chart.draw();            
