@@ -40,6 +40,7 @@
     @extend .vis-container;
     flex-grow: 1;
     flex-basis: $vis-width-solo-small;
+    height: 170px;
 }
 
 h2 {
@@ -84,6 +85,10 @@ footer {
         flex-grow: 1;
         flex-basis: $vis-width-1-2-large;
         width: 50%;
+    }
+
+    #year {
+        height: 300px;
     }
 
     #year, #venues {

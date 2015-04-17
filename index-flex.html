@@ -23,7 +23,7 @@
 
         <!-- intro should always be top of the page -->
         <section id="intro" class="flex-item text-box">
-            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span class="time" id="from-date"></span> to <span class="time" id="to-date"></span>, according to the beer-based social network/logging app <a href="https://untappd.com/home">Untappd</a>.</p>
+            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span class="bold" id="from-date"></span> to <span class="bold" id="to-date"></span>, according to the beer-based social network/logging app <a href="https://untappd.com/home">Untappd</a>.</p>
         <!-- #intro -->
         </section>
 
@@ -31,7 +31,7 @@
         <section id="dashboard">
 
             <section id="what">
-                <h2>What?</h2>
+                <h2>What's been drunk?</h2>
                 <div id="styles">
                     <h3>Styles</h3>
                     <div class="vis"></div>
@@ -47,7 +47,7 @@
             </section>
 
             <section id="where">
-                <h2>Where?</h2>
+                <h2>Where's it been drunk?</h2>
                 <div id="venues">
                     <h3>Venues</h3>
                     <div class="vis"></div>
@@ -56,7 +56,7 @@
             </section>
 
             <section id="when">
-                <h2>When?</h2>
+                <h2>When's it been drunk?</h2>
                 <div id="day">
                     <h3>Day</h3>
                     <div class="vis"></div>
@@ -100,6 +100,123 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="js/vis.js"></script>
+    <script>
+        var padding = {
+            top: 10,
+            bottom: 140,
+            left: 90,
+            right: 10
+        };
+
+        beer_chart = new BarChart("#beers .vis", padding);
+        styles_chart = new BarChart("#styles .vis", padding);
+        breweries_chart = new BarChart("#breweries .vis", padding);
+        venues_chart = new BarChart("#venues .vis", padding);
+        day_chart = new BarChart("#day .vis", padding);
+        time_chart = new BarChart("#time .vis", padding);
+        year_chart = new DayChart("#year .vis");
+
+        queue()
+            .defer(d3.json, "data/venues.json")
+            .defer(d3.json, "data/breweries.json")
+            .defer(d3.json, "data/beers.json")
+            .defer(d3.json, "data/checkins.json")
+            .await(function(error, venues, breweries, beers, checkins){
+                console.log(venues);
+                console.log(breweries);
+                console.log(beers);
+                console.log(checkins);
+
+                earliest = Date.parse(checkins[0].time);
+                latest = earliest;
+                checkins.forEach(function(d) {
+                    var t = Date.parse(d.time);
+                    if(t < earliest) {
+                        earliest = t;
+                    }
+                    if(t > latest) {
+                        latest = t;
+                    }
+                })
+
+                l = new Date(latest);
+                e = new Date(earliest);
+
+                l_string = l.toDateString();
+                e_string = e.toDateString();
+
+                d3.select('#from-date').text(e_string);
+                d3.select('#to-date').text(l_string);
+
+                styles = d3.nest()
+                .key(function(d) {
+                  return d.beer_style;
+                })
+                .rollup(function(d) {
+                  return d3.sum(d, function(g) {
+                    return g.count;
+                  });
+                })
+                .entries(beers);
+
+
+                beer_chart.re_draw(beers, "beer_name", "count", "Number of checkins per beer", true);
+                breweries_chart.re_draw(breweries, "brewery_name", "count", "Number of checkins per brewery", true);
+                styles_chart.re_draw(styles, "key", "values", "Number of checkins per style", true);
+                venues_chart.re_draw(venues, "venue_name", "count", "Number of checkins per venue", true);
+                calc_time(checkins);
+            });
+
+        var calc_time = function(checkins) {
+
+            function zero(time) {
+                return (time < 10 ? "0" : "") + time +  ":00";
+            }
+
+            days_seen = [];
+
+            var days = [
+            {'day': 'Sunday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Monday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Tuesday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Wednesday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Thursday', 'count': 0, 'days_seen': 0, 'average': 0},
+            {'day': 'Friday', 'count': 0, 'days_seen': 0, 'average': 0}, 
+            {'day': 'Saturday', 'count': 0, 'days_seen': 0, 'average': 0},
+            ]
+            var times = d3.range(0, 23);
+
+            var times = []
+            for(i in d3.range(0, 24)) {
+                times.push({'time': zero(i), 'count': 0, 'average': 0});
+            }
+
+            checkins.forEach(function(c) {
+                d = new Date(c.time);
+                d_string = d.toDateString();
+                if(days_seen.indexOf(d_string) === -1) {
+                    days_seen.push(d_string);
+                    days[d.getDay()].days_seen +=1;
+                }
+                days[d.getDay()].count += 1;
+                times[d.getHours()].count += 1;
+            });
+
+            days.forEach(function(d) {
+                d.average = d.count / d.days_seen;
+            });
+
+            times.forEach(function(t) {
+                t.average = t.count / days_seen.length;
+            })
+
+            day_chart.re_draw(days, 'day', 'average', 'Average beers drunk per day', false);
+            time_chart.re_draw(times, 'time', 'average', 'Average beers drunk per hour', false);
+            year_chart.re_draw(checkins);
+
+        }
+    </script>
 
 </body>
 </html>
