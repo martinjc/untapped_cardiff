@@ -356,3 +356,8 @@ footer {
   stroke: #000;
   stroke-width: 2px;
 }
+
+.month text {
+  font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
