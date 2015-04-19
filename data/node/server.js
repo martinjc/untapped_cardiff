@@ -7,12 +7,13 @@ var schedule = require('node-schedule');
 var untappd = require('./untappd');
 
 
+// schedule the server to update data from untappd server once every 60 minutes
 schedule.scheduleJob('*/60 * * * *', function(){
     untappd.get_drinks(51.48, -3.18, 15);
     untappd.extract_data();
-    console.log('checked drinks');
 });
 
+// filter the set of checkins
 var checkin_subset = function(from, to, callback) {
 
     from = new Date(from);
@@ -20,6 +21,7 @@ var checkin_subset = function(from, to, callback) {
 
     var return_data = [];
 
+    // read the checkins, return only those within the from and to dates
     fs.readFile('checkins.json', 'utf8', function(err, data){
         if(err) {
             console.error(err);
@@ -39,17 +41,21 @@ var checkin_subset = function(from, to, callback) {
     });
 };
 
+
+// return a subset of the data
 var return_subset = function(property, from, to, response) {
+
+    // store ids and count of ids to be returned
     var ids = [];
     var count = {};
 
+    // get the subset of checkins we're dealing with
     checkin_subset(from, to, function(err, checkins){
         if(err) {
             console.error(err);
         }
 
-        console.log(checkins.length);
-
+        // extract the ids of the relevant data
         checkins.forEach(function(c) {
             if(ids.indexOf(c[property]) === -1) {
                 ids.push(c[property]);
@@ -61,8 +67,7 @@ var return_subset = function(property, from, to, response) {
             }
         });
 
-        console.log(ids.length);
-
+        // open the correct data file
         var data_file;
         if(property === "brewery") {
             data_file = "breweries.json";
@@ -70,6 +75,7 @@ var return_subset = function(property, from, to, response) {
             data_file = property + "s.json";
         }
 
+        // use the correct id file
         var id_property;
         if(property === "beer") {
             id_property = "bid";
@@ -77,6 +83,7 @@ var return_subset = function(property, from, to, response) {
             id_property = property + "_id";    
         }
         
+        // open the file, extract the relevant ids and return it
         fs.readFile(data_file, 'utf-8', function(err, data) {
 
             var return_data = [];
@@ -93,11 +100,12 @@ var return_subset = function(property, from, to, response) {
             });
 
             response.writeHead(200, {'Content-Type': 'application/json'});
-            response.end(data);
+            response.end(JSON.stringify(return_data));
         });        
     });
 };
 
+// return the whole data file
 var read_and_return = function(file, response) {
     fs.readFile(file, 'utf8', function(err, data){
         if(err) {
@@ -108,14 +116,17 @@ var read_and_return = function(file, response) {
     });
 };
 
+// set up the server
 var server = http.createServer(function(request, response){
     var u = url.parse(request.url, true);
+
+    // are we looking for a subset of the data?
     var subset = false;
     if(u.query.hasOwnProperty('from') && u.query.hasOwnProperty('to')){
-        console.log(u.query.from);
-        console.log(u.query.to);
         subset = true;
     }
+
+    // retrieve and return the correct data
     if(u.pathname === '/api/venues') {
         if(subset) {
             return_subset('venue', u.query.from, u.query.to, response);
@@ -146,9 +157,7 @@ var server = http.createServer(function(request, response){
 
         } else {
             read_and_return('checkins.json', response);     
-        }
-          
+        }   
     }
-
 });
 server.listen(2000);
