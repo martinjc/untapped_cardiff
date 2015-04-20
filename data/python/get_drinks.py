@@ -35,7 +35,7 @@ def _bootstrap_history(api):
             "lng": -3.18, 
             "client_id": client_id, 
             "client_secret": client_secret,
-            "radius": 15}
+            "radius": 10}
     
     drinks = api.query_get("thepub", "local", params)
 
@@ -90,7 +90,7 @@ def get_latest_drinks(api, drinks):
                 "lng": -3.18, 
                 "client_id": client_id, 
                 "client_secret": client_secret,
-                "radius": 15}
+                "radius": 10}
     params['min_id'] = latest_id
             
     new_drinks = api.query_get("thepub", "local", params)
