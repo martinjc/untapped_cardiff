@@ -4,7 +4,8 @@
 
     var urlParams;
     var location;
-    (window.onpopstate = function() {
+
+    function getparams(callback) {
         var match,
             pl     = /\+/g,  // Regex for replacing addition symbol with a space
             search = /([^&=]+)=?([^&]*)/g,
@@ -16,8 +17,15 @@
            urlParams[decode(match[1])] = decode(match[2]);
         }
         location = window.location.origin + window.location.pathname;
-        reset_page();
-    });
+        if(callback) {
+            callback();    
+        }
+        
+    }
+
+    window.onpopstate = function() {
+        getparams(reset_page);
+    };
     window.onpopstate();
 
     var padding = {
@@ -47,10 +55,13 @@
 
     var week_handler;
     function reset_page() {
+        getparams();
         week_handler = new WeekHandler();
         if(urlParams.hasOwnProperty('from') && urlParams.hasOwnProperty('to')) {
             week_handler.current_week.start = new Date(urlParams.from);
             week_handler.current_week.end = new Date(urlParams.to);
+            d3.select('#today').attr("disabled", null);
+            d3.select('#showall').attr("disabled", null);
         } else if(urlParams.hasOwnProperty('all')) {
             d3.select('#showall').attr("disabled", "disabled");
             do_dashboard("");
