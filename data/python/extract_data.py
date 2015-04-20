@@ -35,6 +35,9 @@ def get_venues(drinks):
 
     for venue in venues:
         venue['count'] = venue_count[venue['venue_id']]
+        
+    print("venues %s" % len(venues))
+
     json.dump(venues, open('venues.json', 'w'))
 
 
@@ -53,6 +56,8 @@ def get_breweries(drinks):
 
     for brewery in breweries:
         brewery['count'] = brewery_count[brewery['brewery_id']]
+
+    print("breweries %s" % len(breweries))
 
     json.dump(breweries, open('breweries.json', 'w'))
 
@@ -73,6 +78,8 @@ def get_beers(drinks):
     for beer in beers:
         beer['count'] = beer_count[beer['bid']]
 
+    print("beers %s" % len(beers))
+
     json.dump(beers, open('beers.json', 'w'))
 
 
@@ -87,6 +94,8 @@ def get_checkins(drinks):
             'venue': drink['venue']['venue_id'],
             'time': drink['created_at']
         })
+
+    print("checkins %s" % len(checkins))
 
     json.dump(checkins, open('checkins.json', 'w'))
 

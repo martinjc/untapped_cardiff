@@ -102,6 +102,7 @@
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="js/min/vis-min.js"></script>
     <script>
+
         var padding = {
             top: 10,
             bottom: 140,
@@ -118,11 +119,20 @@
         year_chart = new DayChart("#year .vis");
 
         queue()
-            .defer(d3.json, "data/python/venues.json")
-            .defer(d3.json, "data/python/breweries.json")
-            .defer(d3.json, "data/python/beers.json")
-            .defer(d3.json, "data/python/checkins.json")
+            .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/venues")
+            .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/breweries")
+            .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/beers")
+            .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/checkins")
             .await(function(error, venues, breweries, beers, checkins){
+
+                venues = JSON.parse(venues.response);
+                breweries = JSON.parse(breweries.response);
+                beers = JSON.parse(beers.response);
+                checkins = JSON.parse(checkins.response);
+
+                if(error) {
+                    console.log(errorr);
+                }
 
                 earliest = Date.parse(checkins[0].time);
                 latest = earliest;

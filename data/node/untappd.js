@@ -3,7 +3,7 @@ var request = require('request');
 
 var credentials = require('./_credentials');
 
-module.exports.extract_data = function() {
+var extract_data = function() {
     // read the drinks file
     fs.readFile('cache/drinks.json', 'utf8', function(err, data){
         if(err) {
@@ -82,6 +82,11 @@ module.exports.extract_data = function() {
             b.count = beer_count[b.bid];
         });
 
+        console.log("venues: " + venues.length);
+        console.log("breweries: " + breweries.length);
+        console.log("beers: " + beers.length);
+        console.log("checkins: " + checkins.length);
+
         // write out data files
         fs.writeFile('venues.json', JSON.stringify(venues), function(err){
             if(err) {
@@ -117,22 +122,12 @@ module.exports.get_drinks = function(lat, lng, radius) {
 
     var url = "https://api.untappd.com/v4/thepub/local/";
 
-    // read the list of drinks retrieved so far
     fs.readFile('cache/drinks.json', 'utf8', function(err, data){
-        
         var drinks = JSON.parse(data);
 
-        var params = {
-            "lat": lat, 
-            "lng": lng, 
-            "client_id": c_id, 
-            "client_secret": c_secret,
-            "radius": radius,
-        };
+        console.log(new Date());
+        console.log("drinks at start: " + drinks.length);
 
-        console.log(drinks.length);
-
-        // find the latest drink retrieved
         var latest_id = 0;
         drinks.forEach(function(d){
             if(d.checkin_id > latest_id) {
@@ -142,68 +137,98 @@ module.exports.get_drinks = function(lat, lng, radius) {
 
         console.log(latest_id);
 
-        var get_more_drinks = function(err, response, body) {
+        var params = {
+            "lat": lat, 
+            "lng": lng, 
+            "client_id": c_id, 
+            "client_secret": c_secret,
+            "radius": radius,
+            "min_id": latest_id
+        };
+
+        request({url:url, qs:params}, function(err, response, body) {
             if(err) { 
                 console.log(err); 
                 return; 
             }
             var new_drinks = JSON.parse(body).response.checkins.items;
-            drinks = drinks.concat(new_drinks);  
-        };
+            
+            drinks = drinks.concat(new_drinks);
+            console.log("drinks after first call: " + drinks.length);
 
-        // assume we have more drinks to retrieve
-        var count = 1;
-        var more_drinks = true;
-
-        while(more_drinks && count < 99) {
-
-            params.min_id = latest_id;
-            console.log(latest_id);
-            request({url:url, qs:params}, get_more_drinks);
-            var current_latest = latest_id;
+            // assume there's more drinks
+            var more_drinks = true;
 
             // find the latest drink
-            for(var i in drinks) {
-                if(drinks[i].checkin_id > latest_id) {
-                    latest_id = drinks[i].checkin_id;
+            drinks.forEach(function(d){
+                if(d.checkin_id > latest_id) {
+                    latest_id = d.checkin_id;
+                }
+            });
+
+            var get_more_drinks = function(err, response, body) {
+                if(err) {
+                    console.log(err); 
+                    return; 
+                }
+                var new_drinks = JSON.parse(body).response.checkins.items;
+                drinks = drinks.concat(new_drinks);  
+            };
+
+            var count = 1;
+            while(more_drinks && count < 99) {
+
+                params.min_id = latest_id;
+                console.log(latest_id);
+                request({url:url, qs:params}, get_more_drinks);
+                console.log("drinks after more calls: " + drinks.length);
+                var current_latest = latest_id;
+
+                // find the latest drink
+                for(var i in drinks) {
+                    if(drinks[i].checkin_id > latest_id) {
+                        latest_id = drinks[i].checkin_id;
+                    }
+                }
+                console.log(latest_id);
+                if(current_latest === latest_id) {
+                    more_drinks = false;
+                }
+                count += 1;
+            }
+
+            console.log(drinks.length);
+
+            var to_remove = [];
+            var ids = [];
+            for(var d in drinks) {
+                if(drinks[d].checkin_id in ids) {
+                    to_remove.push(d);
+                } else if(drinks[d].venue.location.venue_state === 'Bristol' || drinks[d].venue.location.venue_city === 'Bristol') {
+                    to_remove.push(d);
+                } else if(drinks[d].venue.location.venue_state === 'Somerset' || drinks[d].venue.location.venue_state === 'North Somerset') {
+                    to_remove.push(d);
+                } else {
+                    ids.push(drinks[d].checkin_id);
                 }
             }
-            console.log(latest_id);
-            if(current_latest === latest_id) {
-                more_drinks = false;
+
+            to_remove.sort(function(a,b){ return b-a; });
+
+            for(var t in to_remove) {
+                drinks.splice(to_remove[t], 1);
             }
-            count += 1;
-        }        
 
-        console.log(drinks.length);
+            console.log("after removal:" + drinks.length);
 
-        // remove any that are out of area, or any duplicates
-        var to_remove = [];
-        var ids = [];
-        for(var d in drinks) {
-            if(drinks[d].checkin_id in ids) {
-                to_remove.push(d);
-            } else if(drinks[d].venue.location.venue_state === 'Bristol' || drinks[d].venue.location.venue_city === 'Bristol') {
-                to_remove.push(d);
-            } else if(drinks[d].venue.location.venue_state === 'Somerset' || drinks[d].venue.location.venue_state === 'North Somerset') {
-                to_remove.push(d);
-            } else {
-                ids.push(drinks[d].checkin_id);
-            }
-        }
-
-        to_remove.sort(function(a,b){ return b-a; });
-
-        for(var t in to_remove) {
-            drinks.splice(to_remove[t], 1);
-        }
-
-        console.log(drinks.length);
-
-        fs.writeFile('cache/drinks.json', JSON.stringify(drinks), function(err){
-            if(err) {
-                console.log(err);
-            }
+            fs.writeFile('cache/drinks.json', JSON.stringify(drinks), function(err){
+                if(err) {
+                    console.log(err);
+                }
+                extract_data();
+            });
         });
     });
 };
+
+module.exports.extract_data = extract_data;

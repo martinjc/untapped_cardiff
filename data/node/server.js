@@ -6,9 +6,12 @@ var schedule = require('node-schedule');
 
 var untappd = require('./untappd');
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
 
 // schedule the server to update data from untappd server once every 60 minutes
-schedule.scheduleJob('*/60 * * * *', function(){
+schedule.scheduleJob('*/20 * * * *', function(){
     untappd.get_drinks(51.48, -3.18, 15);
     untappd.extract_data();
 });
@@ -98,7 +101,7 @@ var return_subset = function(property, from, to, response) {
             return_data.forEach(function(i){
                 i.count = count[i[id_property]];
             });
-
+            response.setHeader("Access-Control-Allow-Origin", "*");
             response.writeHead(200, {'Content-Type': 'application/json'});
             response.end(JSON.stringify(return_data));
         });        
@@ -111,6 +114,7 @@ var read_and_return = function(file, response) {
         if(err) {
             console.error(err);
         }
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.writeHead(200, {'Content-Type': 'application/json'});
         response.end(data);
     });
@@ -151,6 +155,7 @@ var server = http.createServer(function(request, response){
     else if(u.pathname === '/api/checkins') {
         if(subset) {
             checkin_subset(u.query.from, u.query.to, function(err, checkins) {
+                response.setHeader("Access-Control-Allow-Origin", "*");
                 response.writeHead(200, {'Content-Type': 'application/json'});
                 response.end(JSON.stringify(checkins));                            
             });
@@ -160,4 +165,6 @@ var server = http.createServer(function(request, response){
         }   
     }
 });
-server.listen(2000);
+untappd.get_drinks(51.48, -3.18, 15);
+untappd.extract_data();
+server.listen(server_port, server_ip_address);
