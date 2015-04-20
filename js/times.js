@@ -55,7 +55,9 @@
     };
 
     WeekHandler.prototype.get_query_string = function() {
-        var query_string = "?from=" + this.current_week.start.toDateString() + "&to=" + this.current_week.end.toDateString();
+        var start_string = "" + this.current_week.start.getFullYear() + "-" + (this.current_week.start.getMonth()+1) + "-" + this.current_week.start.getDate();
+        var end_string = "" + this.current_week.end.getFullYear() + "-" + (this.current_week.end.getMonth()+1) + "-" + this.current_week.end.getDate();
+        var query_string = "?from=" + start_string + "&to=" + end_string;
         return query_string;
     };
 

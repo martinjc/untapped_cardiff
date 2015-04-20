@@ -1,6 +1,25 @@
 /* global d3, queue, WeekHandler, DayChart, BarChart */
 
 (function(){
+
+    var urlParams;
+    var location;
+    (window.onpopstate = function() {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while ((match = search.exec(query)) !== null) {
+           urlParams[decode(match[1])] = decode(match[2]);
+        }
+        location = window.location.origin + window.location.pathname;
+        reset_page();
+    });
+    window.onpopstate();
+
     var padding = {
         top: 10,
         bottom: 140,
@@ -29,37 +48,54 @@
     var week_handler;
     function reset_page() {
         week_handler = new WeekHandler();
+        if(urlParams.hasOwnProperty('from') && urlParams.hasOwnProperty('to')) {
+            week_handler.current_week.start = new Date(urlParams.from);
+            week_handler.current_week.end = new Date(urlParams.to);
+        } else if(urlParams.hasOwnProperty('all')) {
+            d3.select('#showall').attr("disabled", "disabled");
+            do_dashboard("");
+        } else {
+            d3.select('#today').attr("disabled", "disabled");
+        }
         var query = week_handler.get_query_string();
         do_dashboard(query);            
     }
 
-    reset_page();
-
     d3.select('#previous').on("click", function(){
-        console.log('clicked');
-        console.log(week_handler.can_page_back());
+        d3.select('#showall').attr("disabled", null);
+        d3.select('#today').attr("disabled", null);
         if(week_handler.can_page_back()) {
             week_handler.page_back();
+            window.history.pushState({}, "", location + week_handler.get_query_string());
             do_dashboard(week_handler.get_query_string());
         }            
     });
 
     d3.select('#next').on('click', function() {
+        d3.select('#showall').attr("disabled", null);
+        d3.select('#today').attr("disabled", null);
         if(week_handler.can_page_forward()) {
             week_handler.page_forward();
+            window.history.pushState({}, "", location + week_handler.get_query_string());
             do_dashboard(week_handler.get_query_string());
         }
     });
 
     d3.select('#today').on('click', function() {
+        d3.select('#showall').attr("disabled", null);
+        d3.select('#today').attr("disabled", "disabled");
         d3.select('#previous').attr("disabled", null);
         d3.select('#next').attr("disabled", null);
+        window.history.pushState({}, "", location);
         reset_page();
     });
 
     d3.select('#showall').on('click', function(){
+        d3.select('#showall').attr("disabled", "disabled");
+        d3.select('#today').attr("disabled", null);
         d3.select('#previous').attr("disabled", "disabled");
         d3.select('#next').attr("disabled", "disabled");
+        window.history.pushState({"all": "all"}, "", location + "?all");
         do_dashboard("");
     });
 
