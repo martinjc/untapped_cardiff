@@ -10,6 +10,20 @@
     width: 100%;
 }
 
+#change-dates {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#change-dates h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+}
+
 .vis-container {
     display: flex;
     flex-direction: column;
@@ -115,11 +129,7 @@ footer {
         order: 1;
     }
 
-    #beta-disclaimer {
-        order: 2;
-    }
-
     #dashboard {
-        order: 3;
+        order: 2;
     }
 }

@@ -23,12 +23,22 @@
 
         <!-- intro should always be top of the page -->
         <section id="intro" class="flex-item text-box">
-            <p>This page shows details of the beer drinking activity that happened in Cardiff from <span class="bold" id="from-date"></span> to <span class="bold" id="to-date"></span>, according to the beer-based social network/logging app <a href="https://untappd.com/home">Untappd</a>.</p>
+            <p>This page shows details of the beer drinking activity that happened in Cardiff, according to the beer-based social network/logging app <a href="https://untappd.com/home">Untappd</a>.</p>
         <!-- #intro -->
         </section>
 
         <!-- dashboard presents the data -->
         <section id="dashboard">
+
+            <section id="change-dates">
+                <h2>Dates Displayed</h2>
+                <form>
+                    <input type="button" name="previous" value="<">
+                    <span class="bold" id="from-date"></span> To <span class="bold" id="to-date"></span>
+                    <input type="button" name="next" value = ">">
+                    <input type="button" name="show all" value="Show All">
+                </form>
+            </section>
 
             <section id="what">
                 <h2>What's been drunk?</h2>
@@ -78,11 +88,6 @@
         <section id="data-description" class="flex-item text-box">
             <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
         </section>
-
-        <!-- disclaimer is top of page on larger screens, bottom of page on smaller -->
-        <aside id="beta-disclaimer" class="flex-item text-box">
-            <p><small>This is a very early version of this dashboard. The code is a mess, and it's pretty dull. I've got a bunch of ideas for things I'd like to improve or include, but any other suggestions for features/visualisations are welcome: <a href="http://martinjc.com/contact/">get in touch</a> or better yet <a href="https://github.com/martinjc/untapped_cardiff">fork and pull request</a>!</small></p>
-        </aside>
 
     <!-- main -->
     </div>

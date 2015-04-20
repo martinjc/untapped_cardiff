@@ -103,6 +103,10 @@ h6 {
   font-size: 14px;
 }
 
+#change-dates h2 {
+  font-size: 20px;
+}
+
 @media only screen and (min-width: 760px) {
   h1, h2, h3 {
     padding-left: 10px;
@@ -142,6 +146,42 @@ h6 {
 
 #dashboard, #what, #where, #when {
   width: 100%;
+}
+
+#change-dates {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#change-dates h2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 0px;
 }
 
 .vis-container, #styles, #beers, #breweries, #day, #time, #venues, #year {
@@ -321,22 +361,19 @@ footer {
             order: 1;
   }
 
-  #beta-disclaimer {
+  #dashboard {
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
         -ms-flex-order: 2;
             order: 2;
   }
-
-  #dashboard {
-    -webkit-box-ordinal-group: 4;
-    -webkit-order: 3;
-        -ms-flex-order: 3;
-            order: 3;
-  }
 }
 #untappd-logo img {
   height: 60px;
+}
+
+input[type=button] {
+  height: 120px;
 }
 
 .axis path,
