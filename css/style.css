@@ -368,6 +368,28 @@ footer {
   height: 60px;
 }
 
+input {
+  width: 100px;
+  background-color: #fee0d2;
+  border: 1px solid #67000d;
+  text-align: center;
+  border-radius: 5px;
+}
+
+input:hover {
+  background-color: #fdbea0;
+  border-color: #340007;
+}
+
+input[disabled] {
+  background-color: #fff5f0;
+}
+
+@media only screen and (min-width: 760px) {
+  input {
+    height: 60px;
+  }
+}
 .axis path,
 .axis line {
   fill: none;

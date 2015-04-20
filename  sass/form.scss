@@ -1,0 +1,23 @@
+input {
+    width: 100px;
+    background-color: #fee0d2;
+    border:1px solid #67000d;
+    text-align: center;
+    border-radius: 5px;
+}
+
+input:hover {
+    background-color: darken(#fee0d2, 10%);
+    border-color: darken(#67000d, 10%);
+}
+
+input[disabled] {
+    background-color: #fff5f0;
+}
+
+@media only screen and (min-width: 760px) {
+    input {
+        $font-size: $font-size-base;
+        height: 60px;
+    }
+}
