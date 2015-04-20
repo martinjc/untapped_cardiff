@@ -288,6 +288,16 @@ BarChart.prototype.draw = function() {
         .attr("height", 0)
         .remove();
 
+    if(this.width < 600 && this.x_labels.length > 20) {
+        var x_tick_labels = [];
+        for(var i = 0; i < this.x_labels.length; i = i+2) {
+            x_tick_labels.push(this.x_labels[i]);
+        }
+        this.x_axis.tickValues(x_tick_labels);
+    } else {
+        this.x_axis.tickValues(this.x_labels);
+    }
+
     this.svg.select(".x.axis")
         .attr("transform", "translate(0," + (this.height - this.padding.bottom) + ")")
         .transition()

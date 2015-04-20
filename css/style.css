@@ -158,10 +158,6 @@ h6 {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -372,10 +368,6 @@ footer {
   height: 60px;
 }
 
-input[type=button] {
-  height: 120px;
-}
-
 .axis path,
 .axis line {
   fill: none;
@@ -396,5 +388,16 @@ input[type=button] {
 
 .month text {
   font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 100;
+  stroke-width: 1px;
+  font-size: 9.6px;
+}
+
+@media only screen and (min-width: 760px) {
+  .month text {
+    font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    stroke-width: 1px;
+    font-size: 16px;
+  }
 }

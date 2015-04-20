@@ -18,5 +18,16 @@
 
 .month text {
     font-family: $font-family-sans-serif;
-    font-weight: 300;  
+    font-weight: 100;
+    stroke-width: 1px;
+    font-size: $font-size-small * 0.8;    
+}
+
+@media only screen and (min-width: 760px) {
+.month text {
+    font-family: $font-family-sans-serif;
+    font-weight: 300;
+    stroke-width: 1px;
+    font-size: $font-size-base;    
+}
 }
