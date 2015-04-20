@@ -5,7 +5,7 @@ var credentials = require('./_credentials');
 
 var extract_data = function() {
     // read the drinks file
-    fs.readFile('cache/drinks.json', 'utf8', function(err, data){
+    fs.readFile(process.env.OPENSHIFT_DATA_DIR + 'drinks.json', 'utf8', function(err, data){
         if(err) {
             console.error(err);
             return;
@@ -88,25 +88,25 @@ var extract_data = function() {
         console.log("checkins: " + checkins.length);
 
         // write out data files
-        fs.writeFile('venues.json', JSON.stringify(venues), function(err){
+        fs.writeFile(process.env.OPENSHIFT_DATA_DIR + 'venues.json', JSON.stringify(venues), function(err){
             if(err) {
                 console.error(err);
             }
         });
 
-        fs.writeFile('breweries.json', JSON.stringify(breweries), function(err){
+        fs.writeFile(process.env.OPENSHIFT_DATA_DIR + 'breweries.json', JSON.stringify(breweries), function(err){
             if(err) {
                 console.error(err);
             }
         });
 
-        fs.writeFile('beers.json', JSON.stringify(beers), function(err){
+        fs.writeFile(process.env.OPENSHIFT_DATA_DIR + 'beers.json', JSON.stringify(beers), function(err){
             if(err) {
                 console.error(err);
             }
         });
 
-        fs.writeFile('checkins.json', JSON.stringify(checkins), function(err){
+        fs.writeFile(process.env.OPENSHIFT_DATA_DIR + 'checkins.json', JSON.stringify(checkins), function(err){
             if(err) {
                 console.error(err);
             }
@@ -122,7 +122,7 @@ module.exports.get_drinks = function(lat, lng, radius) {
 
     var url = "https://api.untappd.com/v4/thepub/local/";
 
-    fs.readFile('cache/drinks.json', 'utf8', function(err, data){
+    fs.readFile(process.env.OPENSHIFT_DATA_DIR + 'drinks.json', 'utf8', function(err, data){
         var drinks = JSON.parse(data);
 
         console.log(new Date());
@@ -197,7 +197,7 @@ module.exports.get_drinks = function(lat, lng, radius) {
                 count += 1;
             }
 
-            console.log(drinks.length);
+            console.log("before removal: " + drinks.length);
 
             var to_remove = [];
             var ids = [];
@@ -219,9 +219,9 @@ module.exports.get_drinks = function(lat, lng, radius) {
                 drinks.splice(to_remove[t], 1);
             }
 
-            console.log("after removal:" + drinks.length);
+            console.log("after removal: " + drinks.length);
 
-            fs.writeFile('cache/drinks.json', JSON.stringify(drinks), function(err){
+            fs.writeFile(process.env.OPENSHIFT_DATA_DIR + 'drinks.json', JSON.stringify(drinks), function(err){
                 if(err) {
                     console.log(err);
                 }

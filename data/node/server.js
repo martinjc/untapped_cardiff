@@ -10,9 +10,9 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 
-// schedule the server to update data from untappd server once every 60 minutes
-schedule.scheduleJob('*/20 * * * *', function(){
-    untappd.get_drinks(51.48, -3.18, 15);
+// schedule the server to update data from untappd server once every 30 minutes
+schedule.scheduleJob('*/30 * * * *', function(){
+    untappd.get_drinks(51.48, -3.18, 10);
     untappd.extract_data();
 });
 
@@ -25,7 +25,7 @@ var checkin_subset = function(from, to, callback) {
     var return_data = [];
 
     // read the checkins, return only those within the from and to dates
-    fs.readFile('checkins.json', 'utf8', function(err, data){
+    fs.readFile(process.env.OPENSHIFT_DATA_DIR + 'checkins.json', 'utf8', function(err, data){
         if(err) {
             console.error(err);
             callback(err);
@@ -87,7 +87,7 @@ var return_subset = function(property, from, to, response) {
         }
         
         // open the file, extract the relevant ids and return it
-        fs.readFile(data_file, 'utf-8', function(err, data) {
+        fs.readFile(process.env.OPENSHIFT_DATA_DIR + data_file, 'utf-8', function(err, data) {
 
             var return_data = [];
             var items = JSON.parse(data);
@@ -135,21 +135,21 @@ var server = http.createServer(function(request, response){
         if(subset) {
             return_subset('venue', u.query.from, u.query.to, response);
         } else {
-            read_and_return('venues.json', response);    
+            read_and_return(process.env.OPENSHIFT_DATA_DIR + 'venues.json', response);    
         }
     }
     else if(u.pathname === '/api/breweries') {
         if(subset) {
             return_subset('brewery', u.query.from, u.query.to, response);
         } else {
-            read_and_return('breweries.json', response);    
+            read_and_return(process.env.OPENSHIFT_DATA_DIR + 'breweries.json', response);    
         }  
     }
     else if(u.pathname === '/api/beers') {
         if(subset) {
             return_subset('beer', u.query.from, u.query.to, response);
         } else {
-            read_and_return('beers.json', response);    
+            read_and_return(process.env.OPENSHIFT_DATA_DIR + 'beers.json', response);    
         }
     }
     else if(u.pathname === '/api/checkins') {
@@ -161,10 +161,10 @@ var server = http.createServer(function(request, response){
             });
 
         } else {
-            read_and_return('checkins.json', response);     
+            read_and_return(process.env.OPENSHIFT_DATA_DIR + 'checkins.json', response);     
         }   
     }
 });
-untappd.get_drinks(51.48, -3.18, 15);
+untappd.get_drinks(51.48, -3.18, 10);
 untappd.extract_data();
 server.listen(server_port, server_ip_address);
