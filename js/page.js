@@ -142,8 +142,19 @@
                 }
             });
 
-            var l_string = new Date(latest).toDateString();
-            var e_string = new Date(earliest).toDateString();
+            var l_string;
+            var e_string;
+
+            if(window.innerWidth < 760) {
+                var l = new Date(latest);
+                l_string = "" + l.getDate() + "/" + (l.getMonth()+1) + "/" + l.getFullYear();
+                var e = new Date(earliest);
+                e_string = "" + e.getDate() + "/" + (e.getMonth()+1) + "/" + e.getFullYear();
+            } else {
+                l_string = new Date(latest).toDateString();
+                e_string = new Date(earliest).toDateString();                
+            }
+
 
             d3.select('#from-date').text(e_string);
             d3.select('#to-date').text(l_string);
