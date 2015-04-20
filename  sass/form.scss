@@ -1,24 +1,24 @@
 input {
-    width: 100px;
+    width: 80px;
     margin: 2px;
-    background-color: #fee0d2;
-    border:1px solid #67000d;
+    background-color: $theme-light;
+    border:1px solid $theme-dark;
     text-align: center;
     border-radius: 5px;
 }
 
 input:hover {
-    background-color: darken(#fee0d2, 10%);
-    border-color: darken(#67000d, 10%);
+    background-color: darken($theme-light, 10%);
+    border-color: darken($theme-dark, 10%);
 }
 
 input[disabled] {
-    background-color: #fff5f0;
+    background-color: $theme-v-light;
 }
 
 @media only screen and (min-width: 760px) {
     input {
         $font-size: $font-size-base;
-        height: 60px;
+        height: 40px;
     }
 }

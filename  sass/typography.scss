@@ -51,14 +51,14 @@ h6 {
     font-size: $font-size-h4;
 }
 
+small {
+    font-size: $font-size-small;
+}
+
 @media only screen and (min-width: 760px) {
     
     h1, h2, h3 {
         padding-left: $padding-medium;
-    }
-
-    .text-box {
-        padding: $padding-medium;
     }
 }
 
@@ -69,6 +69,6 @@ h6 {
     }
 
     .text-box {
-        padding: $padding-large;
+        padding: $padding-medium $padding-large;
     }
 }

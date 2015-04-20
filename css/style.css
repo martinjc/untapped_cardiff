@@ -55,6 +55,9 @@ table {
 /*
 * Visualisation sizes
 */
+/*
+* Colours
+*/
 body {
   font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4;
@@ -107,13 +110,13 @@ h6 {
   font-size: 20px;
 }
 
+small {
+  font-size: 12px;
+}
+
 @media only screen and (min-width: 760px) {
   h1, h2, h3 {
     padding-left: 10px;
-  }
-
-  .text-box {
-    padding: 10px;
   }
 }
 @media only screen and (min-width: 1000px) {
@@ -122,7 +125,7 @@ h6 {
   }
 
   .text-box {
-    padding: 20px;
+    padding: 10px 20px;
   }
 }
 #main, #dashboard, #what, #where, #when {
@@ -295,7 +298,6 @@ footer {
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
-    width: 60%;
   }
 
   #data-description {
@@ -303,7 +305,6 @@ footer {
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
-    width: 40%;
   }
 
   #day, #time {
@@ -369,16 +370,16 @@ footer {
 }
 
 input {
-  width: 100px;
+  width: 80px;
   margin: 2px;
-  background-color: #fee0d2;
+  background-color: #fcbba1;
   border: 1px solid #67000d;
   text-align: center;
   border-radius: 5px;
 }
 
 input:hover {
-  background-color: #fdbea0;
+  background-color: #fa9770;
   border-color: #340007;
 }
 
@@ -388,7 +389,7 @@ input[disabled] {
 
 @media only screen and (min-width: 760px) {
   input {
-    height: 60px;
+    height: 40px;
   }
 }
 .axis path,
