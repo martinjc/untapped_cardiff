@@ -372,10 +372,11 @@ footer {
 input {
   width: 80px;
   margin: 2px;
+  padding: 2px;
   background-color: #fcbba1;
   border: 1px solid #67000d;
   text-align: center;
-  border-radius: 5px;
+  font-weight: 700;
 }
 
 input:hover {

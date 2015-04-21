@@ -5,6 +5,25 @@
     var urlParams;
     var location;
 
+    var pageState = "thisweek";
+
+    function checkState() {
+        if(pageState === "thisweek") {
+            d3.select('#showall').attr("disabled", null);
+            d3.select('#today').attr("disabled", "disabled");
+            check_valid_dates();        
+        } else if(pageState === "all") {
+            d3.select('#showall').attr("disabled", "disabled");
+            d3.select('#today').attr("disabled", null);
+            d3.select('#previous').attr("disabled", "disabled");
+            d3.select('#next').attr("disabled", "disabled"); 
+        } else if(pageState === "previousweek") {
+            d3.select('#showall').attr("disabled", null);
+            d3.select('#today').attr("disabled", null);
+            check_valid_dates();
+        }
+    }
+
     function getparams(callback) {
         var match,
             pl     = /\+/g,  // Regex for replacing addition symbol with a space
@@ -58,56 +77,56 @@
         getparams();
         week_handler = new WeekHandler();
         if(urlParams.hasOwnProperty('from') && urlParams.hasOwnProperty('to')) {
+            pageState = "previousweek";
             week_handler.current_week.start = new Date(urlParams.from);
             week_handler.current_week.end = new Date(urlParams.to);
-            d3.select('#today').attr("disabled", null);
-            d3.select('#showall').attr("disabled", null);
         } else if(urlParams.hasOwnProperty('all')) {
-            d3.select('#showall').attr("disabled", "disabled");
+            pageState = "all";
             do_dashboard("");
         } else {
-            d3.select('#today').attr("disabled", "disabled");
+            pageState = "thisweek";
         }
         var query = week_handler.get_query_string();
+        checkState();
         do_dashboard(query);            
     }
 
     d3.select('#previous').on("click", function(){
-        d3.select('#showall').attr("disabled", null);
-        d3.select('#today').attr("disabled", null);
+        pageState = "previousweek";
         if(week_handler.can_page_back()) {
             week_handler.page_back();
             window.history.pushState({}, "", location + week_handler.get_query_string());
             do_dashboard(week_handler.get_query_string());
-        }            
+        }
+        checkState();
     });
 
     d3.select('#next').on('click', function() {
-        d3.select('#showall').attr("disabled", null);
-        d3.select('#today').attr("disabled", null);
         if(week_handler.can_page_forward()) {
             week_handler.page_forward();
             window.history.pushState({}, "", location + week_handler.get_query_string());
             do_dashboard(week_handler.get_query_string());
+            if(week_handler.can_page_forward()) {
+                pageState = "previousweek";
+            } else {
+                pageState = "thisweek";
+            }
         }
+        checkState();
     });
 
     d3.select('#today').on('click', function() {
-        d3.select('#showall').attr("disabled", null);
-        d3.select('#today').attr("disabled", "disabled");
-        d3.select('#previous').attr("disabled", null);
-        d3.select('#next').attr("disabled", null);
+        pageState = "thisweek";
         window.history.pushState({}, "", location);
+        checkState();
         reset_page();
     });
 
     d3.select('#showall').on('click', function(){
-        d3.select('#showall').attr("disabled", "disabled");
-        d3.select('#today').attr("disabled", null);
-        d3.select('#previous').attr("disabled", "disabled");
-        d3.select('#next').attr("disabled", "disabled");
-        window.history.pushState({"all": "all"}, "", location + "?all");
+        pageState = "all";
+        window.history.pushState({"all": "all"}, "", location + "?all=all");
         do_dashboard("");
+        checkState();
     });
 
     function check_valid_dates() {
@@ -119,7 +138,7 @@
         if(week_handler.can_page_forward()) {
             d3.select('#next').attr("disabled", null);
         } else {
-            d3.select('#next').attr("disabled", "disabled");   
+            d3.select('#next').attr("disabled", "disabled"); 
         }
     }
 

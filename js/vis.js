@@ -305,7 +305,7 @@ BarChart.prototype.draw = function() {
         .call(this.x_axis)
         .selectAll("text")  
             .style("text-anchor", "end")
-            .attr("dx", "-.8em")
+            .attr("dx", "-.5em")
             .attr("dy", ".15em")
             .attr("transform", "rotate(-35)");
         
