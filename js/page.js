@@ -130,12 +130,12 @@
     });
 
     function check_valid_dates() {
-        if(week_handler.can_page_back()) {
+        if(week_handler.can_page_back() && pageState !== "all") {
             d3.select('#previous').attr("disabled", null);
         } else {
             d3.select('#previous').attr("disabled", "disabled");
         }
-        if(week_handler.can_page_forward()) {
+        if(week_handler.can_page_forward() && pageState !== "all") {
             d3.select('#next').attr("disabled", null);
         } else {
             d3.select('#next').attr("disabled", "disabled"); 
