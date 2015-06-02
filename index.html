@@ -32,23 +32,6 @@
 
 </head>
 <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1597939533779528',
-          xfbml      : true,
-          version    : 'v2.3'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
     <header>
         <h1>Bar-Diff</h1>
     </header>
@@ -124,8 +107,7 @@
 
         <!-- data description is top of page on larger screens, bottom of page on smaller -->
         <section id="data-description" class="flex-item text-box">
-            <div><p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Data is updated every thirty minutes. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small><div class="fb-share-button" data-href="http://bardiff.martinjc.com" data-layout="button_count"></div><a href="https://twitter.com/Bar_Diff" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @Bar_Diff</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p></div>
+            <div><p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Data is updated every thirty minutes. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p></div>
         </section>
 
     <!-- main -->
