@@ -167,6 +167,7 @@ function BarChart(element_selector, padding) {
         .attr("class", "y axis");
 
     this.x_scale = d3.scale.ordinal();
+    this.x_label_scale = d3.scale.ordinal();
     this.y_scale = d3.scale.linear().nice();
 
     this.x_axis = d3.svg.axis()
@@ -182,6 +183,16 @@ function BarChart(element_selector, padding) {
     this.set_size();
     this.data = undefined;
     this.display_data = undefined;
+
+    this.tooltip = d3.select(this.element_selector)
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden")
+        .style("background-color", "rgba(255,255,255,0.8)")
+        .text("a simple tooltip");
+    this.tooltip_active = false;
 
 }
 
@@ -212,7 +223,7 @@ BarChart.prototype.set_size = function() {
     }        
 };
 
-BarChart.prototype.add_data = function(data, x, y, y_label, sorted_and_clipped) {
+BarChart.prototype.add_data = function(data, x, y, y_label, sorted_and_clipped, tooltip_function) {
 
     this.set_size();
     var chart = this;
@@ -220,6 +231,8 @@ BarChart.prototype.add_data = function(data, x, y, y_label, sorted_and_clipped) 
     this.data = data;
     this.x = x;
     this.y = y;
+
+    this.tooltip_function = tooltip_function;
 
     if(sorted_and_clipped) {
         this.data.sort(function(a, b) {
@@ -267,7 +280,40 @@ BarChart.prototype.draw = function() {
         .attr("fill", function(d) {
             return chart.colour_scale(d[chart.y]);
         })
-        .attr("class", "bar");
+        .attr("class", "bar")
+        .on("mouseover", function(d){
+            if(chart.tooltip_function) {
+                chart.tooltip.html(chart.tooltip_function(d));
+                chart.tooltip_active = true;
+                chart.tooltip.style("visibility", "visible");                
+            }
+
+        })
+        .on("mousemove", function(){
+            if(chart.tooltip_function) {
+                chart.tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+            }
+            
+        })
+        .on("mouseout", function(){
+            if(chart.tooltip_function) {
+                chart.tooltip_active = false;
+                chart.tooltip.style("visibility", "hidden");
+            }
+        })
+        .on("click", function(d){
+            if(chart.tooltip_function) {
+                if(chart.tooltip_active) {
+                    chart.tooltip.style("visibility", "hidden");
+                    chart.tooltip_active = false;
+                } else {
+                    chart.tooltip.html(chart.tooltip_function(d));
+                    chart.tooltip.style("visibility", "visible");
+                    chart.tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+                    chart.tooltip_active = true;
+                }
+            }
+        });
 
     bars       
         .transition()
@@ -308,7 +354,7 @@ BarChart.prototype.draw = function() {
             .attr("dx", "-.5em")
             .attr("dy", ".15em")
             .attr("transform", "rotate(-35)");
-        
+    
     this.svg.select(".y.axis")
         .attr("transform", "translate(" + this.padding.left + ",0)")
         .transition()

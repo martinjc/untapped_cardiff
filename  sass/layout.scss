@@ -14,6 +14,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $theme-v-light;
+    padding: 5px;
+    border:2px solid darken($theme-dark, 20%);
 }
 
 #change-dates h2 {

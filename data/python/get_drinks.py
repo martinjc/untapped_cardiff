@@ -44,7 +44,7 @@ def _bootstrap_history(api):
 
     drinks = drinks['response']['checkins']['items']
 
-    while count < 99 & max_id != "":
+    while count < 20 and max_id != "":
 
             # make an api call to get the drinks prior 
             # to our earliest retrieved drink so far

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Bar'Diff</title>
+    <title>Bar-Diff</title>
 
     <!-- Styles -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
@@ -13,10 +13,44 @@
     <!-- Good at all sizes! -->
     <meta name=viewport content="width=device-width, initial-scale=1">
 
+    <!-- Social Stuff -->
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="Bar_Diff" />
+    <meta name="twitter:title" content="BarDiff - beer dashboard for Cardiff" />
+    <meta name="twitter:description" content="What beers, ales and lager are popular in Cardiff, and where and when are they being drunk? BarDiff provides a simple insight into the beer drinking in Cardiff, according to users of the beer-based social network Untappd." />
+
+    <meta property="og:title" content="Beer dashboard for Cardiff" />
+    <meta property="og:site_name" content="BarDiff" />
+    <meta property="og:url" content="http://bardiff.martinjc.com" />
+    <meta property="og:description" content="What beers, ales and lager are popular in Cardiff, and where and when are they being drunk? BarDiff provides a simple insight into the beer drinking in Cardiff, according to users of the beer-based social network Untappd." />
+    <meta property="og:image" content="http://martinjc.com/beer/img/styles2.png" />
+    <meta property="og:image:width" content="1460" />
+    <meta property="og:image:height" content="1262" />
+
+    <meta property="fb:admins" content="508402196" />
+
 </head>
 <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1597939533779528',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header>
-        <h1>Bar'Diff</h1>
+        <h1>Bar-Diff</h1>
     </header>
 
     <div id="main">
@@ -35,7 +69,7 @@
                 <form>
                     <input type="button" id="previous" value="<">
                     <span class="bold" id="from-date"></span> To <span class="bold" id="to-date"></span>
-                    <input type="button" id="next" value = ">">
+                    <input type="button" id="next" value = ">" disabled>
                 </form>
                 <form>
                     <input type="button" id="today" value="This Week" disabled>
@@ -90,7 +124,8 @@
 
         <!-- data description is top of page on larger screens, bottom of page on smaller -->
         <section id="data-description" class="flex-item text-box">
-            <p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Data is updated every thirty minutes. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <br><small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small></p>
+            <div><p>All data comes from Untappd's 'local' feed, so only includes beer checkins that have a venue attached. Data is updated every thirty minutes. Want to influence these stats? Sign up for <a href="https://untappd.com/home">Untappd</a> and checkin your beers! <small>(Want to influence these stats but not give away your location? Try checking in with your neighbourhood as the venue.)</small><div class="fb-share-button" data-href="http://bardiff.martinjc.com" data-layout="button_count"></div><a href="https://twitter.com/Bar_Diff" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @Bar_Diff</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p></div>
         </section>
 
     <!-- main -->
@@ -120,7 +155,6 @@
 
       ga('create', 'UA-61995316-1', 'auto');
       ga('send', 'pageview');
-
     </script>
 </body>
 </html>

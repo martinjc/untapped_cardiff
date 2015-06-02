@@ -91,15 +91,17 @@
         do_dashboard(query);            
     }
 
-    d3.select('#previous').on("click", function(){
+    function go_back() {
         pageState = "previousweek";
         if(week_handler.can_page_back()) {
             week_handler.page_back();
             window.history.pushState({}, "", location + week_handler.get_query_string());
             do_dashboard(week_handler.get_query_string());
         }
-        checkState();
-    });
+        checkState();        
+    }
+
+    d3.select('#previous').on("click", go_back);
 
     d3.select('#next').on('click', function() {
         if(week_handler.can_page_forward()) {
@@ -122,12 +124,14 @@
         reset_page();
     });
 
-    d3.select('#showall').on('click', function(){
+    function showall() {
         pageState = "all";
         window.history.pushState({"all": "all"}, "", location + "?all=all");
         do_dashboard("");
-        checkState();
-    });
+        checkState();        
+    }
+
+    d3.select('#showall').on('click', showall);
 
     function check_valid_dates() {
         if(week_handler.can_page_back() && pageState !== "all") {
@@ -158,6 +162,17 @@
 
             if(error) {
                 console.log(error);
+            }
+
+            if(checkins.length === 0) {
+                pageState = "previousweek";
+                if(week_handler.can_page_back()) {
+                    week_handler.page_back();
+                    window.history.pushState({}, "", location + week_handler.get_query_string());
+                    do_dashboard(week_handler.get_query_string());
+                }
+                checkState();
+                return;
             }
 
             var earliest = Date.parse(checkins[0].time);
@@ -200,19 +215,72 @@
             })
             .entries(beers);
 
+            var style_list = {};
+            styles.forEach(function(s){
+                style_list[s.key] = [];
+                beers.forEach(function(b){
+                    if(b.beer_style === s.key) {
+                        style_list[s.key].push(b);
+                    }
+                });
+                style_list[s.key].sort(function(a, b) {
+                    if (a.count > b.count) {
+                        return -1;
+                    } else if(a.count < b.count) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                style_list[s.key] = style_list[s.key].slice(0, 10);
+            });
 
-            beer_chart.add_data(beers, "beer_name", "count", "Number of checkins per beer", true);
-            breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true);
-            styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true);
-            venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true);
+            var style_tooltip = function(d) {
+                var text = "";
+                style_list[d.key].forEach(function(b, i) {
+                    text += "" + (i+1) + ". " + b.beer_name + " " + b.beer_abv + "% <br>";
+                });
+                return text;
+            };
+
+            var beer_tooltip = function(d) {
+                var text = "";
+                text += "<img src='" + d.beer_label + "' width=40><br>" + d.beer_name + "<br>ABV: " + d.beer_abv + "%<br>Style: " + d.beer_style;
+                return text;
+            };
+
+            var venue_tooltip = function(d) {
+                var text = "";
+                text += d.venue_name + "<br>";
+                if(d.contact.twitter) {
+                    text += d.contact.twitter + "<br>";
+                }
+                if(d.location.venue_address) {
+                    text += d.location.venue_address + "<br>";
+                }
+                if(d.location.venue_city) {
+                    text += d.location.venue_city;
+                }
+                return text;
+            };
+
+            var brewery_tooltip = function(d) {
+                var text = "";
+                text += "<img src='" + d.brewery_label + "' width=40><br>" + d.brewery_name + "<br>" + d.contact.url + "<br>" + "@" + d.contact.twitter;
+                return text;
+            };
+
+            beer_chart.add_data(beers, "beer_name", "count", "Number of checkins per beer", true, beer_tooltip);
+            breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true, brewery_tooltip);
+            styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true, style_tooltip);
+            venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true, venue_tooltip);
             beer_chart.draw();
             breweries_chart.draw();
             styles_chart.draw();
             venues_chart.draw();
             calc_time(checkins);
 
-            check_valid_dates();
-            
+            check_valid_dates();                
         });
     }
 
@@ -261,8 +329,8 @@
             t.average = t.count / days_seen.length;
         });
 
-        day_chart.add_data(days, 'day', 'average', 'Average beers drunk per day', false);
-        time_chart.add_data(times, 'time', 'average', 'Average beers drunk per hour', false);
+        day_chart.add_data(days, 'day', 'average', 'Average beers drunk per day', false, null);
+        time_chart.add_data(times, 'time', 'average', 'Average beers drunk per hour', false, null);
         day_chart.draw();
         time_chart.draw();
 

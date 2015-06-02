@@ -9,10 +9,10 @@
             end: new Date()
         };
 
-        this.current_week.start = new Date(this.current_week.today.getFullYear(), this.current_week.today.getMonth(), this.current_week.today.getDay());
-        this.current_week.start.setDate(this.current_week.today.getDate() - this.current_week.today.getDay());
-        this.current_week.end = new Date(this.current_week.today.getFullYear(), this.current_week.today.getMonth(), this.current_week.today.getDay());
-        this.current_week.end.setDate(this.current_week.start.getDate() + 7);       
+        this.current_week.start = new Date(this.current_week.today.getFullYear(), this.current_week.today.getMonth(), this.current_week.today.getDate());
+        this.current_week.start.setDate(this.current_week.today.getDate() - this.current_week.today.getDay());    
+        this.current_week.end = new Date(this.current_week.today.getFullYear(), this.current_week.today.getMonth(), this.current_week.today.getDate());
+        this.current_week.end.setDate(this.current_week.start.getDate() + 7); 
     }
 
     WeekHandler.prototype.can_page_back = function() {
