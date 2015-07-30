@@ -1,6 +1,154 @@
 /* global d3, colorbrewer */
 (function(){
 
+    function SingleDayChart(element_selector, padding) {
+        this.transition_duration = 1000;
+
+        this.element_selector = element_selector;
+        this.padding = padding;
+
+        this.colour_scale = d3.scale.quantile().range(colorbrewer.Reds[7]);
+
+        this.svg = d3.select(this.element_selector)
+            .append("svg");
+
+        this.svg.append("g")
+            .attr("class", "x axis");
+            
+        this.svg.append("g")
+            .attr("class", "y axis");
+
+        this.x_scale = d3.time.scale.utc();
+        this.y_scale = d3.scale.linear().nice();
+
+        this.x_axis = d3.svg.axis()
+          .scale(this.x_scale)
+          .orient("bottom")
+          .ticks(d3.time.minute, 30)
+          .tickFormat(d3.time.format("%I:%M%p"));
+
+        this.y_axis = d3.svg.axis()
+          .scale(this.y_scale)
+          .orient("left")
+          .ticks(8);
+
+        this.set_size();
+        this.data = undefined;
+        this.display_data = undefined;      
+    }
+
+    SingleDayChart.prototype.set_size = function() {
+        this.width = +d3.select(this.element_selector).node().getBoundingClientRect().width;
+        this.height = +d3.select(this.element_selector).node().getBoundingClientRect().height;
+
+        this.x_scale.range([this.padding.left, this.width-this.padding.right]);
+        this.y_scale.range([this.height-this.padding.bottom, this.padding.top]);
+
+        this.svg
+            .transition()
+            .attr("height", this.height)
+            .attr("width", this.width);
+
+        d3.select(".x.axis")
+            .attr("transform", "translate(0," + (this.height - this.padding.bottom) + ")");
+
+        d3.select(".y.axis")
+            .attr("transform", "translate(" + this.padding.left + ",0)");          
+    };
+
+    SingleDayChart.prototype.add_data = function(data, x, y, y_label) {
+        this.set_size();
+        var chart = this;
+
+        this.data = data;
+        this.x = x;
+        this.y = y;
+        this.y_label = y_label;
+
+        chart.display_data = chart.data.times;
+
+        //this.x_labels = this.display_data.map(function(d){ return d[x]; });
+        var largest_data_value = d3.max(this.display_data, function(d){ return d[chart.y]; });
+        this.x_scale.domain([data.yesterday, data.now]);
+        this.y_scale.domain([0, largest_data_value]);
+        this.colour_scale.domain([0, largest_data_value]);        
+    };
+
+    SingleDayChart.prototype.draw = function() {
+        this.set_size();
+        var chart = this;
+
+        var bars = this.svg
+            .selectAll(".bar")
+            .data(chart.display_data);
+
+        bars
+            .enter()
+            .append("rect")
+            .attr("x", function(d){ return chart.x_scale(new Date(d[chart.x])); })
+            .attr("y", chart.height-chart.padding.bottom)
+            .attr("width", "3px")
+            .attr("height", 0 )
+            .attr("fill", function(d) {
+                return chart.colour_scale(d[chart.y]);
+            })
+            .attr("class", "bar");
+
+        bars       
+            .transition()
+            .duration(chart.transition_duration)
+            .attr("fill", function(d) {
+                return chart.colour_scale(d[chart.y]);
+            })
+            .attr("width", "3px")
+            .attr("x", function(d){ return chart.x_scale(new Date(d[chart.x])); })
+            .attr("y", function(d){ return chart.y_scale(d[chart.y]); })
+            .attr("height", function(d){ return chart.height-chart.padding.bottom - chart.y_scale(d[chart.y]);});
+
+        bars
+            .exit()
+            .transition()
+            .duration(this.transition_duration)
+            .attr("y", chart.height)
+            .attr("height", 0)
+            .remove();
+
+
+        if(this.width < 1000) {
+            this.x_axis.ticks(d3.time.minute, 80);
+        } else if(this.width < 800) {
+            this.x_axis.ticks(d3.time.minute, 120);
+        } else {
+            this.x_axis.ticks(d3.time.minute, 30);
+        }
+
+        this.svg.select(".x.axis")
+            .attr("transform", "translate(0," + (this.height - this.padding.bottom) + ")")
+            .transition()
+            .duration(this.transition_duration)
+            .call(this.x_axis)
+            .selectAll("text")  
+                .style("text-anchor", "end")
+                .attr("dx", "-.5em")
+                .attr("dy", ".15em")
+                .attr("transform", "rotate(-35)");
+        
+        this.svg.select(".y.axis")
+            .attr("transform", "translate(" + this.padding.left + ",0)")
+            .transition()
+            .duration(this.transition_duration)
+            .call(this.y_axis);
+
+        this.svg.select(".y.axis")
+            .append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("dx", "-3em")
+            .attr("dy", "-3em")
+            .attr("transform", "rotate(-90)")
+            .text(this.y_label);      
+    };
+
     function DayChart(element_selector) {
 
         this.width = undefined;
@@ -15,7 +163,7 @@
         this.percent = d3.format(".1%");
         this.format = d3.time.format("%Y-%m-%d");
 
-        this.colour_scale = d3.scale.quantile().range(colorbrewer.Reds[9]);
+        this.colour_scale = d3.scale.quantile().range(colorbrewer.Reds[7]);
 
         this.svg = d3.select(element_selector).selectAll('svg')
             .data([2015])
@@ -146,6 +294,24 @@
         } 
     };
 
+    DayChart.prototype.get_day = function(d) {
+        if(d === 0) {
+            return "Sunday";
+        } else if (d === 1) {
+            return "Monday";
+        } else if (d === 2) {
+            return "Tuesday";
+        } else if (d === 3) {
+            return "Wednesday";
+        } else if (d === 4) {
+            return "Thursday";
+        } else if (d === 5) {
+            return "Friday";
+        } else if (d === 6) {
+            return "Saturday";
+        }
+    };
+
 
 
 function BarChart(element_selector, padding) {
@@ -155,7 +321,7 @@ function BarChart(element_selector, padding) {
     this.element_selector = element_selector;
     this.padding = padding;
 
-    this.colour_scale = d3.scale.quantile().range(colorbrewer.Reds[9]);
+    this.colour_scale = d3.scale.quantile().range(colorbrewer.Reds[7]);
 
     this.svg = d3.select(this.element_selector)
         .append("svg");
@@ -373,5 +539,6 @@ BarChart.prototype.draw = function() {
 
     this.BarChart = BarChart;
     this.DayChart = DayChart;
+    this.SingleDayChart = SingleDayChart;
 
 }());

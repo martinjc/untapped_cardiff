@@ -27,6 +27,42 @@
     font-size: $font-size-small * 0.8;    
 }
 
+.point-cell {
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.c29 { fill: rgba(230,55,52,1.0); }
+.c28 { fill: rgba(230,61,58,0.98); }
+.c27 { fill: rgba(230,67,64,0.96); }
+.c26 { fill: rgba(230,72,70,0.94); }
+.c25 { fill: rgba(230,78,76,0.92); }
+.c24 { fill: rgba(230,84,82,0.9); }
+.c23 { fill: rgba(230,90,88,0.88); }
+.c22 { fill: rgba(230,96,94,0.86); }
+.c21 { fill: rgba(230,102,100,0.84); }
+.c20 { fill: rgba(230,108,106,0.82); }
+.c19 { fill: rgba(230,114,112,0.8); }
+.c18 { fill: rgba(230,120,118,0.78); }
+.c17 { fill: rgba(230,125,124,0.76); }
+.c16 { fill: rgba(230,131,131,0.74); }
+.c15 { fill: rgba(230,137,137,0.72); }
+.c14 { fill: rgba(230,143,143,0.7); }
+.c13 { fill: rgba(230,149,149,0.68); }
+.c12 { fill: rgba(230,155,155,0.66); }
+.c11 { fill: rgba(230,161,161,0.64); }
+.c10 { fill: rgba(230,167,167,0.62); }
+.c9 { fill: rgba(230,173,173,0.6); }
+.c8 { fill: rgba(230,179,179,0.58); }
+.c7 { fill: rgba(230,185,185,0.56); }
+.c6 { fill: rgba(230,191,191,0.54); }
+.c5 { fill: rgba(230,197,197,0.52); }
+.c4 { fill: rgba(230,203,203,0.50); }
+.c3 { fill: rgba(230,209,209,0.48); }
+.c2 { fill: rgba(230,215,215,0.46); }
+.c1 { fill: rgba(230,221,221,0.44); }
+.c0 { fill: rgba(255,255,255,0); }
+
 @media only screen and (min-width: 760px) {
     .month text {
         font-family: $font-family-sans-serif;

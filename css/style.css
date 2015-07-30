@@ -128,7 +128,7 @@ small {
     padding: 10px 20px;
   }
 }
-#main, #dashboard, #what, #where, #when {
+#main, #dashboard, #what, #where, #when, #nonweek {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -147,7 +147,7 @@ small {
           justify-content: center;
 }
 
-#dashboard, #what, #where, #when {
+#dashboard, #what, #where, #when, #nonweek {
   width: 100%;
 }
 
@@ -186,7 +186,7 @@ small {
   padding-left: 0px;
 }
 
-.vis-container, #styles, #beers, #breweries, #day, #time, #venues, #year {
+.vis-container, #styles, #beers, #breweries, #day, #time, #venues, #map, #year, #pastday {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -217,7 +217,7 @@ small {
           flex-basis: 684px;
 }
 
-#day, #time {
+#day, #time, #venues, #map {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -227,17 +227,15 @@ small {
           flex-basis: 684px;
 }
 
-#venues {
-  -webkit-box-flex: 0;
-  -webkit-flex-grow: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -webkit-flex-basis: 684px;
-      -ms-flex-preferred-size: 684px;
-          flex-basis: 684px;
+#map-container {
+  padding: 20px;
 }
 
-#year {
+#nonweek {
+  border-top: 1px solid #67000d;
+}
+
+#year, #pastday {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -310,7 +308,7 @@ footer {
             flex-grow: 1;
   }
 
-  #day, #time {
+  #day, #time, #venues, #map {
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
@@ -321,11 +319,11 @@ footer {
     width: 50%;
   }
 
-  #year {
+  #year, #pastday {
     height: 300px;
   }
 
-  #year, #venues {
+  #year, #pastday {
     -webkit-box-flex: 0;
     -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
@@ -373,11 +371,11 @@ footer {
 }
 
 input {
-  width: 80px;
+  width: 70px;
   margin: 2px;
   padding: 2px;
   background-color: #fcbba1;
-  border: 1px solid #67000d;
+  border: 2px solid #67000d;
   text-align: center;
   font-weight: 700;
 }
@@ -423,6 +421,131 @@ input[disabled] {
   font-weight: 100;
   stroke-width: 1px;
   font-size: 9.6px;
+}
+
+.point-cell {
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.c29 {
+  fill: #e63734;
+}
+
+.c28 {
+  fill: rgba(230, 61, 58, 0.98);
+}
+
+.c27 {
+  fill: rgba(230, 67, 64, 0.96);
+}
+
+.c26 {
+  fill: rgba(230, 72, 70, 0.94);
+}
+
+.c25 {
+  fill: rgba(230, 78, 76, 0.92);
+}
+
+.c24 {
+  fill: rgba(230, 84, 82, 0.9);
+}
+
+.c23 {
+  fill: rgba(230, 90, 88, 0.88);
+}
+
+.c22 {
+  fill: rgba(230, 96, 94, 0.86);
+}
+
+.c21 {
+  fill: rgba(230, 102, 100, 0.84);
+}
+
+.c20 {
+  fill: rgba(230, 108, 106, 0.82);
+}
+
+.c19 {
+  fill: rgba(230, 114, 112, 0.8);
+}
+
+.c18 {
+  fill: rgba(230, 120, 118, 0.78);
+}
+
+.c17 {
+  fill: rgba(230, 125, 124, 0.76);
+}
+
+.c16 {
+  fill: rgba(230, 131, 131, 0.74);
+}
+
+.c15 {
+  fill: rgba(230, 137, 137, 0.72);
+}
+
+.c14 {
+  fill: rgba(230, 143, 143, 0.7);
+}
+
+.c13 {
+  fill: rgba(230, 149, 149, 0.68);
+}
+
+.c12 {
+  fill: rgba(230, 155, 155, 0.66);
+}
+
+.c11 {
+  fill: rgba(230, 161, 161, 0.64);
+}
+
+.c10 {
+  fill: rgba(230, 167, 167, 0.62);
+}
+
+.c9 {
+  fill: rgba(230, 173, 173, 0.6);
+}
+
+.c8 {
+  fill: rgba(230, 179, 179, 0.58);
+}
+
+.c7 {
+  fill: rgba(230, 185, 185, 0.56);
+}
+
+.c6 {
+  fill: rgba(230, 191, 191, 0.54);
+}
+
+.c5 {
+  fill: rgba(230, 197, 197, 0.52);
+}
+
+.c4 {
+  fill: rgba(230, 203, 203, 0.5);
+}
+
+.c3 {
+  fill: rgba(230, 209, 209, 0.48);
+}
+
+.c2 {
+  fill: rgba(230, 215, 215, 0.46);
+}
+
+.c1 {
+  fill: rgba(230, 221, 221, 0.44);
+}
+
+.c0 {
+  fill: rgba(255, 255, 255, 0);
 }
 
 @media only screen and (min-width: 760px) {

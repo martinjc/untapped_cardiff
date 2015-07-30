@@ -1,4 +1,4 @@
-/* global d3, queue, WeekHandler, DayChart, BarChart */
+/* global d3, queue, WeekHandler, DayChart, BarChart, SingleDayChart, MapChart */
 
 (function(){
 
@@ -61,16 +61,86 @@
     var day_chart = new BarChart("#day .vis", padding);
     var time_chart = new BarChart("#time .vis", padding);
     var year_chart = new DayChart("#year .vis");
+    var map_chart = new MapChart('map-container');
+    var single_day_chart = new SingleDayChart("#pastday .vis", {top: 10, bottom: 70, left: 50, right: 10});
 
     window.addEventListener("resize", function(){
         day_chart.draw();
         time_chart.draw();
         year_chart.draw();            
         beer_chart.draw();
+        map_chart.draw();
         breweries_chart.draw();
         styles_chart.draw();
         venues_chart.draw();
+        single_day_chart.draw();
     });
+
+    function get_month(m) {
+        if(m === 0) {
+            return "Jan";
+        } else if(m === 1) {
+            return "Feb";
+        } else if(m === 2) {
+            return "Mar";
+        } else if(m === 3) {
+            return "Apr";
+        } else if(m === 4) {
+            return "May";
+        } else if(m === 5) {
+            return "Jun";
+        } else if(m === 6) {
+            return "Jul";
+        } else if(m === 7) {
+            return "Aug";
+        } else if(m === 8) {
+            return "Sep";
+        } else if(m === 9) {
+            return "Oct";
+        } else if(m === 10) {
+            return "Nov";
+        } else if(m === 11) {
+            return "Dec";
+        } 
+    }
+
+    function get_day(d) {
+        if(d === 0) {
+            return "Sunday";
+        } else if (d === 1) {
+            return "Monday";
+        } else if (d === 2) {
+            return "Tuesday";
+        } else if (d === 3) {
+            return "Wednesday";
+        } else if (d === 4) {
+            return "Thursday";
+        } else if (d === 5) {
+            return "Friday";
+        } else if (d === 6) {
+            return "Saturday";
+        }
+    }
+
+    function past_24_hours(stats, now, yesterday) {
+
+        stats.forEach(function(s){
+            s.time = new Date(s.time);
+            s.time.setMinutes(s.time.getMinutes()-(s.time.getMinutes()%10));
+            s.time.setSeconds(0);
+            s.time.setMilliseconds(0);
+        });
+        var data = d3.nest()
+                    .key(function(d){ return new Date(d.time.getFullYear(), d.time.getMonth(), d.time.getDate(), d.time.getHours(), d.time.getMinutes()); })
+                    .rollup(function(leaves) { return leaves.length; })
+                    .entries(stats);
+        var chart_data = {};
+        chart_data.now = now;
+        chart_data.yesterday = yesterday;
+        chart_data.times = data;
+        single_day_chart.add_data(chart_data, "key", "values", "Number of Beers Drunk");
+        single_day_chart.draw();
+    }
 
     var week_handler;
     function reset_page() {
@@ -88,7 +158,7 @@
         }
         var query = week_handler.get_query_string();
         checkState();
-        do_dashboard(query);            
+        do_dashboard(query);         
     }
 
     function go_back() {
@@ -148,17 +218,32 @@
 
     function do_dashboard(date_query) {
 
+        var now = new Date();
+        var yesterday = new Date();
+        yesterday.setUTCDate(now.getUTCDate()-1);
+        now.setUTCHours(now.getUTCHours()+4);
+        yesterday.setUTCHours(yesterday.getUTCHours()+4);
+
+        var previous_day = "?from=" + yesterday.toUTCString() + "&to=" + now.toUTCString();
+        console.log(previous_day);
         queue()
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/venues" + date_query)
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/breweries" + date_query)
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/beers" + date_query)
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/checkins" + date_query)
-        .await(function(error, venues, breweries, beers, checkins){
+        .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/checkins" + previous_day)
+        .await(function(error, venues, breweries, beers, checkins, stats){
 
             venues = JSON.parse(venues.response);
             breweries = JSON.parse(breweries.response);
             beers = JSON.parse(beers.response);
             checkins = JSON.parse(checkins.response);
+            stats = JSON.parse(stats.response);
+            now.setUTCHours(now.getUTCHours()-4);
+            yesterday.setUTCHours(yesterday.getUTCHours()-4);
+            past_24_hours(stats, now, yesterday);
+
+            console.log(checkins);
 
             if(error) {
                 console.log(error);
@@ -190,14 +275,15 @@
             var l_string;
             var e_string;
 
+            var l = new Date(latest);
+            var e = new Date(earliest);
+
             if(window.innerWidth < 760) {
-                var l = new Date(latest);
-                l_string = "" + l.getDate() + "/" + (l.getMonth()+1) + "/" + l.getFullYear();
-                var e = new Date(earliest);
-                e_string = "" + e.getDate() + "/" + (e.getMonth()+1) + "/" + e.getFullYear();
+                l_string = "" + l.getUTCDate() + "/" + (l.getUTCMonth()+1) + "/" + l.getUTCFullYear();
+                e_string = "" + e.getUTCDate() + "/" + (e.getUTCMonth()+1) + "/" + e.getUTCFullYear();
             } else {
-                l_string = new Date(latest).toDateString();
-                e_string = new Date(earliest).toDateString();                
+                l_string = "" + get_day(l.getUTCDay()) + " " + l.getUTCDate() + " " + get_month(l.getUTCMonth()) + " " + l.getUTCFullYear();
+                e_string = "" + get_day(e.getUTCDay()) + " " + e.getUTCDate() + " " + get_month(e.getUTCMonth()) + " " + e.getUTCFullYear();           
             }
 
 
@@ -274,6 +360,8 @@
             breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true, brewery_tooltip);
             styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true, style_tooltip);
             venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true, venue_tooltip);
+            map_chart.add_data(venues);
+            map_chart.draw();
             beer_chart.draw();
             breweries_chart.draw();
             styles_chart.draw();
