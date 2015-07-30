@@ -1,4 +1,4 @@
-/* global d3, queue, WeekHandler, DayChart, BarChart, SingleDayChart, MapChart */
+/* global d3, queue, WeekHandler, DayChart, BarChart, SingleDayChart */
 
 (function(){
 
@@ -61,7 +61,6 @@
     var day_chart = new BarChart("#day .vis", padding);
     var time_chart = new BarChart("#time .vis", padding);
     var year_chart = new DayChart("#year .vis");
-    var map_chart = new MapChart('map-container');
     var single_day_chart = new SingleDayChart("#pastday .vis", {top: 10, bottom: 70, left: 50, right: 10});
 
     window.addEventListener("resize", function(){
@@ -69,7 +68,6 @@
         time_chart.draw();
         year_chart.draw();            
         beer_chart.draw();
-        map_chart.draw();
         breweries_chart.draw();
         styles_chart.draw();
         venues_chart.draw();
@@ -360,8 +358,6 @@
             breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true, brewery_tooltip);
             styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true, style_tooltip);
             venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true, venue_tooltip);
-            map_chart.add_data(venues);
-            map_chart.draw();
             beer_chart.draw();
             breweries_chart.draw();
             styles_chart.draw();
