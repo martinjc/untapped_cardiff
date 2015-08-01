@@ -1,4 +1,4 @@
-/* global d3, queue, WeekHandler, DayChart, BarChart, SingleDayChart */
+/* global d3, queue, WeekHandler, DayChart, BarChart, SingleDayChart, TimeLine */
 
 (function(){
 
@@ -61,6 +61,7 @@
     var day_chart = new BarChart("#day .vis", padding);
     var time_chart = new BarChart("#time .vis", padding);
     var year_chart = new DayChart("#year .vis");
+    var where_line_chart = new TimeLine("#where_line .vis", padding);
     var single_day_chart = new SingleDayChart("#pastday .vis", {top: 10, bottom: 70, left: 50, right: 10});
 
     window.addEventListener("resize", function(){
@@ -71,6 +72,7 @@
         breweries_chart.draw();
         styles_chart.draw();
         venues_chart.draw();
+        where_line_chart.draw();
         single_day_chart.draw();
     });
 
@@ -223,7 +225,6 @@
         yesterday.setUTCHours(yesterday.getUTCHours()+4);
 
         var previous_day = "?from=" + yesterday.toUTCString() + "&to=" + now.toUTCString();
-        console.log(previous_day);
         queue()
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/venues" + date_query)
         .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/breweries" + date_query)
@@ -240,8 +241,6 @@
             now.setUTCHours(now.getUTCHours()-4);
             yesterday.setUTCHours(yesterday.getUTCHours()-4);
             past_24_hours(stats, now, yesterday);
-
-            console.log(checkins);
 
             if(error) {
                 console.log(error);
@@ -358,6 +357,7 @@
             breweries_chart.add_data(breweries, "brewery_name", "count", "Number of checkins per brewery", true, brewery_tooltip);
             styles_chart.add_data(styles, "key", "values", "Number of checkins per style", true, style_tooltip);
             venues_chart.add_data(venues, "venue_name", "count", "Number of checkins per venue", true, venue_tooltip);
+            where_line_chart.add_data(checkins, venues, "venue_id", "venue_name", "venue", "Checkins at Venue (cumulative)");
             beer_chart.draw();
             breweries_chart.draw();
             styles_chart.draw();

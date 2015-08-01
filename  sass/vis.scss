@@ -10,8 +10,18 @@
     font-size: $font-size-small;
 }
 
+text.label {
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-small;
+}
+
 .tooltip {
     padding: 4px;
+}
+
+.line {
+    fill: none;
+    stroke-width: 2px;
 }
 
 .month {

@@ -40,10 +40,16 @@
     flex-basis: $vis-width-1-3-small;
 }
 
-#day, #time, #venues, #map{
+#day, #time {
     @extend .vis-container;
     flex-grow: 1;
-    flex-basis: $vis-width-1-2-small;
+    flex-basis: $vis-width-solo-small
+}
+
+#venues, #what_line, #where_line {
+    @extend .vis-container;
+    flex-grow: 1;
+    flex-basis: $vis-width-solo-small;    
 }
 
 #map-container {
@@ -98,10 +104,16 @@ footer {
         flex-grow: 1;
     }
 
-    #day, #time, #venues, #map {
+    #day, #time {
         flex-grow: 1;
         flex-basis: $vis-width-1-2-large;
         width: 50%;
+    }
+
+    #venues, #what_line, #where_line{
+        flex-grow: 1;
+        flex-basis: $vis-width-solo-large;
+        width: 70%;
     }
 
     #year, #pastday {

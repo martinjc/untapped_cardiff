@@ -186,7 +186,7 @@ small {
   padding-left: 0px;
 }
 
-.vis-container, #styles, #beers, #breweries, #day, #time, #venues, #map, #year, #pastday {
+.vis-container, #styles, #beers, #breweries, #day, #time, #venues, #what_line, #where_line, #year, #pastday {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -217,7 +217,17 @@ small {
           flex-basis: 684px;
 }
 
-#day, #time, #venues, #map {
+#day, #time {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-basis: 684px;
+      -ms-flex-preferred-size: 684px;
+          flex-basis: 684px;
+}
+
+#venues, #what_line, #where_line {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -308,7 +318,7 @@ footer {
             flex-grow: 1;
   }
 
-  #day, #time, #venues, #map {
+  #day, #time {
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
@@ -317,6 +327,17 @@ footer {
         -ms-flex-preferred-size: 500px;
             flex-basis: 500px;
     width: 50%;
+  }
+
+  #venues, #what_line, #where_line {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-basis: 1300px;
+        -ms-flex-preferred-size: 1300px;
+            flex-basis: 1300px;
+    width: 70%;
   }
 
   #year, #pastday {
@@ -406,8 +427,18 @@ input[disabled] {
   font-size: 12px;
 }
 
+text.label {
+  font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
 .tooltip {
   padding: 4px;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2px;
 }
 
 .month {

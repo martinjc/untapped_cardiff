@@ -173,7 +173,6 @@
         this.set_size();
 
         this.cellSize = this.width / 53;
-
     }
 
     DayChart.prototype.set_size = function() {
@@ -312,6 +311,245 @@
         }
     };
 
+
+function TimeLine(element_selector, padding) {
+    this.transition_duration = 1000;
+
+    this.element_selector = element_selector;
+    this.padding = padding;
+
+    this.colour_scale = d3.scale.quantile()
+        .range(colorbrewer.Reds[7]);
+
+    this.svg = d3.select(this.element_selector)
+        .append('svg');
+
+    this.svg.append("g")
+        .attr("class", "x axis");
+        
+    this.svg.append("g")
+        .attr("class", "y axis");
+
+    var x_scale = d3.time.scale().nice();
+    var y_scale = d3.scale.linear().nice();
+
+    this.line = d3.svg.line()
+        .x(function(d){ return x_scale(new Date(d.date)); })
+        .y(function(d){ return y_scale(d.count); })
+        .interpolate('step-after');
+
+    this.x_scale = x_scale;
+    this.y_scale = y_scale;
+
+    var format = d3.time.format("%a %b %d %I%p");
+
+    this.x_axis = d3.svg.axis()
+      .scale(x_scale)
+      .orient("bottom")
+      .tickFormat(format);
+
+    this.y_axis = d3.svg.axis()
+      .scale(y_scale)
+      .orient("left")
+      .ticks(8);
+
+    this.set_size();
+    this.data = undefined;
+}
+
+TimeLine.prototype.set_size = function() {
+    this.width = +d3.select(this.element_selector).node().getBoundingClientRect().width;
+    this.height = +d3.select(this.element_selector).node().getBoundingClientRect().height;
+
+    var left_indent = 200;
+    if(this.width < 1000) {
+        left_indent = 70;
+    }
+
+    this.x_scale.range([this.padding.left, this.width-this.padding.right-left_indent], 0.1);
+    this.y_scale.range([this.height-this.padding.bottom, this.padding.top]);
+
+    this.svg
+        .transition()
+        .attr("height", this.height)
+        .attr("width", this.width);
+
+    d3.select(".x.axis")
+        .attr("transform", "translate(0," + (this.height - this.padding.bottom) + ")");
+
+    d3.select(".y.axis")
+        .attr("transform", "translate(" + this.padding.left + ",0)");       
+};
+
+TimeLine.prototype.add_data = function(checkins, items, item_id_property, item_display_property, checkin_id_property, y_label) {
+    this.set_size();
+
+    this.y_label = y_label;
+
+    this.data = [];
+    var ids = [];
+    for(var i in items) {
+        if(ids.indexOf(items[i][item_id_property]) === -1) {
+            this.data.push({
+                id: items[i][item_id_property],
+                name: items[i][item_display_property],
+                data: [],
+                count: 0
+            });
+            ids.push(items[i][item_id_property]);
+        }
+    }
+
+    var min_date = new Date(checkins[0].time);
+    var max_date = new Date(checkins[0].time);
+    var max_count = 0;
+
+    for(var c in checkins) {
+        var item = null;
+        for(var d in this.data) {
+            if(this.data[d].id === checkins[c][checkin_id_property]) {
+                item = this.data[d];
+                break;
+            }
+        }
+        var count = item.count;
+        var datapoint = {
+            date: checkins[c].time,
+            count: count + 1,            
+        };
+        item.data.push(datapoint);
+        item.count += 1;
+        if(new Date(checkins[c].time) < min_date) {
+            min_date = new Date(checkins[c].time);
+        }
+        if(new Date(checkins[c].time) > max_date) {
+            max_date = new Date(checkins[c].time);
+        }
+        if(item.count > max_count) {
+            max_count = item.count;
+        }
+    }
+
+    this.data = this.data.sort(function(a, b){
+        return b.count - a.count;
+    });
+    this.data = this.data.slice(0, 7);
+
+    min_date.setHours(min_date.getHours()-2);
+    min_date.setMinutes(0);
+    max_date.setHours(max_date.getHours()+2);
+    max_date.setMinutes(0);
+
+    this.x_scale.domain([min_date, max_date]);
+    this.y_scale.domain([0, max_count+10]);
+    this.colour_scale.domain([max_count, 0]);
+    this.draw();
+};
+
+TimeLine.prototype.draw = function() {
+    this.set_size();
+    var chart = this;
+
+    this.svg.selectAll('.line')
+        .transition()
+        .duration(this.transition_duration)
+        .attr('d', 'M 0,' + (this.height - this.padding.bottom) + 'L ' + this.padding.left + ',' + (this.height - this.padding.bottom))
+        .remove();
+    
+    this.svg.selectAll('.label')
+        .remove();
+
+    var lines = this.svg.selectAll('.line')
+        .data(this.data);
+
+    lines
+        .enter()
+        .append('path');
+    
+    lines
+        .transition()
+        .duration(chart.transition_duration)
+        .attr('class', 'line')
+        .attr('stroke', function(d) {
+            return chart.colour_scale(d.count);
+        })
+        .attr('d', function(d){
+            return chart.line(d.data);
+        });
+
+    var labels = this.svg.selectAll('.label')
+        .data(this.data);
+
+    labels
+        .enter()
+        .append('text');
+
+    var ys = [];
+
+    labels
+        .transition()
+        .duration(chart.transition_duration)
+        .attr('class', 'label')
+        .attr("x", function(d){
+            var max_date = d3.max(d.data, function(di){
+                return new Date(di.date);
+            });
+            return chart.x_scale(max_date) + 2;
+        })
+        .attr("y", function(d){
+            var y_point = chart.y_scale(d.count);
+            if(ys.length > 0) {
+                var last_y = ys[ys.length-1];
+                if(y_point - last_y < 15) {
+                    y_point = last_y + 15;
+                }
+            }
+            ys.push(y_point);
+            return y_point;
+        })
+        .attr("fill", function(d){
+            return chart.colour_scale(d.count);
+        })
+        .attr("stroke-width", "0.1px")
+        .attr("stroke", "black")
+        .text(function(d){
+            return d.name;
+        });
+
+    lines
+        .exit()
+        .remove();
+
+    labels
+        .exit()
+        .remove();
+
+    this.svg.select(".x.axis")
+        .attr("transform", "translate(0," + (this.height - this.padding.bottom) + ")")
+        .transition()
+        .duration(this.transition_duration)
+        .call(this.x_axis)
+        .selectAll("text")  
+            .style("text-anchor", "end")
+            .attr("dx", "-.5em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-35)");
+    
+    this.svg.select(".y.axis")
+        .attr("transform", "translate(" + this.padding.left + ",0)")
+        .transition()
+        .duration(this.transition_duration)
+        .call(this.y_axis);
+
+    this.svg.select(".y.axis")
+        .append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .attr("dx", "-6em")
+        .attr("dy", "-3em")
+        .attr("transform", "rotate(-90)")
+        .text(this.y_label); 
+};
 
 
 function BarChart(element_selector, padding) {
@@ -539,6 +777,7 @@ BarChart.prototype.draw = function() {
 
     this.BarChart = BarChart;
     this.DayChart = DayChart;
+    this.TimeLine = TimeLine;
     this.SingleDayChart = SingleDayChart;
 
 }());
