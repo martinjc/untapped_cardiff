@@ -430,6 +430,13 @@ TimeLine.prototype.add_data = function(checkins, items, item_id_property, item_d
         }
     }
 
+    for(var dj in this.data) {
+        this.data[dj].data.push({
+            date: max_date,
+            count: this.data[dj].count,
+        });
+    }
+
     this.data = this.data.sort(function(a, b){
         return b.count - a.count;
     });
@@ -457,6 +464,9 @@ TimeLine.prototype.draw = function() {
         .remove();
     
     this.svg.selectAll('.label')
+        .remove();
+
+    this.svg.selectAll('.pointer')
         .remove();
 
     var lines = this.svg.selectAll('.line')
@@ -494,7 +504,7 @@ TimeLine.prototype.draw = function() {
             var max_date = d3.max(d.data, function(di){
                 return new Date(di.date);
             });
-            return chart.x_scale(max_date) + 2;
+            return chart.x_scale(max_date) + 10;
         })
         .attr("y", function(d){
             var y_point = chart.y_scale(d.count);
@@ -510,11 +520,40 @@ TimeLine.prototype.draw = function() {
         .attr("fill", function(d){
             return chart.colour_scale(d.count);
         })
-        .attr("stroke-width", "0.1px")
+        .attr("stroke-width", "0.3px")
         .attr("stroke", "black")
         .text(function(d){
             return d.name;
         });
+
+
+    var pointers = this.svg.selectAll('.pointer')
+        .data(this.data);
+
+    pointers
+        .enter()
+        .append('line')
+        .attr('class', 'pointer')
+        .attr('x1', function(d){
+            var max_date = d3.max(d.data, function(di){
+                return new Date(di.date);
+            });
+            return chart.x_scale(max_date);
+        })
+        .attr('y1', function(d) {
+            return chart.y_scale(d.count);
+        })
+        .attr('x2', function(d){
+            var max_date = d3.max(d.data, function(di){
+                return new Date(di.date);
+            });
+            return chart.x_scale(max_date) + 8;
+        })
+        .attr('y2', function(d, i){
+            return ys[i]-5;
+        })
+        .attr('stroke', 'black')
+        .attr('stroke-width', '1px');
 
     lines
         .exit()
