@@ -1,0 +1,21 @@
+---
+author: martin
+comments: true
+date: 2011-08-24 21:28:18+00:00
+layout: post
+link: http://martinjc.com/2011/08/24/why-write/
+slug: why-write
+title: Why write?
+wordpress_id: 336
+categories:
+- Home
+tags:
+- blog
+- work
+---
+
+It's a fairly sensible question: why do I write anything here? There aren't going to be that many people reading, if any. Probably the only people that come past are going to be the other people in COMSC having a nose around to see what people are putting on their websites, and the few visitors I get from the random google searches that seem to appear in my analytics reports every now and again. Also probably my mum, because she's a bit of an an internet stalker. Hi mum.
+
+Despite the fact that no-one is reading, I think it's important for me to write fairly regularly. It's a good skill to practice and keep up, and I feel that even in these post-blog social network dominated days, the writing of a few lengthy blog posts on a particular topic every now and then is a fairly healthy habit to get into. The other reason to post regularly is the hope that when I post a bit of code that I've been working on, or an explanation of some work, someone somewhere will find it useful. So, I'll continue to post, until I get bored.
+
+With that in mind, recently I went back up to Edinburgh for a week for the festival. Because I have little work I feel like (or feel is ready for) writing about on here but still feel that writing semi-regularly is good for me, I'm going to post some reviews of my week up here. Almost a 'what I did on my holidays' type thing. So look forward to that over the next week or so.

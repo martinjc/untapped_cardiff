@@ -1,0 +1,20 @@
+---
+author: martin
+comments: true
+date: 2011-06-29 09:20:16+00:00
+layout: post
+link: http://martinjc.com/2011/06/29/wowmom-2011/
+slug: wowmom-2011
+title: WowMom 2011
+wordpress_id: 367
+categories:
+- Research
+tags:
+- AOC 2011
+- conference
+- research
+---
+
+Last week I attended [WowMom 2011](http://wowmom2011.imtlucca.it/) in Lucca, Italy. The conference was pretty good, but I was mainly there for the [Autonomic and Opportunistic Computing (AOC) workshop](http://cnd.iit.cnr.it/aoc2011/index.html) where I was presenting some work, as I mentioned in an earlier [post](http://users.cs.cf.ac.uk/M.J.Chorley/2011/06/02/unexpected/). The workshop was really interesting, a lot of the work was relevant to work we'd done in the past on the SocialNets project and work we're doing in the future with the Recognition project. There were some very interesting discussions on areas such as mobility models and mobility traces and the capturing of user data, particularly in the keynote from [Tristan Henderson](http://www.cs.st-andrews.ac.uk/~tristan/) and also in the panel session at the end of the day. I also met some very interesting people from around the place and hopefully will run into them again at some conference or other down the line.
+
+I've just got to sort through all my notes now so I can talk about it all at MobiSoc tomorrow lunchtime!
