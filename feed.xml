@@ -1,30 +1,667 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    <title>martin chorley</title>
+    <description>I am Dr Martin Chorley. I am a lecturer at the School of Computer Science &amp; Informatics, Cardiff University.I'm programme leader for the MSc in Computational Journalism, and also senior personal tutor for all taught postgraduate students. I mainly do work that falls under the umbrella of the Mobile and Social Computing group.
+</description>
+    <link>http://martinchorley.co.uk/</link>
+    <atom:link href="http://martinchorley.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 07 Oct 2016 19:33:32 +0100</pubDate>
+    <lastBuildDate>Fri, 07 Oct 2016 19:33:32 +0100</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
+        <title>Quick Update...</title>
+        <description>&lt;p&gt;Been a bit quiet here recently. It’s been a very busy few months. I’ve got a few projects and thoughts that I’ll be posting more on in the next couple of weeks, but I figured it was worth a quick update on what’s been going on, and what I’ve been up to.&lt;/p&gt;
+
+&lt;h3 id=&quot;msc-computational-journalism&quot;&gt;MSc Computational Journalism&lt;/h3&gt;
+
+&lt;p&gt;We have finished the taught part of the MSc, and we’re getting well into the dissertation phase for the first cohort of our students. It’s been a really good first year, and I’ll be posting a debrief and some thoughts on the next year sometime over summer.&lt;/p&gt;
+
+&lt;h3 id=&quot;bardiff&quot;&gt;BarDiff&lt;/h3&gt;
+
+&lt;p&gt;I’ve launched a &lt;a href=&quot;http://bardiff.martinjc.com&quot;&gt;data dashboard thing for beer drinking in Cardiff&lt;/a&gt;. Powered by &lt;a href=&quot;http://www.untappd.com&quot;&gt;Untappd&lt;/a&gt; checkins, it’s providing (I think) a fairly interesting overview of the city. I’ve got some ideas for some better visualisations, but for now it’s nicely ticking over. Plus it’s getting some decent interaction on the social medias&lt;/p&gt;
+
+&lt;h3 id=&quot;academia&quot;&gt;Academia&lt;/h3&gt;
+
+&lt;p&gt;The usual ticking over of academia continues - journal reviews, conference reviews,  a book chapter to write, paper deadlines coming and going. It’s the same old same old….&lt;/p&gt;
+
+&lt;h3 id=&quot;teaching&quot;&gt;Teaching&lt;/h3&gt;
+
+&lt;p&gt;I’ve started on my teaching qualification (&lt;a href=&quot;http://www.cardiff.ac.uk/pcutl/&quot;&gt;PgCUTL&lt;/a&gt;). The first module portfolio was submitted a couple of weeks ago, and results are due any day now (fingers crossed). I’ve also got a few thoughts on the recently announced TEF that I’ll be putting up soon, and some things on employability…&lt;/p&gt;
+
+&lt;h3 id=&quot;and-finally&quot;&gt;and finally…&lt;/h3&gt;
+
+&lt;p&gt;The reason I’ve not posted in a while:&lt;/p&gt;
+
+&lt;p&gt;[caption id=”attachment_1272” align=”aligncenter” width=”660”]&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2015/07/11325423_448026158711440_20867902_n.jpg&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2015/07/11325423_448026158711440_20867902_n-1024x1024.jpg&quot; alt=&quot;Arthur!&quot; /&gt;&lt;/a&gt; Arthur![/caption]&lt;/p&gt;
+
+&lt;p&gt;My son, Arthur James Chorley-Jones was born on 13th May 2015. He’s amazing, I think he’s the best thing that has ever happened, and since he’s been around there has not been a huge amount of time for blogging, side-projects, and other such things. Which is ace.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Jul 2015 21:17:40 +0100</pubDate>
+        <link>http://martinchorley.co.uk/home/2015/07/13/quick-update.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/home/2015/07/13/quick-update.html</guid>
+        
+        
+        <category>Home</category>
+        
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Accessing and Scraping MyFitnessPal Data with Python</title>
+        <description>&lt;p&gt;Interesting news this morning that MyFitnessPal has been bought by Under Armour for  $475 million. I’ve used MFP for many years now, and it was pretty helpful in helping me lose all the excess PhD weight that I’d put on, and then maintaining a healthy(ish) lifestyle since 2010.&lt;/p&gt;
+
+&lt;p&gt;News of an acquisition always has me slightly worried though - not for someone else having access to my data, as I’ve made my peace with the fact that using a free service generally means that it’s me that’s being sold. Giving away my data is the cost of doing business. Rather, it worries me that I may lose access to all the data I’ve collected. I have no idea what Under Armour intend for the service in the long run, and while its likely that MFP will continue with business as usual for the foreseeable, it’s always worth having a backup of your data.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://martinjc.com/2011/06/09/logging-in-to-websites-with-python/&quot;&gt;A few years ago, I wrote a couple of python scripts&lt;/a&gt; to back up data from MFP and then extract the food and exercise info from the raw HTML. These scripts use Python and Beautiful Soup to do a login to MFP, then go back through your diary history and save all the raw HTML pages, essentially scraping your data.&lt;/p&gt;
+
+&lt;p&gt;I came to run them this morning and found they needed a couple of changes to deal with site updates. I’ve made the necessary updates and the full code for all the scripts is &lt;a href=&quot;https://github.com/martinjc/mfp-scraper&quot;&gt;available on GitHub&lt;/a&gt;. It’s not great, but it works. The code is Python 2 and requires BeautifulSoup and Matplotlib (if you want to use generate_plots.py).&lt;/p&gt;
+</description>
+        <pubDate>Thu, 05 Feb 2015 11:02:36 +0000</pubDate>
+        <link>http://martinchorley.co.uk/coding/2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/coding/2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</guid>
+        
+        <category>coding</category>
+        
+        <category>data</category>
+        
+        <category>health</category>
+        
+        <category>lifelogging</category>
+        
+        <category>mfp</category>
+        
+        <category>python</category>
+        
+        
+        <category>Coding</category>
+        
+      </item>
+    
+      <item>
+        <title>Personality and Places</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0747563214007559&quot;&gt;Our paper&lt;/a&gt; examining the link between &lt;a href=&quot;http://martinjc.com/2012/11/20/foursquare-personality-experiment/&quot;&gt;individual personality and the places people visit&lt;/a&gt; has just been published in &lt;a href=&quot;http://www.journals.elsevier.com/computers-in-human-behavior/&quot;&gt;Computers in Human Behavior&lt;/a&gt;. It’s open access, so you can &lt;a href=&quot;http://dx.doi.org/10.1016/j.chb.2014.12.038&quot;&gt;go read it for free, now&lt;/a&gt;! &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In an experiment we ran previously, we asked users of Foursquare to take a personality test and give us access to their checkin history. The personality test gives us a measure of how each person scores for five different factors: Openness, Conscientiousness, Extraversion, Agreeableness and Neuroticism. The checkin history lists all the places they’ve ever checked in to using Foursquare. Because a couple of hundred people took part in the experiment, we ended up with a large number of individual personalities that we could link to over a hundred thousand venues. In total, this represents a pretty staggering half a million Foursquare checkins that we have personality data associated with.&lt;/p&gt;
+
+&lt;p&gt;Our first step with this data has been to see if there are any links between personality factors and the places people choose to visit, and we found some interesting connections.&lt;/p&gt;
+
+&lt;p&gt;One of our main finding shows that the use of Foursquare for recording checkins seems to correlate well with Conscientiousness. &lt;strong&gt;The more conscientious a user is, the more likely they are to have checked in at more places and to have visited more venues.&lt;/strong&gt; This could be because people with a high Conscientiousness score tend to be quite organised and disciplined, and so are more likely to remember to check in at every place they visit.&lt;/p&gt;
+
+&lt;p&gt;The opposite is true for Neuroticism: &lt;strong&gt;the more neurotic an individual is, the fewer places they have visited&lt;/strong&gt;. Neuroticism is associated with negative feelings, and a tendency to be less social, which could then translate into people going to fewer places, and so checking in less. This is expressed again when we look at only those venues classed as ‘social’ (i.e. - somewhere you would go to hang out with friends). &lt;strong&gt;The more neurotic someone is, the fewer ‘social’ venues they have been to.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Surprisingly, we have found no link between Extraversion and the number of social venues visited. It may be expected that extraverts (who are very social in their nature) may go to more social venues. However, the data does not support this. In fact, &lt;strong&gt;we find no link between Extraversion and any aspect of Foursquare checkins&lt;/strong&gt; that we have examined so far.&lt;/p&gt;
+
+&lt;p&gt;The personality factor of Openness is related to feelings of creativity and artistic expression, and a willingness to experience new things. It is interesting to find that there is a link between Openness and the average distance travelled between checkins -** the more Open an individual is, the further they tend to have travelled**. This could be an expression of an Open individual’s desire to experience new things exposing itself through wider travel, and a larger geographic spread of checkins. However, we do not find any link between Openness and the number of different categories visited by a user. We do not see a desire for new experiences express itself in the range and diversity of places visited.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, this data could be incredibly useful in improving venue recommendation systems. Current systems use many different information ‘cues’ to recommend to a user a place they might like to visit. These cues include things such as where they have been in the past, where their friends have been, or where is popular nearby. Perhaps by including aspects of an individual’s personality (so including aspects of &lt;em&gt;why&lt;/em&gt; they might visit somewhere) we can increase the usefulness of these recommendations.&lt;/p&gt;
+
+&lt;p&gt;There is still a lot of analysis to be done on this data, and both myself and &lt;a href=&quot;http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=NoeN&quot;&gt;Nyala Noe&lt;/a&gt; are busy churning through it to discover other links between personality and the places people visit. As we find more interesting connections, I’ll post more here.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 27 Jan 2015 11:00:12 +0000</pubDate>
+        <link>http://martinchorley.co.uk/research/2015/01/27/personality-and-places.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/research/2015/01/27/personality-and-places.html</guid>
+        
+        <category>foursquare</category>
+        
+        <category>open access</category>
+        
+        <category>paper</category>
+        
+        <category>personality</category>
+        
+        <category>psychology</category>
+        
+        <category>publication</category>
+        
+        <category>research</category>
+        
+        
+        <category>Research</category>
+        
+      </item>
+    
+      <item>
+        <title>NHS Hackday 2015</title>
+        <description>&lt;p&gt;This weekend I took part in an incredibly successful &lt;a href=&quot;http://nhshackday.com/&quot;&gt;NHS hackday&lt;/a&gt;, hosted at Cardiff University and organised by &lt;a href=&quot;https://twitter.com/amcunningham&quot;&gt;Anne Marie Cunningham&lt;/a&gt; and James Morgan. We went as a team from the MSc in Computational Journalism, with myself and &lt;a href=&quot;https://twitter.com/egrommet&quot;&gt;Glyn&lt;/a&gt; attending along with &lt;a href=&quot;https://twitter.com/PoojaDante&quot;&gt;Pooja&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/NikitaVashisth&quot;&gt;Nikita&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/Idioteque90&quot;&gt;Annalisa&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/cboutaud&quot;&gt;Charles&lt;/a&gt;. At the last-minute I recruited a couple of ringers as well, dragging along &lt;del&gt;Rhys Priestland&lt;/del&gt; &lt;a href=&quot;https://twitter.com/flyingSparx&quot;&gt;Dr William Wilberforce Webberley&lt;/a&gt; from Comsc and &lt;a href=&quot;https://twitter.com/voxmjw&quot;&gt;Dr Matthew Williams&lt;/a&gt;, previously of this parish. Annalisa also brought along Dan Hewitt, so in total we had a large and diverse team.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-hackday&quot;&gt;The hackday&lt;/h1&gt;
+
+&lt;p&gt;This was the first NHS hackday I’d attended, but I believe it’s the second event held in Cardiff, so Anne Marie and the team have it down to a fine art. The whole weekend seemed to go pretty smoothly (barring a couple of misunderstandings on our part regarding the pitch sessions!). It was certainly one of the most well organised events that I’ve attended, with all the necessary ingredients for successful coding: much power, many wifi and plenty of food, snacks and coffee. Anne Marie and the team deserve much recognition and thanks for their hard work. I’m definitely in for next year.&lt;/p&gt;
+
+&lt;p&gt;The quality of the projects created at the hackday was incredibly high across the board, which was great to see. One of my favourites used an Oculus Rift virtual reality headset to create a zombie ‘game’ that could be used to test people’s peripheral vision. Another standout was a system for logging and visualising the ANGEL factors describing a patient’s health situation. It was really pleasing to see these rank highly with the judges too, coming in third and second in the overall rankings. Other great projects brought an old Open Source project back to life, created a system for managing groups walking the Wales Coast path, and created automatic notification systems for healthcare processes. Overall it was a really interesting mix of projects, many of which have clear potential to become useful products within or alongside the NHS. As Matt commented in the pub afterwards, it’s probably the first hackday we’ve been to where several of the projects have clear original IP with commercial potential.&lt;/p&gt;
+
+&lt;h1 id=&quot;ourproject&quot;&gt;Our project&lt;/h1&gt;
+
+&lt;p&gt;We had decided before the event that we wanted to build some visualisations of health data across Wales, something like &lt;a href=&quot;http://nhsmaps.co.uk/&quot;&gt;nhsmaps.co.uk&lt;/a&gt;, but working with local health boards and local authorities in Wales. We split into two teams for the implementation: ‘the data team’ who were responsible for sourcing, processing and inputting data, and the ‘interface team’ who built the front-end and the visualisations.&lt;/p&gt;
+
+&lt;p&gt;Progress was good, with Matthew and William quickly defining a schema for describing data so that the data team could add multiple data sets and have the front-end automatically pick them up and be able to visualise them. The CompJ students worked to find and extract data, adding them to the github repository with the correct metadata. Meanwhile, I pulled a bunch of D3 code together for some simple visualisations.&lt;/p&gt;
+
+&lt;p&gt;By the end of the weekend we established a fairly decent system. It’s able to visualise a few different types of data, at different resolutions, is mostly mobile friendly, and most importantly is easily extensible and adaptable. It’s online now on our &lt;a href=&quot;http://bit.ly/hewnhs&quot;&gt;github pages&lt;/a&gt;, and all the code and documentation is also in the &lt;a href=&quot;https://github.com/compjcdf/nhs_hack&quot;&gt;github repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;[gallery columns=”2” ids=”1217,1218,1219,1220”]&lt;/p&gt;
+
+&lt;p&gt;We’ll continue development for a while to improve the usability and code quality, and hopefully we’ll find a community willing to take the code base on and keep improving what could be a fairly useful resource for understanding the health of Wales.&lt;/p&gt;
+
+&lt;h1 id=&quot;debrief&quot;&gt;Debrief&lt;/h1&gt;
+
+&lt;p&gt;We didn’t win any of the prizes, which is understandable. Our project was really focused on the public understanding of the NHS and health, and not for solving a particular need within (or for users of) the NHS. We knew this going in to the weekend, and we’d taken the decision that it was more important to work on a project related to the course, so that the students could experience some of the tools and technologies they’ll be using as the course progresses than to do something more closely aligned with the brief that would have perhaps been less relevant to the students work.&lt;/p&gt;
+
+&lt;p&gt;I need to thank Will and Matt for coming and helping the team. Without Matt wrangling the data team and showing them how to create json metadata descriptors we probably wouldn’t have anywhere near as many example datasets as we do. Similarly, without Will’s hard work on the front end interface, the project wouldn’t look nearly as good as it does, or have anywhere near the functionality. His last-minute addition of localstorage for personal datasets was a triumph. (Sadly though he does lose some coder points for user agent sniffing to decide whether to show a mobile interface :-D.) They were both a massive help, and we couldn’t have done it without them.&lt;/p&gt;
+
+&lt;p&gt;Also, of course, I need to congratulate the CompJ students, who gave up their weekend to trawl through datasets, pull figures off websites and out of pdf’s, and create the lovely easy to process .csv files we needed. It was a great effort from them, and I’m looking forward to our next Team CompJ hackday outing.&lt;/p&gt;
+
+&lt;p&gt;One thing that sadly did stand out was a lack of participation from Comsc undergraduate students, with only one or two attending. &lt;a href=&quot;http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=Rob.Davies&quot;&gt;Rob Davies&lt;/a&gt; stopped by on Saturday, and both Will and I discussed with him what we can do to increase participation in these events. Hopefully we’ll make some progress on that front in time for the next hackday.&lt;/p&gt;
+
+&lt;h1 id=&quot;media&quot;&gt;Media&lt;/h1&gt;
+
+&lt;p&gt;There’s some great photos from the event on Flickr, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/&quot;&gt;Paul Clarke&lt;/a&gt; (&lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650042039338/&quot;&gt;Saturday&lt;/a&gt; and &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650456182132/&quot;&gt;Sunday&lt;/a&gt;). I’ve pulled out some of the best of Team CompJ and added them here. All photos are released under a &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/&quot;&gt;Creative Commons BY-NC 2.0&lt;/a&gt; licence.&lt;/p&gt;
+
+&lt;p&gt;[gallery columns=”4” size=”medium” ids=”1235,1234,1236,1233,1224,1225,1227,1228,1229,1230,1231,1237,1232,1238,1226,1239”]&lt;/p&gt;
+
+&lt;h1 id=&quot;elsewhere&quot;&gt;Elsewhere…&lt;/h1&gt;
+
+&lt;p&gt;We got a lovely &lt;a href=&quot;https://goodpracticeexchange.wordpress.com/2015/01/24/nhs-hack-day-data-visualisation/&quot;&gt;write-up about out project&lt;/a&gt; from &lt;a href=&quot;https://twitter.com/DyfrigWilliams&quot;&gt;Dyfrig Williams&lt;/a&gt; of the Good Practice Exchange at the Wales Audit Office. Dyfrig also curated a great &lt;a href=&quot;https://storify.com/GoodPracticeWAO/nhs-hack-day-cardiff-2015&quot;&gt;storify of the weekend&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Hemavault labs have done a round up of the projects &lt;a href=&quot;http://blog.hemavault.com/2015/01/27/nhs-hack-day-cardiff-2015-projects/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 26 Jan 2015 10:15:16 +0000</pubDate>
+        <link>http://martinchorley.co.uk/coding/teaching/2015/01/26/nhs-hackday-2015.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/coding/teaching/2015/01/26/nhs-hackday-2015.html</guid>
+        
+        <category>coding</category>
+        
+        <category>compj</category>
+        
+        <category>data</category>
+        
+        <category>development</category>
+        
+        <category>github</category>
+        
+        <category>hackathon</category>
+        
+        <category>javascript</category>
+        
+        <category>opensource</category>
+        
+        <category>visualisation</category>
+        
+        <category>web</category>
+        
+        
+        <category>Coding</category>
+        
+        <category>Teaching</category>
+        
+      </item>
+    
+      <item>
+        <title>CompJ Labs - Postcodes</title>
+        <description>&lt;p&gt;I’ve thrown up a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2015/01/05/empty-properties-postcodes/&quot;&gt;post&lt;/a&gt; on &lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;compj.cs.cf.ac.uk&lt;/a&gt; about some work we’ve done looking at empty properties in Cardiff. I’ll add further posts over the coming weeks about other data analysis we’ve done on this topic, and new work looking at the Welsh Assembly.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 05 Jan 2015 09:27:51 +0000</pubDate>
+        <link>http://martinchorley.co.uk/research/teaching/2015/01/05/compj-labs-postcodes.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/research/teaching/2015/01/05/compj-labs-postcodes.html</guid>
+        
+        <category>coding</category>
+        
+        <category>compj</category>
+        
+        <category>data</category>
+        
+        <category>python</category>
+        
+        <category>teaching</category>
+        
+        <category>visualisation</category>
+        
+        
+        <category>Research</category>
+        
+        <category>Teaching</category>
+        
+      </item>
+    
+      <item>
+        <title>Extended Mind Crowdsourcing</title>
+        <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Update 13/01/15: the paper containing the research described below is currently available from the &lt;a href=&quot;http://conferences.computer.org/hicss/2015/papers/7367b635.pdf&quot;&gt;HICSS website&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This post is one I’m cross-posting both here and on the &lt;a href=&quot;https://mobisoc.cs.cf.ac.uk/&quot;&gt;MobiSoc&lt;/a&gt; blog. Here, because it’s my personal translation of one of our latest research papers, and there because it’s a very good paper mostly written and driven by Roger Whitaker, so deserves an ‘official’ blog post!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A lot of use is made of Crowdsourcing in both business and academia. Business likes it because it allows simple tasks to be outsourced for a small cost. Researchers like it because it allows the gathering of large amounts of data from participants, again for minimal cost. (For an example of this, see our &lt;a href=&quot;http://martinjc.com/2012/09/07/socialcom-2012/&quot;&gt;TweetCues&lt;/a&gt; work (&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;paper here&lt;/a&gt;), where we paid Twitter users to take a simple survey and massively increased our sample size for a few dollars). As technology is developing, we can apply crowdsourcing to new problems; particularly those concerned with collective human behaviour and culture.&lt;/p&gt;
+
+&lt;h3 id=&quot;crowdsourcing&quot;&gt;Crowdsourcing&lt;/h3&gt;
+
+&lt;p&gt;The traditional &lt;a href=&quot;http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5227025&amp;amp;tag=1&quot;&gt;definition of crowdsourcing&lt;/a&gt; involves several things:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;a clearly defined crowd&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;a task with a clear goal&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;clear recompense received by the crowd&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;an identified owner of the task&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;an online process&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The combination of all these things allows us to complete a large set of simple tasks in a short time and often for a reduced cost. It also provides access to global labour markets for users who may not previously have been able to access these resources.&lt;/p&gt;
+
+&lt;h3 id=&quot;crowdsourcingimghttpmartinjccomwp-contentuploads201409crowdsourcingimg-1024x428pnghttpmartinjccomwp-contentuploads201409crowdsourcingimgpng-&quot;&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/crowdsourcing_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/crowdsourcing_img-1024x428.png&quot; alt=&quot;crowdsourcing_img&quot; /&gt;&lt;/a&gt; [&lt;/h3&gt;
+&lt;p&gt;](http://martinjc.com/wp-content/uploads/2014/09/emc_img.png)Participatory Computing&lt;/p&gt;
+
+&lt;p&gt;Participatory computing is a related concept to crowdsourcing, based around the idea that the resources and data of computing devices can be shared and used to complete tasks. As with crowdsourcing, these tasks are often large, complex and data-driven, but capable of being broken down into smaller chunks that can be distributed to separate computing devices in order to complete the larger task. &lt;a href=&quot;http://boinc.berkeley.edu/&quot;&gt;BOINC&lt;/a&gt; is a clear example of this class of participatory computing.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/participatory_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/participatory_img-1024x585.png&quot; alt=&quot;participatory_img&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;extended-mind-crowdsourcing&quot;&gt;Extended Mind Crowdsourcing&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://www.jstor.org/stable/3328150&quot;&gt;extended mind hypothesis&lt;/a&gt; describes the way that humans extend their thinking beyond the internal mind, to use external objects. For instance, a person using a notebook to record a memory uses the ‘extended mind’ to record the memory; the internal mind simply recalls that the memory is located in the notebook, an object that is external to the individual.&lt;/p&gt;
+
+&lt;p&gt;Extended mind crowdsourcing takes crowdsourcing and participatory computing a step further by including the extended mind hypothesis, to allow us to describe systems that use the extended mind of participants, as represented by their devices and objects, in order to add implicit as well as explicit human computation for collective discovery.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/emc_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/emc_img-1024x626.png&quot; alt=&quot;emc_img&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;What this means is that we can crowdsource the collection of data and completion of tasks using both individual users, their devices, and the extended mind that the two items together represent. Thus by accessing the information stored within a smartphone or similar personal device, and the wider internet services that the device can connect to, we can access the extended mind of a participant and thus learn more about his or her behaviour and individual characteristics. In essence, extended mind crowdsourcing captures the way in which humans undertake and respond to daily activity. In this sense it supports observation of human life and our interpretation of and response to the environment. By including social networks and social media communication within the extended mind, it is clear that while an individual extended mind may represent a single individual human, it is also possible to represent a group, such as a network or a collective using extended mind crowdsourcing.&lt;/p&gt;
+
+&lt;p&gt;By combining the ideas of social computing, crowdsourcing, and the extended mind, we are able to access and aggregate the data that is created through our use of technology. This allows us to extend ideas of human cognition into the physical world, in a less formal and structured way than when using other forms of human computational systems. The reduced focus on task driven systems allows EMC to be directed at the solving of loosely defined problems, and those problems where we have no initial expectations of solutions or findings.&lt;/p&gt;
+
+&lt;p&gt;This is a new way of thinking about the systems we create in order to solve problems using computational systems focused on humans, but it has the potential to be a powerful tool in our research toolbox. We are presenting this new Extended Mind Crowdsourcing idea this week at &lt;a href=&quot;http://kholden7.wix.com/hicss&quot;&gt;HICSS&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 15 Dec 2014 13:37:50 +0000</pubDate>
+        <link>http://martinchorley.co.uk/research/2014/12/15/extended-mind-crowdsourcing.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/research/2014/12/15/extended-mind-crowdsourcing.html</guid>
+        
+        <category>crowdsourcing</category>
+        
+        <category>extended mind</category>
+        
+        <category>paper</category>
+        
+        <category>personality</category>
+        
+        <category>psychology</category>
+        
+        <category>research</category>
+        
+        
+        <category>Research</category>
+        
+      </item>
+    
+      <item>
+        <title>Quick and Dirty Twitter API in Python</title>
+        <description>&lt;p&gt;&lt;strong&gt;QUICK DISCLAIMER: this is a quick and dirty solution to a problem, so may not represent best coding practice, and has absolutely no error checking or handling. Use with caution…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A recent project has needed me to scrape some data from Twitter. I considered using &lt;a href=&quot;https://github.com/tweepy/tweepy&quot;&gt;Tweepy&lt;/a&gt;, but as it was a project for the &lt;a href=&quot;compj.cs.cf.ac.uk&quot;&gt;MSc in Computational Journalism&lt;/a&gt;, I thought it would be more interesting to write our own simple Twitter API wrapper in Python.&lt;/p&gt;
+
+&lt;p&gt;The code presented here will allow you to make any API request to Twitter that uses a GET request, so is really only useful for getting data &lt;em&gt;from&lt;/em&gt; Twitter, not sending it &lt;em&gt;to&lt;/em&gt; Twitter. It is also only for using with the REST API, not the streaming API, so if you’re looking for realtime monitoring, this is not the API wrapper you’re looking for. This API wrapper also uses a single user’s authentication (yours), so is not setup to allow other users to use Twitter through your application.&lt;/p&gt;
+
+&lt;p&gt;The first step is to get some access credentials from Twitter. Head over to &lt;a href=&quot;https://apps.twitter.com/&quot;&gt;https://apps.twitter.com/&lt;/a&gt; and register a new application. Once the application is created, you’ll be able to access its details. Under ‘Keys and Access Tokens’ are four values we’re going to need for the API - the  &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Key&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Secret&lt;/code&gt;, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token Secret&lt;/code&gt;. Copy all four values into a new python file, and save it as ‘&lt;code class=&quot;highlighter-rouge&quot;&gt;_credentials.py&lt;/code&gt;’. The images below walk through the process. Also - don’t try and use the credentials from these images, this app has already been deleted so they won’t work!&lt;/p&gt;
+
+&lt;p&gt;[gallery ids=”1185,1186,1187,1188,1189,1190”]&lt;/p&gt;
+
+&lt;p&gt;Once we have the credentials, we can write some code to make some API requests!&lt;/p&gt;
+
+&lt;p&gt;First, we define a Twitter API object that will carry out our API requests. We need to store the API url, and some details to allow us to throttle our requests to Twitter to fit inside their rate limiting.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Twitter_API:
+
+ def __init__(self):
+
+   # URL for accessing API
+   scheme = &quot;https://&quot;
+   api_url = &quot;api.twitter.com&quot;
+   version = &quot;1.1&quot;
+
+   self.api_base = scheme + api_url + &quot;/&quot; + version
+
+   #
+   # seconds between queries to each endpoint
+   # queries in this project limited to 180 per 15 minutes
+   query_interval = float(15 * 60)/(175)
+
+   #
+   # rate limiting timer
+   self.__monitor = {'wait':query_interval,
+     'earliest':None,
+     'timer':None}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We add a rate limiting method that will make our API sleep if we are requesting things from Twitter too fast:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; #
+ # rate_controller puts the thread to sleep 
+ # if we're hitting the API too fast
+ def __rate_controller(self, monitor_dict):
+
+   # 
+   # join the timer thread
+   if monitor_dict['timer'] is not None:
+   monitor_dict['timer'].join() 
+
+   # sleep if necessary 
+   while time.time() &amp;lt; monitor_dict['earliest']:
+     time.sleep(monitor_dict['earliest'] - time.time())
+ 
+   # work out then the next API call can be made
+   earliest = time.time() + monitor_dict['wait']
+   timer = threading.Timer( earliest-time.time(), lambda: None )
+   monitor_dict['earliest'] = earliest
+   monitor_dict['timer'] = timer
+   monitor_dict['timer'].start()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Twitter API requires us to supply authentication headers in the request. One of these headers is a signature, created by encoding details of the request. We can write a function that will take in all the details of the request (method, url, parameters) and create the signature:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # 
+ # make the signature for the API request
+ def get_signature(self, method, url, params):
+ 
+   # escape special characters in all parameter keys
+   encoded_params = {}
+   for k, v in params.items():
+     encoded_k = urllib.parse.quote_plus(str(k))
+     encoded_v = urllib.parse.quote_plus(str(v))
+     encoded_params[encoded_k] = encoded_v 
+
+   # sort the parameters alphabetically by key
+   sorted_keys = sorted(encoded_params.keys())
+
+   # create a string from the parameters
+   signing_string = &quot;&quot;
+
+   count = 0
+   for key in sorted_keys:
+     signing_string += key
+     signing_string += &quot;=&quot;
+     signing_string += encoded_params[key]
+     count += 1
+     if count &amp;lt; len(sorted_keys):
+       signing_string += &quot;&amp;amp;&quot;
+
+   # construct the base string
+   base_string = method.upper()
+   base_string += &quot;&amp;amp;&quot;
+   base_string += urllib.parse.quote_plus(url)
+   base_string += &quot;&amp;amp;&quot;
+   base_string += urllib.parse.quote_plus(signing_string)
+
+   # construct the key
+   signing_key = urllib.parse.quote_plus(client_secret) + &quot;&amp;amp;&quot; + urllib.parse.quote_plus(access_secret)
+
+   # encrypt the base string with the key, and base64 encode the result
+   hashed = hmac.new(signing_key.encode(), base_string.encode(), sha1)
+   signature = base64.b64encode(hashed.digest())
+   return signature.decode(&quot;utf-8&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Finally, we can write a method to actually &lt;em&gt;make&lt;/em&gt; the API request:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; def query_get(self, endpoint, aspect, get_params={}):
+ 
+   #
+   # rate limiting
+   self.__rate_controller(self.__monitor)
+
+   # ensure we're dealing with strings as parameters
+   str_param_data = {}
+   for k, v in get_params.items():
+     str_param_data[str(k)] = str(v)
+
+   # construct the query url
+   url = self.api_base + &quot;/&quot; + endpoint + &quot;/&quot; + aspect + &quot;.json&quot;
+ 
+   # add the header parameters for authorisation
+   header_parameters = {
+     &quot;oauth_consumer_key&quot;: client_id,
+     &quot;oauth_nonce&quot;: uuid.uuid4(),
+     &quot;oauth_signature_method&quot;: &quot;HMAC-SHA1&quot;,
+     &quot;oauth_timestamp&quot;: time.time(),
+     &quot;oauth_token&quot;: access_token,
+     &quot;oauth_version&quot;: 1.0
+   }
+
+   # collect all the parameters together for creating the signature
+   signing_parameters = {}
+   for k, v in header_parameters.items():
+     signing_parameters[k] = v
+   for k, v in str_param_data.items():
+     signing_parameters[k] = v
+
+   # create the signature and add it to the header parameters
+   header_parameters[&quot;oauth_signature&quot;] = self.get_signature(&quot;GET&quot;, url, signing_parameters)
+
+   # add the OAuth headers
+   header_string = &quot;OAuth &quot;
+   count = 0
+   for k, v in header_parameters.items():
+     header_string += urllib.parse.quote_plus(str(k))
+     header_string += &quot;=\&quot;&quot;
+     header_string += urllib.parse.quote_plus(str(v))
+     header_string += &quot;\&quot;&quot;
+     count += 1
+     if count &amp;lt; 7:
+       header_string += &quot;, &quot;
+
+   headers = {
+     &quot;Authorization&quot;: header_string
+   }
+
+   # create the full url including parameters
+   url = url + &quot;?&quot; + urllib.parse.urlencode(str_param_data)
+   request = urllib.request.Request(url, headers=headers)
+
+   # make the API request
+   try:
+     response = urllib.request.urlopen(request)
+     except urllib.error.HTTPError as e:
+     print(e)
+   raise e
+     except urllib.error.URLError as e:
+     print(e)
+     raise e
+
+   # read the response and return the json
+   raw_data = response.read().decode(&quot;utf-8&quot;)
+   return json.loads(raw_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Putting this all together, we have a simple Python class that acts as an API wrapper for GET requests to the Twitter REST API, including the signing and authentication of those requests. Using it is as simple as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ta = Twitter_API()
+
+# retrieve tweets for a user
+params = {
+   &quot;screen_name&quot;: &quot;martinjc&quot;,
+}
+
+user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, params)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As always, the full code is online on Github, in both my &lt;a href=&quot;https://github.com/CompJCDF/Simple-Python-Twitter-API&quot;&gt;personal account&lt;/a&gt; and the &lt;a href=&quot;https://github.com/CompJCDF&quot;&gt;account for&lt;/a&gt; the &lt;a href=&quot;http://compj.cs.cf.ac.uk/&quot;&gt;MSc Computational Journalism&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 19 Nov 2014 12:13:11 +0000</pubDate>
+        <link>http://martinchorley.co.uk/research/2014/11/19/quick-and-dirty-twitter-api-in-python.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/research/2014/11/19/quick-and-dirty-twitter-api-in-python.html</guid>
+        
+        <category>api</category>
+        
+        <category>coding</category>
+        
+        <category>compj</category>
+        
+        <category>oauth</category>
+        
+        <category>python</category>
+        
+        <category>twitter</category>
+        
+        <category>web</category>
+        
+        
+        <category>Research</category>
+        
+      </item>
+    
+      <item>
+        <title>How do people decide whether or not to read a tweet? </title>
+        <description>&lt;p&gt;It turns out that an existing relationship with the author of the tweet is one of the main factors influencing how someone decides whether or not to read a tweet. At the same time,  a large number associated with a tweet can also make the tweet more attractive to readers.&lt;/p&gt;
+
+&lt;p&gt;Our &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;latest Open Access research&lt;/a&gt; has discovered how much effect the information about a tweet has on whether people decide to read it or not.&lt;/p&gt;
+
+&lt;p&gt;By showing hundreds of Twitter users the information about two tweets but not the tweets themselves, and then asking the users which tweet they would like to read, we have been able to look at which information is more important when users are deciding to read a tweet.&lt;/p&gt;
+
+&lt;p&gt;We looked at two different types of information:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Simple numbers that describe the tweet, such as the number of retweets it has, or numbers that describe the author, such as how many followers they have, or how many tweets they’ve written.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Whether a relationship between the reader and the author is important, and whether that relationship was best shown through subtle hints, or direct information.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When readers can see only one piece of information, the case is clear: they’d &lt;strong&gt;rather read the tweet written by someone they are following&lt;/strong&gt;. Readers can easily recognise the usernames, names, and profile images of people they already follow, and are likely to choose to read content written by someone they follow (instead of content written by a stranger) around 75% of the time. If all they can see is a piece of numerical information, they would &lt;strong&gt;rather read the tweet with the highest number&lt;/strong&gt;, no matter what that number is. The effect is strongest with the number of retweets, followed by the number of followers, but even for the number of following and number of tweets written the effect is significant.&lt;/p&gt;
+
+&lt;p&gt;When readers can see two pieces of information, one about their relationship with the author, and one numerical, there are two cases to look at. When the author they follow also has a high numerical value, readers will choose that tweet in around 80% of the cases. When the author they already follow has a lower numerical value, it is still the existing relationship that is more of a draw. &lt;strong&gt;Readers would rather read a tweet from someone they know that has a low number of retweets, than one from a stranger with a high number of retweets.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This work offers an understanding of how the decision-making process works on Twitter when users are skimming their timelines for something to read, and has particular implications for the display and promotion of non-timeline content within content streams. For instance, readers may pay more attention to adverts and promoted content if the link between themselves and the author is highlighted.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6406256&quot;&gt;Previous results&lt;/a&gt;  from an early experiment were published at &lt;a href=&quot;http://martinjc.com/2012/09/07/socialcom-2012/&quot;&gt;SocialCom&lt;/a&gt;. The results in &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;this new paper&lt;/a&gt; are from a modified and expanded version of &lt;a href=&quot;http://martinjc.com/2012/05/18/tweetcues-twitter-experiment/&quot;&gt;this earlier experiment&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 04 Nov 2014 12:31:40 +0000</pubDate>
+        <link>http://martinchorley.co.uk/research/2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/research/2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</guid>
+        
+        <category>content</category>
+        
+        <category>decision making</category>
+        
+        <category>open access</category>
+        
+        <category>psychology</category>
+        
+        <category>research</category>
+        
+        <category>twitter</category>
+        
+        
+        <category>Research</category>
+        
+      </item>
+    
+      <item>
+        <title>Beards, 'Taches and Testicles</title>
+        <description>&lt;p&gt;This is me:&lt;/p&gt;
+
+&lt;p&gt;[caption id=”attachment_1172” align=”aligncenter” width=”225”]&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/10/2014-11-01-07.23.46-copy.jpg&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/10/2014-11-01-07.23.46-copy-225x300.jpg&quot; alt=&quot;mildly hungover morning selfie&quot; /&gt;&lt;/a&gt; mildly hungover morning selfie[/caption]&lt;/p&gt;
+
+&lt;p&gt;Obviously the first thing you notice, after my devilishly handsome good looks, is that I have around the lower half of my face what has the potential to be described as,  if one is kind: a ‘beard’. It is patchy, it is more than often unkempt, and it is quite ginger, but it is somewhat beard like. I can no longer remember when I grew this beard, but I like it. I like it so much that I refused to shave it off when I graduated in 2013, and again when I got married earlier this year.&lt;/p&gt;
+
+&lt;p&gt;However, ominous things have happened. Recently, a mate and colleague done a tweet:&lt;/p&gt;
+
+&lt;p&gt;https://twitter.com/pbFeed/status/524291166615789570&lt;/p&gt;
+
+&lt;p&gt;“Good on Pete” I thought. Good cause. I did Movember back in 2011, and it was hard, because quite frankly with a moustache I look like a complete tit. At the time I was doing it, I think Pete and I were sharing an office, so he knows how much of a tit you can look like during Movember, yet he’s chosen to do it anyway. Well done.&lt;/p&gt;
+
+&lt;p&gt;Of course, you won’t catch me doing it. I have a beard now, and I won’t shave that off. Also, as I mentioned, I look like a complete tit when I grow a moustache. It was fine in 2011, I was only an RA, so I could just hide in the office and work. The only person affected was my wife, who sadly had to be seen in public with me. I’m a lecturer now. I can’t just hide in my office. I have to teach. I have to stand up in front of students. I can’t do that looking like a person who belongs on some sort of list.&lt;/p&gt;
+
+&lt;p&gt;Then Vince Knight joined Pete’s team:&lt;/p&gt;
+
+&lt;p&gt;https://twitter.com/drvinceknight/status/524532773080805376&lt;/p&gt;
+
+&lt;p&gt;“Well done Vince” I thought. Good cause. At least Pete won’t look so daft walking around campus with a ‘tache now. There’ll be two of you at least. Not me of course. No way.&lt;/p&gt;
+
+&lt;p&gt;Then Pete done another tweet:&lt;/p&gt;
+
+&lt;p&gt;https://twitter.com/pbFeed/status/524533385847664640&lt;/p&gt;
+
+&lt;p&gt;Oh.&lt;/p&gt;
+
+&lt;p&gt;Pete’s called me out. He wants me to join in. Maybe we’ll just all ignore him and it’ll go away.&lt;/p&gt;
+
+&lt;p&gt;Then I done a tweet:&lt;/p&gt;
+
+&lt;p&gt;https://twitter.com/martinjc/status/524538880939544576&lt;/p&gt;
+
+&lt;p&gt;WTF? What did I just do? Did I agree to do Movember again? Why? I have no idea. Perhaps I enjoy looking like a tit?&lt;/p&gt;
+
+&lt;p&gt;So. I joined. As did many others that Pete called out. And now we’re all going to grow moustaches and demand money from our friends, relatives and colleagues. It’s a good cause. You can donate to us, our team page is &lt;a href=&quot;http://uk.movember.com/team/1637929&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First though, there’s business to take care of. The beard had to go. I had to locate my shaving equipment, which has not been used in many years, and attempt to remove the lovely facial hair to which I have become so attached, without slicing my face apart in the process:&lt;/p&gt;
+
+&lt;p&gt;[caption id=”attachment_1173” align=”aligncenter” width=”604”]&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/11/beard_removal.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/11/beard_removal-1024x910.png&quot; alt=&quot;WHAT HAVE I DONE?&quot; /&gt;&lt;/a&gt; WHAT HAVE I DONE?[/caption]&lt;/p&gt;
+
+&lt;p&gt;So that’s it. The beard is off and I am clean-shaven for the first time in I don’t know how long. This, I think, is quite the sacrifice. But there is more to come. The ‘tache is on its way - slowly working its way out of my upper lip. I am going to look terrible. If you in any way feel inclined, please make it worth it. Donate to &lt;a href=&quot;http://mobro.co/martinjc&quot;&gt;me&lt;/a&gt; or the &lt;a href=&quot;http://moteam.co/cardiff-university&quot;&gt;team&lt;/a&gt;. Don’t let my beard have fallen in vain.  After all (I came up with this last night while very drunk and I LOVE IT):  beards grow back. Balls don’t.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 01 Nov 2014 11:16:53 +0000</pubDate>
+        <link>http://martinchorley.co.uk/home/2014/11/01/beards-taches-and-testicles.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/home/2014/11/01/beards-taches-and-testicles.html</guid>
+        
+        <category>beard</category>
+        
+        <category>idiot</category>
+        
+        <category>movember</category>
+        
+        
+        <category>Home</category>
+        
+      </item>
+    
+      <item>
+        <title>Computational Journalism - 'a Manifesto'</title>
+        <description>&lt;p&gt;While Glyn and I have been discussing the new MSc course between ourselves and with others, we have repeatedly come up with the same issues and themes, again and again. As a planning exercise earlier in the summer, we gathered some of these together into a ‘manifesto’.&lt;/p&gt;
+
+&lt;p&gt;The manifesto is online on our main ‘&lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;Computational Journalism&lt;/a&gt;’ website with a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2014/09/26/computational-journalism-the-manifesto/&quot;&gt;bit of extra commentary&lt;/a&gt;, but I thought I’d upload it here as well. Any comments should probably be directed to the article on the CompJ site, so I’ve turned them off just for this article.&lt;/p&gt;
+
+&lt;p&gt;[gallery ids=”1116,1149,1150,1151,1152,1153,1154,1155,1156,1157,1158,1127”]&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 03 Oct 2014 09:00:04 +0100</pubDate>
+        <link>http://martinchorley.co.uk/coding/teaching/workdiary/2014/10/03/computational-journalism-a-manifesto.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk/coding/teaching/workdiary/2014/10/03/computational-journalism-a-manifesto.html</guid>
+        
+        <category>coding</category>
+        
+        <category>compj</category>
+        
+        <category>data</category>
+        
+        <category>development</category>
+        
+        <category>manifesto</category>
+        
+        <category>story</category>
+        
+        <category>teaching</category>
+        
+        
+        <category>Coding</category>
+        
+        <category>Teaching</category>
+        
+        <category>WorkDiary</category>
+        
+      </item>
+    
   </channel>
 </rss>

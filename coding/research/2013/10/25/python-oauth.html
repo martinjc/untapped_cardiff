@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><title>Python + OAuth</title><meta name=description content="I am Dr Martin Chorley. I am a lecturer at the School of Computer Science & Informatics, Cardiff University.I'm programme leader for the MSc in Computational Journalism, and also senior personal tutor for all taught postgraduate students. I mainly do work that falls under the umbrella of the Mobile and Social Computing group.
+"><link rel=icon href=/img/favicon.png><link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel=stylesheet type=text/css><link rel=stylesheet type=text/css href=/css/main.css></head><body><div class=wrapper><div class=post><a class=post__back href=/ >&lt;-- back</a><h1 class=post__title>Python + OAuth</h1><p class=post__date>October 25, 2013</p><div class=post__content ?><p>As part of a current project I had the misfortune of having to to deal with a bunch of OAuth authenticated web services using a command line script in Python. Usually this isn’t really a problem as most decent client libraries for services such as <a href=https://github.com/tweepy/tweepy>Twitter</a> or <a href=https://pypi.python.org/pypi/foursquare>Foursquare</a> can handle the authentication requests themselves, usually wrapping their own internal OAuth implementation. However, when it comes to web services that don’t have existing python client libraries, you have to do the implementation yourself. Unfortunately support for OAuth in Python is a mess, so this is not the most pleasant of tasks, especially when most stackoverflow <a href=http://stackoverflow.com/questions/12628246/how-to-send-oauth-request-with-python-oauth2>posts</a> <a href=http://stackoverflow.com/questions/15610749/github-api-v3-access-via-python-oauth2-library-redirect-issue>on</a> <a href=http://stackoverflow.com/questions/1666415/python-oauth-library>the</a> topic point to massively <a href=http://code.daaku.org/python-oauth/ >outdated</a> and <a href=https://github.com/simplegeo/python-oauth2>unmaintained</a> Python libraries.</p><p>Fortunately after some digging around, I was able to find a nice, well maintained and <a href=https://rauth.readthedocs.org/en/latest/ >fairly well documented</a> solution: <a href=https://github.com/litl/rauth>rauth</a>, which is very clean and easy to use. As an example, I was trying to connect to the Fitbit API, and it really was as simple as following their example.</p><p>Firstly, we create an OAuth1Service:</p><div class=highlighter-rouge><pre class=highlight><code>import rauth
+from _credentials import consumer_key, consumer_secret
+
+base_url = "https://api.fitbit.com"
+request_token_url = base_url + "/oauth/request_token"
+access_token_url = base_url + "/oauth/access_token"
+authorize_url = "http://www.fitbit.com/oauth/authorize"
+
+fitbit = rauth.OAuth1Service(
+ name="fitbit",
+ consumer_key=consumer_key,
+ consumer_secret=consumer_secret,
+ request_token_url=request_token_url,
+ access_token_url=access_token_url,
+ authorize_url=authorize_url,
+ base_url=base_url)
+</code></pre></div><p>Then we get the temporary request token credentials:</p><div class=highlighter-rouge><pre class=highlight><code>request_token, request_token_secret = fitbit.get_request_token()
+
+print " request_token = %s" % request_token
+print " request_token_secret = %s" % request_token_secret
+print
+</code></pre></div><p>We then ask the user to authorise our application, and give us the PIN so we can prove to the service that they authorised us:</p><div class=highlighter-rouge><pre class=highlight><code>authorize_url = fitbit.get_authorize_url(request_token)
+
+print "Go to the following page in your browser: " + authorize_url
+print
+
+accepted = 'n'
+while accepted.lower() == 'n':
+ accepted = raw_input('Have you authorized me? (y/n) ')
+pin = raw_input('Enter PIN from browser ')
+</code></pre></div><p>Finally, we can create an authenticated session and access user data from the service:</p><div class=highlighter-rouge><pre class=highlight><code>session = fitbit.get_auth_session(request_token,
+ request_token_secret,
+ method="POST",
+ data={'oauth_verifier': pin})
+
+print ""
+print " access_token = %s" % session.access_token
+print " access_token_secret = %s" % session.access_token_secret
+print ""
+
+url = base_url + "/1/" + "user/-/profile.json"
+
+r = session.get(url, params={}, header_auth=True)
+print r.json()
+</code></pre></div><p>It really is that easy to perform a 3-legged OAuth authentication on the command line. If you’re only interested in data from 1 user, and you want to run the app multiple times, once you have the access token and secret, there’s nothing to stop you just storing those and re-creating your session each time without having to re-authenticate (assuming the service does not expire access tokens):</p><div class=highlighter-rouge><pre class=highlight><code>base_url = "https://api.fitbit.com/"
+api_version = "1/"
+token = (fitbit_oauth_token, fitbit_oauth_secret)
+consumer = (fitbit_consumer_key, fitbit_consumer_secret)
+
+session = rauth.OAuth1Session(consumer[0], consumer[1], token[0], token[1])
+url = base_url + api_version + "user/-/profile.json"
+r = session.get(url, params={}, header_auth=True)
+print r.json()
+</code></pre></div><p>So there we have it. Simple OAuth authentication on the command line, in Python. As always, the code is available on <a href=https://github.com/martinjc/rauth---fitbit-example>github</a> if you’re interested.</p></div></div></div></body></html>

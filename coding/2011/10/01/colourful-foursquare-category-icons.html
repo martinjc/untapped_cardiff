@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><title>Colourful Foursquare category icons</title><meta name=description content="I am Dr Martin Chorley. I am a lecturer at the School of Computer Science & Informatics, Cardiff University.I'm programme leader for the MSc in Computational Journalism, and also senior personal tutor for all taught postgraduate students. I mainly do work that falls under the umbrella of the Mobile and Social Computing group.
+"><link rel=icon href=/img/favicon.png><link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel=stylesheet type=text/css><link rel=stylesheet type=text/css href=/css/main.css></head><body><div class=wrapper><div class=post><a class=post__back href=/ >&lt;-- back</a><h1 class=post__title>Colourful Foursquare category icons</h1><p class=post__date>October 1, 2011</p><div class=post__content ?><p><strong>UPDATE [01 August 2014]: Even more breaking! More recent version of the script <a href=http://martinjc.com/2014/08/01/foursquare-icon-downloading-yet-again/ >here</a></strong></p><p><strong>UPDATE 31/01/2011 - new version of the <a href=http://martinjc.com/2012/01/31/foursquare-category-icon-downloader-2/ >downloader</a> script is here</strong></p><p>A couple of projects I’m working on at the moment need the ability to add foursquare venues to a map. This is pretty straightforward, but what is also needed is the ability to distinguish between the categories of the venues. To do this, I’m adding custom markers to a google map at a venue location, with the marker having an icon representing the venue category.</p><p>Foursquare already have lots of category icons ready made, and they supply the urls in the <a href="https://developer.foursquare.com/docs/explore.html#req=venues/categories">/venues/category</a> endpoint, which is handy.  It seems from <a href=https://groups.google.com/forum/#!topic/foursquare-api/TsRBGdXDgzg>official responses</a> on the forum that they don’t mind you downloading these icons for use in your apps, and they also supply the icons in <a href=https://groups.google.com/d/topic/foursquare-api/Pw0p4qqW79A/discussion>several sizes</a>, so hacking together a script to download all the available icons is pretty easy. The following python code will do just that - grab the latest category hierarchy from Foursquare, process it to extract all the category id’s and icon locations, then download each icon in all available sizes:</p><p>[code lang=”py”] import urllib2 import urllib import json</p><h1 id=supply-oauth-token-as-parameter>supply oauth token as parameter</h1><p>params = { ‘oauth_token’ : ‘VALID_FOURSQUARE_OAUTH_TOKEN’ }</p><p>api_base_url = ‘https://api.foursquare.com/v2’</p><p>icons = {}</p><h1 id=function-to-extract-category-info-from-json-and>function to extract category info from json and</h1><p># process any sub-categories def process_category( category_json ): icons[category_json[‘id’]] = category_json[‘icon’]</p><div class=highlighter-rouge><pre class=highlight><code>if 'categories' in category_json:
+    [ process_category( c ) for c in category_json['categories'] ]
+</code></pre></div><p>if <strong>name</strong> == “<strong>main</strong>”:</p><div class=highlighter-rouge><pre class=highlight><code>url = api_base_url + '/venues/categories?' + urllib.urlencode( params )
+
+# try and retrieve the json
+try:
+    response = urllib2.urlopen( url )
+except urllib2.HTTPError, e:
+    raise e
+except urllib2.URLError, e:
+    raise e
+
+# read the json
+raw_data = response.read( )
+py_data = json.loads( raw_data )
+
+categories_json = py_data['response']
+
+# extract all the categories
+for category in categories_json['categories']:
+    process_category( category )
+
+# download all the icons
+for foursq_id, icon in icons.iteritems( ):
+    sizes = [ '_32', '_64', '_256', '']
+    for size in sizes:
+        try:
+            url = icon.replace( '.png', '%s.png' % size )
+            u = urllib2.urlopen( url )
+            file_name = '%s%s.png' % ( foursq_id, size )
+            localFile = open( file_name, 'w' )
+            localFile.write( u.read( ) )
+            localFile.close( )
+        except Exception:
+            pass [/code]
+</code></pre></div><p>After running this script, we have a local copy of all the category icons to use in our application downloaded. In my case, I need to be able to differentiate between venues within the categories, so it would be nice to have different coloured icons for my different classes of venue. Luckily this is also pretty simple. You’ll need <a href=http://www.imagemagick.org/script/index.php>ImageMagick</a> installed, but if it is, the following code will go through all the greyscale icons downloaded with the previous script and convert them to whichever colours you like:</p><p>[code lang=”py”] import os</p><p># # colour name, and imagemagick colour name colours = { ‘red’ : ‘red’, ‘crimson’ : ‘crimson’, ‘pink’ : ‘DeepPink’, ‘purple’ : ‘purple’, ‘indigo’ : ‘indigo’, ‘blue’ : ‘blue’, ‘navy’ : ‘navy’, ‘turquoise’ : ‘turquoise1’, ‘teal’ : ‘teal’, ‘lime’ : ‘lime’, ‘yellow’ : ‘yellow’, ‘orange’ : ‘orange’, }</p><p># # list all the files in the current directory current_dir = os.getcwd( ) files = os.listdir( current_dir )</p><p># # run through the file list for fname in files: # for all the png’s if ‘.png’ in fname: # get the file name stripped_name = fname[ :fname.rfind( ‘.’ ) ] # convert to a new colour and save for colour, magickcolour in colours.iteritems( ): colour_name = ‘%s_%s.png’ % ( stripped_name, colour) os.system( ‘convert %s +level-colors %s, %s’ % ( fname, magickcolour, colour_name ) ) [/code]</p><p>The colour names come from <a href=http://www.imagemagick.org/script/color.php>this list</a> of imagemagick colours, you can obviously pick whichever colours you want. If you run this script in the directory with the downloaded Foursquare category icons, you’ll end up with a multitude of differently sized, differently coloured icons:</p><p>[gallery link=”file” orderby=”ID”]</p><p>And that’s that. Later I’ll post about how to use these as custom markers in a google map.</p><p>UPDATE 3/10/11:</p><p>As this example stores icons by category id, it actually duplicates some of the icons, which is un-necessary. This version (<a href=http://martinjc.com/wp-content/uploads/2011/10/dloader.txt>Foursquare Category Icons downloader</a>) stores the icons by icon name, so saving the downloading and processing of around 100 duplicate icons. It also splits the different sizes into different directories for better file management.</p><p>UPDATE 5/10/11:</p><p>There’s a change in the category json coming which will break this code. Use “v=20111002” as an extra parameter in the code that calls the Foursquare API and it’ll keep working.</p></div></div></div></body></html>
