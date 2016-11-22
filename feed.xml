@@ -6,9 +6,130 @@
 </description>
     <link>http://martinchorley.co.uk//</link>
     <atom:link href="http://martinchorley.co.uk//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Nov 2016 16:11:17 +0000</pubDate>
-    <lastBuildDate>Tue, 22 Nov 2016 16:11:17 +0000</lastBuildDate>
+    <pubDate>Tue, 22 Nov 2016 16:51:36 +0000</pubDate>
+    <lastBuildDate>Tue, 22 Nov 2016 16:51:36 +0000</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Scraping the Assembly</title>
+        <description>&lt;p&gt;M’colleague is currently teaching a first-semester module on Data Journalism to the students on our MSc in Computational and Data Journalism. As part of this, they need to do some sort of data project. One of the students is looking at the &lt;a href=&quot;http://allowances.assembly.wales/Default.aspx?Option=switch&quot;&gt;expenses of Welsh Assembly Members&lt;/a&gt;. These are all freely available online, but not in an easy to manipulate form. According to the Assembly they’d be happy to give the data out as a spreadsheet, if we submitted an FOI.&lt;/p&gt;
+
+&lt;p&gt;To me, this seems quite stupid. The information is all online and freely accessible. You’ve admitted you’re willing to give it out to anyone who submits an FOI. So why not just make the raw data available to download? This does not sound like a helpful &lt;a href=&quot;http://www.opengovernment.org.uk/about/&quot;&gt;Open Government&lt;/a&gt; to me. Anyway, for whatever reason, they’ve chosen not to, and we can’t be bothered to wait around for an FOI to come back. It’s much quicker and easier to build a scraper! We’ll just use selenium to drive a web browser, submit a search, page through all the results collecting the details, then dump it all out to csv. Simple.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-11-02-scraping-the-assembly/out.gif&quot; alt=&quot;Scraping AM expenses&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I built this as a quick hack this morning. It took about an hour or so, and it shows. The code is not robust in any way, but it works. You can ask it for data from any year (or a number of years) and it’ll happily sit there churning its way through the results and spitting them out as both .csv and .json.&lt;/p&gt;
+
+&lt;p&gt;All the code is &lt;a href=&quot;https://github.com/martinjc/assembly-expenses-scraper&quot;&gt;available on Github&lt;/a&gt; and it’s under an MIT Licence. Have fun 😉&lt;/p&gt;
+</description>
+        <pubDate>Wed, 02 Nov 2016 20:17:40 +0000</pubDate>
+        <link>http://martinchorley.co.uk//2016/11/02/scraping-the-assembly.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk//2016/11/02/scraping-the-assembly.html</guid>
+        
+        <category>coding</category>
+        
+        <category>data</category>
+        
+        <category>development</category>
+        
+        <category>expenses</category>
+        
+        <category>scraping</category>
+        
+        <category>python</category>
+        
+        <category>selenium</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Atom Plugins for Web Development</title>
+        <description>&lt;p&gt;I’ve had a number of students in my web-dev module asking me what plugins I’m using in my text editor, so I thought I’d dash off a quick blog post on the plugins I find useful day-to-day. (Actually, most people are normally asking me ‘how did you do that thing where you typed one word and suddenly you had a whole HTML page? The answer is I used a plugin, so ‘what plugins do you use?’ is really the question they should be asking…)&lt;/p&gt;
+
+&lt;p&gt;I’m using &lt;a href=&quot;https://atom.io/&quot;&gt;Atom&lt;/a&gt; as my text editor. It’s free, open source, and generally reliable. If you’re a student on my web-dev course you’re stuck using &lt;a href=&quot;https://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; in the lab for now. I’m pretty sure most of the Atom plugins I use have either direct Sublime equivalents, or similarly functioning alternatives.&lt;/p&gt;
+
+&lt;p&gt;There’s a guide to Atom packages &lt;a href=&quot;here&quot;&gt;here&lt;/a&gt; and one for Sublime Text &lt;a href=&quot;https://www.sublimetext.com/docs/3/packages.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A quick google for ‘best atom packages web developer’ will probably get you to a far more comprehensive list than this, but here’s my current pick of useful plugins anyway:&lt;/p&gt;
+
+&lt;h2 id=&quot;emmethttpsatomiopackagesemmet&quot;&gt;&lt;a href=&quot;https://atom.io/packages/emmet&quot;&gt;emmet&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This is essential for anyone writing any amount of HTML. This is the magic package that allows me to write ‘html:5’ in a blank document, hit the shortcut keys (CTRL + E in my setup), and suddenly have a simple boilerplate HTML page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/out.gif&quot; alt=&quot;emmet auto-completion&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s ace. Not only that, but it can write loads of HTML for you, and all you have to do is write a CSS selector for that HTML:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/out-1.gif&quot; alt=&quot;html css Selector expansion&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Great stuff. The documentation is here.&lt;/p&gt;
+
+&lt;h2 id=&quot;atom-beautifyhttpsatomiopackagesatom-beautify&quot;&gt;&lt;a href=&quot;https://atom.io/packages/atom-beautify&quot;&gt;atom-beautify&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This will tidy up your code automatically, fixing the indentation and spacing etc. It can even be set to automatically tidy your code every time you save a file. Awesome huh? Imagine being set a coursework where some of the marks were dependent on not writing code that looks like it was written by a five-year old child who’s addicted to hitting the tab key, then finding out that there’s software to strap that five-year olds thumbs to his hands so he can’t hit that tab key. Awesome.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/out-2.gif&quot; alt=&quot;Beautiful tidy code&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;color-pickerhttpsatomiopackagescolor-picker&quot;&gt;&lt;a href=&quot;https://atom.io/packages/color-picker&quot;&gt;color-picker&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This one adds a colour picker right into atom. Just CMD-SHIFT-C and choose your colours!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/out-3.gif&quot; alt=&quot;Colour picker&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Another useful colour related plugin you may want to look at is Pigments, which can highlight colours in your projects, and gather them all together so you can see your palette.&lt;/p&gt;
+
+&lt;h2 id=&quot;linterhttpsatomiopackageslinter&quot;&gt;&lt;a href=&quot;https://atom.io/packages/linter&quot;&gt;linter&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;My last recommendation is linter. This plugin will automatically check your code for errors. You’ll need to install linters for whatever language you want to check, like linter-tidy, linter-csslint, linter-pylint and linter-jshint.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/Screenshot.png&quot; alt=&quot;Linter finds errors in your code&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So there we go – a few recommendations to get you started. Found anything else interesting? Let me know!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 05 Oct 2016 21:17:40 +0100</pubDate>
+        <link>http://martinchorley.co.uk//2016/10/05/atom-plugins-for-web-development.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk//2016/10/05/atom-plugins-for-web-development.html</guid>
+        
+        <category>coding</category>
+        
+        <category>d3</category>
+        
+        <category>visualisation</category>
+        
+        <category>workshop</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Sustainable Software Institute – Research Data Visualisation Workshop</title>
+        <description>&lt;p&gt;Last week I  gave a talk and delivered a hands on session at the Sustainable Software Institute’s ‘&lt;a href=&quot;https://www.software.ac.uk/rdvw&quot;&gt;Research Data Visualisation Workshop&lt;/a&gt;‘ which was held at Manchester University. It was a really engaging event, with a lot of good discussion on the issues surrounding data visualisation.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.iidi.napier.ac.uk/c/people/peopleid/41&quot;&gt;Professor Jessie Kennedy&lt;/a&gt; from Edinburgh Napier University gave a great keynote looking at a some key design principles in visualisation, including a number of studies I hadn’t seen before but will definitely be including in my teaching in future.&lt;/p&gt;
+
+&lt;p&gt;I gave a talk on ‘Human Science Visualisation’ which really focused on a couple of key issues. Firstly, I tried to illustrate the importance of interactivity in complex visualisations. I then talked about how we as academic researchers need publish our interactive visualisations in posterity, and how we should press academic publishers to help us communicate our data to readers. Finally, I wanted to point people towards the excellent visualisation work being done by data journalists, and that the newsrooms are an excellent source of ideas and tips for data visualisation. The slides for my talk are here. It’s the first time I’ve spoken about visualisation outside of the classroom, and it was a really fun talk to give.&lt;/p&gt;
+
+&lt;p&gt;We also had two great talks from &lt;a href=&quot;https://sites.google.com/site/chbergma/&quot;&gt;Dr Christina Bergmann&lt;/a&gt; and &lt;a href=&quot;http://andysouth.co.uk/&quot;&gt;Dr Andy South&lt;/a&gt;, focusing on issues of biological visualisation and mapping respectively. All the talks generated some good discussion both in the room and online, which was fantastic to see.&lt;/p&gt;
+
+&lt;p&gt;In the afternoon I lead a hands on session looking at visualising data using d3. This was the first time I’d taught a session using d3 v4, which made things slightly interesting. I’m not fully up to speed with all the areas of the API that have changed, so getting the live coding right first time was a bit tricky, but I think I managed. Interestingly, I feel that the changes made to the .data(), .exit(), .enter(), update cycle as discussed in Mike’s “&lt;a href=&quot;https://medium.com/@mbostock/what-makes-software-good-943557f8a488&quot;&gt;What Makes Software Good&lt;/a&gt;” make a lot more sense from a teaching perspective. The addition of .merge() in particular helps a great deal. As you might expect from a d3 workshop that lasted a mere three hours, I’m not entirely convinced that everybody ‘got’ it, but I think a most went away satisfied.&lt;/p&gt;
+
+&lt;p&gt;Overall it was a very successful workshop. &lt;a href=&quot;http://rgaiacs.com/&quot;&gt;Raniere Silva&lt;/a&gt; did an excellent job putting it together and running the day, and I really enjoyed it. I’m looking forward to seeing what other people thought about it too.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 01 Aug 2016 21:17:40 +0100</pubDate>
+        <link>http://martinchorley.co.uk//2016/08/01/sustainable-software-institute-research-data-visualisation-workshop.html</link>
+        <guid isPermaLink="true">http://martinchorley.co.uk//2016/08/01/sustainable-software-institute-research-data-visualisation-workshop.html</guid>
+        
+        <category>coding</category>
+        
+        <category>d3</category>
+        
+        <category>visualisation</category>
+        
+        <category>workshop</category>
+        
+        
+      </item>
     
       <item>
         <title>Quick Update...</title>
@@ -477,137 +598,6 @@
         <category>twitter</category>
         
         <category>web</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>How do people decide whether or not to read a tweet? </title>
-        <description>&lt;p&gt;It turns out that an existing relationship with the author of the tweet is one of the main factors influencing how someone decides whether or not to read a tweet. At the same time,  a large number associated with a tweet can also make the tweet more attractive to readers.&lt;/p&gt;
-
-&lt;p&gt;Our &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;latest Open Access research&lt;/a&gt; has discovered how much effect the information about a tweet has on whether people decide to read it or not.&lt;/p&gt;
-
-&lt;p&gt;By showing hundreds of Twitter users the information about two tweets but not the tweets themselves, and then asking the users which tweet they would like to read, we have been able to look at which information is more important when users are deciding to read a tweet.&lt;/p&gt;
-
-&lt;p&gt;We looked at two different types of information:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Simple numbers that describe the tweet, such as the number of retweets it has, or numbers that describe the author, such as how many followers they have, or how many tweets they’ve written.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Whether a relationship between the reader and the author is important, and whether that relationship was best shown through subtle hints, or direct information.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;When readers can see only one piece of information, the case is clear: they’d &lt;strong&gt;rather read the tweet written by someone they are following&lt;/strong&gt;. Readers can easily recognise the usernames, names, and profile images of people they already follow, and are likely to choose to read content written by someone they follow (instead of content written by a stranger) around 75% of the time. If all they can see is a piece of numerical information, they would &lt;strong&gt;rather read the tweet with the highest number&lt;/strong&gt;, no matter what that number is. The effect is strongest with the number of retweets, followed by the number of followers, but even for the number of following and number of tweets written the effect is significant.&lt;/p&gt;
-
-&lt;p&gt;When readers can see two pieces of information, one about their relationship with the author, and one numerical, there are two cases to look at. When the author they follow also has a high numerical value, readers will choose that tweet in around 80% of the cases. When the author they already follow has a lower numerical value, it is still the existing relationship that is more of a draw. &lt;strong&gt;Readers would rather read a tweet from someone they know that has a low number of retweets, than one from a stranger with a high number of retweets.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This work offers an understanding of how the decision-making process works on Twitter when users are skimming their timelines for something to read, and has particular implications for the display and promotion of non-timeline content within content streams. For instance, readers may pay more attention to adverts and promoted content if the link between themselves and the author is highlighted.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6406256&quot;&gt;Previous results&lt;/a&gt;  from an early experiment were published at &lt;a href=&quot;http://martinchorley.co.uk/2012/09/07/socialcom-2012/&quot;&gt;SocialCom&lt;/a&gt;. The results in &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;this new paper&lt;/a&gt; are from a modified and expanded version of &lt;a href=&quot;http://martinchorley.co.uk/2012/05/18/tweetcues-twitter-experiment/&quot;&gt;this earlier experiment&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 04 Nov 2014 12:31:40 +0000</pubDate>
-        <link>http://martinchorley.co.uk//2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</guid>
-        
-        <category>content</category>
-        
-        <category>decision making</category>
-        
-        <category>open access</category>
-        
-        <category>psychology</category>
-        
-        <category>research</category>
-        
-        <category>twitter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Beards, 'Taches and Testicles</title>
-        <description>&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;This is me:
-&lt;img src=&quot;http://martinchorley.co.uk/img/2014-11-01-beards-taches-and-testicles/2014-11-01-07.23.46-copy-225x300.jpg&quot; alt=&quot;mildly hungover morning selfie&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Obviously the first thing you notice, after my devilishly handsome good looks, is that I have around the lower half of my face what has the potential to be described as,  if one is kind: a ‘beard’. It is patchy, it is more than often unkempt, and it is quite ginger, but it is somewhat beard like. I can no longer remember when I grew this beard, but I like it. I like it so much that I refused to shave it off when I graduated in 2013, and again when I got married earlier this year.&lt;/p&gt;
-
-&lt;p&gt;However, ominous things have happened. Recently, a mate and colleague done a tweet:&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;I beat testicular cancer this year. To contribute to research I&amp;#39;m supporting &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt; - join the team &lt;a href=&quot;http://t.co/7mtTE7kVmD&quot;&gt;http://t.co/7mtTE7kVmD&lt;/a&gt; &lt;a href=&quot;https://twitter.com/cardiffuni&quot;&gt;@cardiffuni&lt;/a&gt;&lt;/p&gt;&amp;mdash; Pete Burnap (@pbFeed) &lt;a href=&quot;https://twitter.com/pbFeed/status/524291166615789570&quot;&gt;October 20, 2014&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;“Good on Pete” I thought. Good cause. I did Movember back in 2011, and it was hard, because quite frankly with a moustache I look like a complete tit. At the time I was doing it, I think Pete and I were sharing an office, so he knows how much of a tit you can look like during Movember, yet he’s chosen to do it anyway. Well done.&lt;/p&gt;
-
-&lt;p&gt;Of course, you won’t catch me doing it. I have a beard now, and I won’t shave that off. Also, as I mentioned, I look like a complete tit when I grow a moustache. It was fine in 2011, I was only an RA, so I could just hide in the office and work. The only person affected was my wife, who sadly had to be seen in public with me. I’m a lecturer now. I can’t just hide in my office. I have to teach. I have to stand up in front of students. I can’t do that looking like a person who belongs on some sort of list.&lt;/p&gt;
-
-&lt;p&gt;Then Vince Knight joined Pete’s team:&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;I am now apparently putting my facial hair to the test and have joined &lt;a href=&quot;https://twitter.com/pbFeed&quot;&gt;@pbFeed&lt;/a&gt; for &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt;. My page is here: &lt;a href=&quot;http://t.co/IswbUL7sEG&quot;&gt;http://t.co/IswbUL7sEG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Vincent Knight 📎 (@drvinceknight) &lt;a href=&quot;https://twitter.com/drvinceknight/status/524532773080805376&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;“Well done Vince” I thought. Good cause. At least Pete won’t look so daft walking around campus with a ‘tache now. There’ll be two of you at least. Not me of course. No way.&lt;/p&gt;
-
-&lt;p&gt;Then Pete done another tweet:&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/drvinceknight&quot;&gt;@drvinceknight&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt; Yeah you have!!! &lt;a href=&quot;https://twitter.com/voxmjw&quot;&gt;@voxmjw&lt;/a&gt; &lt;a href=&quot;https://twitter.com/martinjc&quot;&gt;@martinjc&lt;/a&gt; &lt;a href=&quot;https://twitter.com/walter_colombo1&quot;&gt;@walter_colombo1&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MattLWilliams&quot;&gt;@MattLWilliams&lt;/a&gt; &lt;a href=&quot;https://twitter.com/docjaq&quot;&gt;@docjaq&lt;/a&gt; &lt;a href=&quot;https://twitter.com/flyingSparx&quot;&gt;@flyingSparx&lt;/a&gt; Get involved!!&lt;/p&gt;&amp;mdash; Pete Burnap (@pbFeed) &lt;a href=&quot;https://twitter.com/pbFeed/status/524533385847664640&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;Oh.&lt;/p&gt;
-
-&lt;p&gt;Pete’s called me out. He wants me to join in. Maybe we’ll just all ignore him and it’ll go away.&lt;/p&gt;
-
-&lt;p&gt;Then I done a tweet:&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/pbFeed&quot;&gt;@pbFeed&lt;/a&gt; &lt;a href=&quot;https://twitter.com/drvinceknight&quot;&gt;@drvinceknight&lt;/a&gt; &lt;a href=&quot;https://twitter.com/voxmjw&quot;&gt;@voxmjw&lt;/a&gt; &lt;a href=&quot;https://twitter.com/walter_colombo1&quot;&gt;@walter_colombo1&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MattLWilliams&quot;&gt;@MattLWilliams&lt;/a&gt; &lt;a href=&quot;https://twitter.com/docjaq&quot;&gt;@docjaq&lt;/a&gt; &lt;a href=&quot;https://twitter.com/flyingSparx&quot;&gt;@flyingSparx&lt;/a&gt; hard to say no, I did look fabulous last time.&lt;/p&gt;&amp;mdash; Martin Chorley (@martinjc) &lt;a href=&quot;https://twitter.com/martinjc/status/524538880939544576&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;WTF? What did I just do? Did I agree to do Movember again? Why? I have no idea. Perhaps I enjoy looking like a tit?&lt;/p&gt;
-
-&lt;p&gt;So. I joined. As did many others that Pete called out. And now we’re all going to grow moustaches and demand money from our friends, relatives and colleagues. It’s a good cause. You can donate to us, our team page is &lt;a href=&quot;http://uk.movember.com/team/1637929&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;First though, there’s business to take care of. The beard had to go. I had to locate my shaving equipment, which has not been used in many years, and attempt to remove the lovely facial hair to which I have become so attached, without slicing my face apart in the process:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2014-11-01-beards-taches-and-testicles/beard_removal-1024x910.png&quot; alt=&quot;WHAT HAVE I DONE?&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So that’s it. The beard is off and I am clean-shaven for the first time in I don’t know how long. This, I think, is quite the sacrifice. But there is more to come. The ‘tache is on its way - slowly working its way out of my upper lip. I am going to look terrible. If you in any way feel inclined, please make it worth it. Donate to &lt;a href=&quot;http://mobro.co/martinjc&quot;&gt;me&lt;/a&gt; or the &lt;a href=&quot;http://moteam.co/cardiff-university&quot;&gt;team&lt;/a&gt;. Don’t let my beard have fallen in vain.  After all (I came up with this last night while very drunk and I LOVE IT):  beards grow back. Balls don’t.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 01 Nov 2014 11:16:53 +0000</pubDate>
-        <link>http://martinchorley.co.uk//2014/11/01/beards-taches-and-testicles.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//2014/11/01/beards-taches-and-testicles.html</guid>
-        
-        <category>beard</category>
-        
-        <category>idiot</category>
-        
-        <category>movember</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Computational Journalism - 'a Manifesto'</title>
-        <description>&lt;p&gt;While Glyn and I have been discussing the new MSc course between ourselves and with others, we have repeatedly come up with the same issues and themes, again and again. As a planning exercise earlier in the summer, we gathered some of these together into a ‘manifesto’.&lt;/p&gt;
-
-&lt;p&gt;The manifesto is online on our main ‘&lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;Computational Journalism&lt;/a&gt;’ website with a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2014/09/26/computational-journalism-the-manifesto/&quot;&gt;bit of extra commentary&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 03 Oct 2014 09:00:04 +0100</pubDate>
-        <link>http://martinchorley.co.uk//2014/10/03/computational-journalism-a-manifesto.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//2014/10/03/computational-journalism-a-manifesto.html</guid>
-        
-        <category>coding</category>
-        
-        <category>compj</category>
-        
-        <category>data</category>
-        
-        <category>development</category>
-        
-        <category>manifesto</category>
-        
-        <category>story</category>
-        
-        <category>teaching</category>
         
         
       </item>
