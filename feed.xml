@@ -4,10 +4,10 @@
     <title>martin chorley</title>
     <description>I am Dr Martin Chorley. I am a lecturer at the School of Computer Science &amp; Informatics, Cardiff University.I'm programme leader for the MSc in Computational Journalism, and also senior personal tutor for all taught postgraduate students. I mainly do work that falls under the umbrella of the Mobile and Social Computing group.
 </description>
-    <link>http://martinchorley.co.uk//</link>
-    <atom:link href="http://martinchorley.co.uk//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Oct 2016 15:18:32 +0100</pubDate>
-    <lastBuildDate>Tue, 11 Oct 2016 15:18:32 +0100</lastBuildDate>
+    <link>http://localhost:9000//</link>
+    <atom:link href="http://localhost:9000//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 22 Nov 2016 16:07:29 +0000</pubDate>
+    <lastBuildDate>Tue, 22 Nov 2016 16:07:29 +0000</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -34,16 +34,14 @@
 
 &lt;p&gt;The reason I’ve not posted in a while:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2015/07/11325423_448026158711440_20867902_n.jpg&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2015/07/11325423_448026158711440_20867902_n-1024x1024.jpg&quot; alt=&quot;Arthur!&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:9000/img/2015-07-13-quick-update/11325423_448026158711440_20867902_n-1024x1024.jpg&quot; alt=&quot;Arthur!&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;My son, Arthur James Chorley-Jones was born on 13th May 2015. He’s amazing, I think he’s the best thing that has ever happened, and since he’s been around there has not been a huge amount of time for blogging, side-projects, and other such things. Which is ace.&lt;/p&gt;
 </description>
         <pubDate>Mon, 13 Jul 2015 21:17:40 +0100</pubDate>
-        <link>http://martinchorley.co.uk//home/2015/07/13/quick-update.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//home/2015/07/13/quick-update.html</guid>
+        <link>http://localhost:9000//2015/07/13/quick-update.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2015/07/13/quick-update.html</guid>
         
-        
-        <category>Home</category>
         
       </item>
     
@@ -53,13 +51,13 @@
 
 &lt;p&gt;News of an acquisition always has me slightly worried though - not for someone else having access to my data, as I’ve made my peace with the fact that using a free service generally means that it’s me that’s being sold. Giving away my data is the cost of doing business. Rather, it worries me that I may lose access to all the data I’ve collected. I have no idea what Under Armour intend for the service in the long run, and while its likely that MFP will continue with business as usual for the foreseeable, it’s always worth having a backup of your data.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://martinjc.com/2011/06/09/logging-in-to-websites-with-python/&quot;&gt;A few years ago, I wrote a couple of python scripts&lt;/a&gt; to back up data from MFP and then extract the food and exercise info from the raw HTML. These scripts use Python and Beautiful Soup to do a login to MFP, then go back through your diary history and save all the raw HTML pages, essentially scraping your data.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://localhost:9000/2011/06/09/logging-in-to-websites-with-python/&quot;&gt;A few years ago, I wrote a couple of python scripts&lt;/a&gt; to back up data from MFP and then extract the food and exercise info from the raw HTML. These scripts use Python and Beautiful Soup to do a login to MFP, then go back through your diary history and save all the raw HTML pages, essentially scraping your data.&lt;/p&gt;
 
 &lt;p&gt;I came to run them this morning and found they needed a couple of changes to deal with site updates. I’ve made the necessary updates and the full code for all the scripts is &lt;a href=&quot;https://github.com/martinjc/mfp-scraper&quot;&gt;available on GitHub&lt;/a&gt;. It’s not great, but it works. The code is Python 2 and requires BeautifulSoup and Matplotlib (if you want to use generate_plots.py).&lt;/p&gt;
 </description>
         <pubDate>Thu, 05 Feb 2015 11:02:36 +0000</pubDate>
-        <link>http://martinchorley.co.uk//coding/2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//coding/2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</guid>
+        <link>http://localhost:9000//2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2015/02/05/accessing-and-scraping-myfitnesspal-data-with-python.html</guid>
         
         <category>coding</category>
         
@@ -74,13 +72,11 @@
         <category>python</category>
         
         
-        <category>Coding</category>
-        
       </item>
     
       <item>
         <title>Personality and Places</title>
-        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0747563214007559&quot;&gt;Our paper&lt;/a&gt; examining the link between &lt;a href=&quot;http://martinjc.com/2012/11/20/foursquare-personality-experiment/&quot;&gt;individual personality and the places people visit&lt;/a&gt; has just been published in &lt;a href=&quot;http://www.journals.elsevier.com/computers-in-human-behavior/&quot;&gt;Computers in Human Behavior&lt;/a&gt;. It’s open access, so you can &lt;a href=&quot;http://dx.doi.org/10.1016/j.chb.2014.12.038&quot;&gt;go read it for free, now&lt;/a&gt;! &lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0747563214007559&quot;&gt;Our paper&lt;/a&gt; examining the link between &lt;a href=&quot;http://localhost:9000/2012/11/20/foursquare-personality-experiment/&quot;&gt;individual personality and the places people visit&lt;/a&gt; has just been published in &lt;a href=&quot;http://www.journals.elsevier.com/computers-in-human-behavior/&quot;&gt;Computers in Human Behavior&lt;/a&gt;. It’s open access, so you can &lt;a href=&quot;http://dx.doi.org/10.1016/j.chb.2014.12.038&quot;&gt;go read it for free, now&lt;/a&gt;! &lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;In an experiment we ran previously, we asked users of Foursquare to take a personality test and give us access to their checkin history. The personality test gives us a measure of how each person scores for five different factors: Openness, Conscientiousness, Extraversion, Agreeableness and Neuroticism. The checkin history lists all the places they’ve ever checked in to using Foursquare. Because a couple of hundred people took part in the experiment, we ended up with a large number of individual personalities that we could link to over a hundred thousand venues. In total, this represents a pretty staggering half a million Foursquare checkins that we have personality data associated with.&lt;/p&gt;
 
@@ -97,11 +93,10 @@
 &lt;p&gt;Ultimately, this data could be incredibly useful in improving venue recommendation systems. Current systems use many different information ‘cues’ to recommend to a user a place they might like to visit. These cues include things such as where they have been in the past, where their friends have been, or where is popular nearby. Perhaps by including aspects of an individual’s personality (so including aspects of &lt;em&gt;why&lt;/em&gt; they might visit somewhere) we can increase the usefulness of these recommendations.&lt;/p&gt;
 
 &lt;p&gt;There is still a lot of analysis to be done on this data, and both myself and &lt;a href=&quot;http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=NoeN&quot;&gt;Nyala Noe&lt;/a&gt; are busy churning through it to discover other links between personality and the places people visit. As we find more interesting connections, I’ll post more here.&lt;/p&gt;
-
 </description>
         <pubDate>Tue, 27 Jan 2015 11:00:12 +0000</pubDate>
-        <link>http://martinchorley.co.uk//research/2015/01/27/personality-and-places.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//research/2015/01/27/personality-and-places.html</guid>
+        <link>http://localhost:9000//2015/01/27/personality-and-places.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2015/01/27/personality-and-places.html</guid>
         
         <category>foursquare</category>
         
@@ -117,8 +112,6 @@
         
         <category>research</category>
         
-        
-        <category>Research</category>
         
       </item>
     
@@ -140,8 +133,6 @@
 
 &lt;p&gt;By the end of the weekend we established a fairly decent system. It’s able to visualise a few different types of data, at different resolutions, is mostly mobile friendly, and most importantly is easily extensible and adaptable. It’s online now on our &lt;a href=&quot;http://bit.ly/hewnhs&quot;&gt;github pages&lt;/a&gt;, and all the code and documentation is also in the &lt;a href=&quot;https://github.com/compjcdf/nhs_hack&quot;&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;[gallery columns=”2” ids=”1217,1218,1219,1220”]&lt;/p&gt;
-
 &lt;p&gt;We’ll continue development for a while to improve the usability and code quality, and hopefully we’ll find a community willing to take the code base on and keep improving what could be a fairly useful resource for understanding the health of Wales.&lt;/p&gt;
 
 &lt;h1 id=&quot;debrief&quot;&gt;Debrief&lt;/h1&gt;
@@ -156,9 +147,7 @@
 
 &lt;h1 id=&quot;media&quot;&gt;Media&lt;/h1&gt;
 
-&lt;p&gt;There’s some great photos from the event on Flickr, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/&quot;&gt;Paul Clarke&lt;/a&gt; (&lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650042039338/&quot;&gt;Saturday&lt;/a&gt; and &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650456182132/&quot;&gt;Sunday&lt;/a&gt;). I’ve pulled out some of the best of Team CompJ and added them here. All photos are released under a &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/&quot;&gt;Creative Commons BY-NC 2.0&lt;/a&gt; licence.&lt;/p&gt;
-
-&lt;p&gt;[gallery columns=”4” size=”medium” ids=”1235,1234,1236,1233,1224,1225,1227,1228,1229,1230,1231,1237,1232,1238,1226,1239”]&lt;/p&gt;
+&lt;p&gt;There’s some great photos from the event on Flickr, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/&quot;&gt;Paul Clarke&lt;/a&gt; (&lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650042039338/&quot;&gt;Saturday&lt;/a&gt; and &lt;a href=&quot;https://www.flickr.com/photos/paul_clarke/sets/72157650456182132/&quot;&gt;Sunday&lt;/a&gt;).&lt;/p&gt;
 
 &lt;h1 id=&quot;elsewhere&quot;&gt;Elsewhere…&lt;/h1&gt;
 
@@ -167,8 +156,8 @@
 &lt;p&gt;Hemavault labs have done a round up of the projects &lt;a href=&quot;http://blog.hemavault.com/2015/01/27/nhs-hack-day-cardiff-2015-projects/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 26 Jan 2015 10:15:16 +0000</pubDate>
-        <link>http://martinchorley.co.uk//coding/teaching/2015/01/26/nhs-hackday-2015.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//coding/teaching/2015/01/26/nhs-hackday-2015.html</guid>
+        <link>http://localhost:9000//2015/01/26/nhs-hackday-2015.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2015/01/26/nhs-hackday-2015.html</guid>
         
         <category>coding</category>
         
@@ -191,10 +180,6 @@
         <category>web</category>
         
         
-        <category>Coding</category>
-        
-        <category>Teaching</category>
-        
       </item>
     
       <item>
@@ -202,8 +187,8 @@
         <description>&lt;p&gt;I’ve thrown up a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2015/01/05/empty-properties-postcodes/&quot;&gt;post&lt;/a&gt; on &lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;compj.cs.cf.ac.uk&lt;/a&gt; about some work we’ve done looking at empty properties in Cardiff. I’ll add further posts over the coming weeks about other data analysis we’ve done on this topic, and new work looking at the Welsh Assembly.&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Jan 2015 09:27:51 +0000</pubDate>
-        <link>http://martinchorley.co.uk//research/teaching/2015/01/05/compj-labs-postcodes.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//research/teaching/2015/01/05/compj-labs-postcodes.html</guid>
+        <link>http://localhost:9000//2015/01/05/compj-labs-postcodes.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2015/01/05/compj-labs-postcodes.html</guid>
         
         <category>coding</category>
         
@@ -218,10 +203,6 @@
         <category>visualisation</category>
         
         
-        <category>Research</category>
-        
-        <category>Teaching</category>
-        
       </item>
     
       <item>
@@ -230,7 +211,7 @@
 
 &lt;p&gt;&lt;em&gt;This post is one I’m cross-posting both here and on the &lt;a href=&quot;https://mobisoc.cs.cf.ac.uk/&quot;&gt;MobiSoc&lt;/a&gt; blog. Here, because it’s my personal translation of one of our latest research papers, and there because it’s a very good paper mostly written and driven by Roger Whitaker, so deserves an ‘official’ blog post!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;A lot of use is made of Crowdsourcing in both business and academia. Business likes it because it allows simple tasks to be outsourced for a small cost. Researchers like it because it allows the gathering of large amounts of data from participants, again for minimal cost. (For an example of this, see our &lt;a href=&quot;http://martinjc.com/2012/09/07/socialcom-2012/&quot;&gt;TweetCues&lt;/a&gt; work (&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;paper here&lt;/a&gt;), where we paid Twitter users to take a simple survey and massively increased our sample size for a few dollars). As technology is developing, we can apply crowdsourcing to new problems; particularly those concerned with collective human behaviour and culture.&lt;/p&gt;
+&lt;p&gt;A lot of use is made of Crowdsourcing in both business and academia. Business likes it because it allows simple tasks to be outsourced for a small cost. Researchers like it because it allows the gathering of large amounts of data from participants, again for minimal cost. (For an example of this, see our &lt;a href=&quot;http://localhost:9000/2012/09/07/socialcom-2012/&quot;&gt;TweetCues&lt;/a&gt; work (&lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;paper here&lt;/a&gt;), where we paid Twitter users to take a simple survey and massively increased our sample size for a few dollars). As technology is developing, we can apply crowdsourcing to new problems; particularly those concerned with collective human behaviour and culture.&lt;/p&gt;
 
 &lt;h3 id=&quot;crowdsourcing&quot;&gt;Crowdsourcing&lt;/h3&gt;
 
@@ -256,12 +237,11 @@
 
 &lt;p&gt;The combination of all these things allows us to complete a large set of simple tasks in a short time and often for a reduced cost. It also provides access to global labour markets for users who may not previously have been able to access these resources.&lt;/p&gt;
 
-&lt;h3 id=&quot;crowdsourcingimghttpmartinjccomwp-contentuploads201409crowdsourcingimg-1024x428pnghttpmartinjccomwp-contentuploads201409crowdsourcingimgpng-&quot;&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/crowdsourcing_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/crowdsourcing_img-1024x428.png&quot; alt=&quot;crowdsourcing_img&quot; /&gt;&lt;/a&gt; [&lt;/h3&gt;
-&lt;p&gt;](http://martinjc.com/wp-content/uploads/2014/09/emc_img.png)Participatory Computing&lt;/p&gt;
+&lt;h3 id=&quot;participatory-computinghttplocalhost9000img2014-12-15-extended-mind-crowdsourcingcrowdsourcingimg-1024x428png&quot;&gt;&lt;img src=&quot;http://localhost:9000/img/2014-12-15-extended-mind-crowdsourcing/crowdsourcing_img-1024x428.png&quot; alt=&quot;Participatory Computing&quot; /&gt;&lt;/h3&gt;
 
 &lt;p&gt;Participatory computing is a related concept to crowdsourcing, based around the idea that the resources and data of computing devices can be shared and used to complete tasks. As with crowdsourcing, these tasks are often large, complex and data-driven, but capable of being broken down into smaller chunks that can be distributed to separate computing devices in order to complete the larger task. &lt;a href=&quot;http://boinc.berkeley.edu/&quot;&gt;BOINC&lt;/a&gt; is a clear example of this class of participatory computing.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/participatory_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/participatory_img-1024x585.png&quot; alt=&quot;participatory_img&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:9000/img/2014-12-15-extended-mind-crowdsourcing/participatory_img-1024x585.png&quot; alt=&quot;participatory_img&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;extended-mind-crowdsourcing&quot;&gt;Extended Mind Crowdsourcing&lt;/h3&gt;
 
@@ -269,7 +249,7 @@
 
 &lt;p&gt;Extended mind crowdsourcing takes crowdsourcing and participatory computing a step further by including the extended mind hypothesis, to allow us to describe systems that use the extended mind of participants, as represented by their devices and objects, in order to add implicit as well as explicit human computation for collective discovery.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/09/emc_img.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/09/emc_img-1024x626.png&quot; alt=&quot;emc_img&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:9000/img/2014-12-15-extended-mind-crowdsourcing/emc_img-1024x626.png&quot; alt=&quot;emc_img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;What this means is that we can crowdsource the collection of data and completion of tasks using both individual users, their devices, and the extended mind that the two items together represent. Thus by accessing the information stored within a smartphone or similar personal device, and the wider internet services that the device can connect to, we can access the extended mind of a participant and thus learn more about his or her behaviour and individual characteristics. In essence, extended mind crowdsourcing captures the way in which humans undertake and respond to daily activity. In this sense it supports observation of human life and our interpretation of and response to the environment. By including social networks and social media communication within the extended mind, it is clear that while an individual extended mind may represent a single individual human, it is also possible to represent a group, such as a network or a collective using extended mind crowdsourcing.&lt;/p&gt;
 
@@ -278,8 +258,8 @@
 &lt;p&gt;This is a new way of thinking about the systems we create in order to solve problems using computational systems focused on humans, but it has the potential to be a powerful tool in our research toolbox. We are presenting this new Extended Mind Crowdsourcing idea this week at &lt;a href=&quot;http://kholden7.wix.com/hicss&quot;&gt;HICSS&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Mon, 15 Dec 2014 13:37:50 +0000</pubDate>
-        <link>http://martinchorley.co.uk//research/2014/12/15/extended-mind-crowdsourcing.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//research/2014/12/15/extended-mind-crowdsourcing.html</guid>
+        <link>http://localhost:9000//2014/12/15/extended-mind-crowdsourcing.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2014/12/15/extended-mind-crowdsourcing.html</guid>
         
         <category>crowdsourcing</category>
         
@@ -294,8 +274,6 @@
         <category>research</category>
         
         
-        <category>Research</category>
-        
       </item>
     
       <item>
@@ -306,199 +284,185 @@
 
 &lt;p&gt;The code presented here will allow you to make any API request to Twitter that uses a GET request, so is really only useful for getting data &lt;em&gt;from&lt;/em&gt; Twitter, not sending it &lt;em&gt;to&lt;/em&gt; Twitter. It is also only for using with the REST API, not the streaming API, so if you’re looking for realtime monitoring, this is not the API wrapper you’re looking for. This API wrapper also uses a single user’s authentication (yours), so is not setup to allow other users to use Twitter through your application.&lt;/p&gt;
 
-&lt;p&gt;The first step is to get some access credentials from Twitter. Head over to &lt;a href=&quot;https://apps.twitter.com/&quot;&gt;https://apps.twitter.com/&lt;/a&gt; and register a new application. Once the application is created, you’ll be able to access its details. Under ‘Keys and Access Tokens’ are four values we’re going to need for the API - the  &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Key&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Secret&lt;/code&gt;, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token Secret&lt;/code&gt;. Copy all four values into a new python file, and save it as ‘&lt;code class=&quot;highlighter-rouge&quot;&gt;_credentials.py&lt;/code&gt;’. The images below walk through the process. Also - don’t try and use the credentials from these images, this app has already been deleted so they won’t work!&lt;/p&gt;
-
-&lt;p&gt;[gallery ids=”1185,1186,1187,1188,1189,1190”]&lt;/p&gt;
-
-&lt;p&gt;Once we have the credentials, we can write some code to make some API requests!&lt;/p&gt;
+&lt;p&gt;The first step is to get some access credentials from Twitter. Head over to &lt;a href=&quot;https://apps.twitter.com/&quot;&gt;https://apps.twitter.com/&lt;/a&gt; and register a new application. Once the application is created, you’ll be able to access its details. Under ‘Keys and Access Tokens’ are four values we’re going to need for the API - the  &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Key&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Consumer Secret&lt;/code&gt;, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Token Secret&lt;/code&gt;. Copy all four values into a new python file, and save it as ‘&lt;code class=&quot;highlighter-rouge&quot;&gt;_credentials.py&lt;/code&gt;’. Once we have the credentials, we can write some code to make some API requests!&lt;/p&gt;
 
 &lt;p&gt;First, we define a Twitter API object that will carry out our API requests. We need to store the API url, and some details to allow us to throttle our requests to Twitter to fit inside their rate limiting.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Twitter_API:
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Twitter_API&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
 
- def __init__(self):
+ &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
 
-   # URL for accessing API
-   scheme = &quot;https://&quot;
-   api_url = &quot;api.twitter.com&quot;
-   version = &quot;1.1&quot;
+   &lt;span class=&quot;c&quot;&gt;# URL for accessing API&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;scheme&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://&quot;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;api_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;api.twitter.com&quot;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.1&quot;&lt;/span&gt;
 
-   self.api_base = scheme + api_url + &quot;/&quot; + version
+   &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api_base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scheme&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;api_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;
 
-   #
-   # seconds between queries to each endpoint
-   # queries in this project limited to 180 per 15 minutes
-   query_interval = float(15 * 60)/(175)
+   &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+   &lt;span class=&quot;c&quot;&gt;# seconds between queries to each endpoint&lt;/span&gt;
+   &lt;span class=&quot;c&quot;&gt;# queries in this project limited to 180&lt;/span&gt;
+   &lt;span class=&quot;c&quot;&gt;# per 15 minutes&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;query_interval&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;175&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-   #
-   # rate limiting timer
-   self.__monitor = {'wait':query_interval,
-     'earliest':None,
-     'timer':None}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+   &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+   &lt;span class=&quot;c&quot;&gt;# rate limiting timer&lt;/span&gt;
+   &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__monitor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'wait'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query_interval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;'earliest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;'timer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;We add a rate limiting method that will make our API sleep if we are requesting things from Twitter too fast:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; #
- # rate_controller puts the thread to sleep 
- # if we're hitting the API too fast
- def __rate_controller(self, monitor_dict):
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# rate_controller puts the thread to sleep&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# if we're hitting the API too fast&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__rate_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
 
-   # 
-   # join the timer thread
-   if monitor_dict['timer'] is not None:
-   monitor_dict['timer'].join() 
+ &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+ &lt;span class=&quot;c&quot;&gt;# join the timer thread&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'timer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'timer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
-   # sleep if necessary 
-   while time.time() &amp;lt; monitor_dict['earliest']:
-     time.sleep(monitor_dict['earliest'] - time.time())
- 
-   # work out then the next API call can be made
-   earliest = time.time() + monitor_dict['wait']
-   timer = threading.Timer( earliest-time.time(), lambda: None )
-   monitor_dict['earliest'] = earliest
-   monitor_dict['timer'] = timer
-   monitor_dict['timer'].start()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ &lt;span class=&quot;c&quot;&gt;# sleep if necessary&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'earliest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'earliest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+ &lt;span class=&quot;c&quot;&gt;# work out then the next API call can be made&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;earliest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'wait'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;timer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threading&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Timer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;earliest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'earliest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;earliest&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'timer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timer&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;monitor_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'timer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The Twitter API requires us to supply authentication headers in the request. One of these headers is a signature, created by encoding details of the request. We can write a function that will take in all the details of the request (method, url, parameters) and create the signature:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # 
- # make the signature for the API request
- def get_signature(self, method, url, params):
- 
-   # escape special characters in all parameter keys
-   encoded_params = {}
-   for k, v in params.items():
-     encoded_k = urllib.parse.quote_plus(str(k))
-     encoded_v = urllib.parse.quote_plus(str(v))
-     encoded_params[encoded_k] = encoded_v 
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# make the signature for the API request&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_signature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
 
-   # sort the parameters alphabetically by key
-   sorted_keys = sorted(encoded_params.keys())
+ &lt;span class=&quot;c&quot;&gt;# escape special characters in all parameter keys&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;encoded_params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;encoded_k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;encoded_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;encoded_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoded_k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoded_v&lt;/span&gt;
 
-   # create a string from the parameters
-   signing_string = &quot;&quot;
+ &lt;span class=&quot;c&quot;&gt;# sort the parameters alphabetically by key&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;sorted_keys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoded_params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 
-   count = 0
-   for key in sorted_keys:
-     signing_string += key
-     signing_string += &quot;=&quot;
-     signing_string += encoded_params[key]
-     count += 1
-     if count &amp;lt; len(sorted_keys):
-       signing_string += &quot;&amp;amp;&quot;
+ &lt;span class=&quot;c&quot;&gt;# create a string from the parameters&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
 
-   # construct the base string
-   base_string = method.upper()
-   base_string += &quot;&amp;amp;&quot;
-   base_string += urllib.parse.quote_plus(url)
-   base_string += &quot;&amp;amp;&quot;
-   base_string += urllib.parse.quote_plus(signing_string)
+ &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sorted_keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=&quot;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoded_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sorted_keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;amp;&quot;&lt;/span&gt;
 
-   # construct the key
-   signing_key = urllib.parse.quote_plus(client_secret) + &quot;&amp;amp;&quot; + urllib.parse.quote_plus(access_secret)
+ &lt;span class=&quot;c&quot;&gt;# construct the base string&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;amp;&quot;&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;amp;&quot;&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signing_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-   # encrypt the base string with the key, and base64 encode the result
-   hashed = hmac.new(signing_key.encode(), base_string.encode(), sha1)
-   signature = base64.b64encode(hashed.digest())
-   return signature.decode(&quot;utf-8&quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ &lt;span class=&quot;c&quot;&gt;# construct the key&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;signing_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;access_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+ &lt;span class=&quot;c&quot;&gt;# encrypt the base string with the key, and base64 encode the result&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;hashed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hmac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signing_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base_string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sha1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;signature&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b64encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hashed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;digest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Finally, we can write a method to actually &lt;em&gt;make&lt;/em&gt; the API request:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; def query_get(self, endpoint, aspect, get_params={}):
- 
-   #
-   # rate limiting
-   self.__rate_controller(self.__monitor)
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;query_get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aspect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}):&lt;/span&gt;
 
-   # ensure we're dealing with strings as parameters
-   str_param_data = {}
-   for k, v in get_params.items():
-     str_param_data[str(k)] = str(v)
+ &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+ &lt;span class=&quot;c&quot;&gt;# rate limiting&lt;/span&gt;
+ &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__rate_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__monitor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-   # construct the query url
-   url = self.api_base + &quot;/&quot; + endpoint + &quot;/&quot; + aspect + &quot;.json&quot;
- 
-   # add the header parameters for authorisation
-   header_parameters = {
-     &quot;oauth_consumer_key&quot;: client_id,
-     &quot;oauth_nonce&quot;: uuid.uuid4(),
-     &quot;oauth_signature_method&quot;: &quot;HMAC-SHA1&quot;,
-     &quot;oauth_timestamp&quot;: time.time(),
-     &quot;oauth_token&quot;: access_token,
-     &quot;oauth_version&quot;: 1.0
-   }
+ &lt;span class=&quot;c&quot;&gt;# ensure we're dealing with strings as parameters&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;str_param_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;str_param_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-   # collect all the parameters together for creating the signature
-   signing_parameters = {}
-   for k, v in header_parameters.items():
-     signing_parameters[k] = v
-   for k, v in str_param_data.items():
-     signing_parameters[k] = v
+ &lt;span class=&quot;c&quot;&gt;# construct the query url&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api_base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endpoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;.json&quot;&lt;/span&gt;
 
-   # create the signature and add it to the header parameters
-   header_parameters[&quot;oauth_signature&quot;] = self.get_signature(&quot;GET&quot;, url, signing_parameters)
+ &lt;span class=&quot;c&quot;&gt;# add the header parameters for authorisation&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;header_parameters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_consumer_key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_nonce&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uuid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uuid4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_signature_method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;HMAC-SHA1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_timestamp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;access_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;oauth_version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-   # add the OAuth headers
-   header_string = &quot;OAuth &quot;
-   count = 0
-   for k, v in header_parameters.items():
-     header_string += urllib.parse.quote_plus(str(k))
-     header_string += &quot;=\&quot;&quot;
-     header_string += urllib.parse.quote_plus(str(v))
-     header_string += &quot;\&quot;&quot;
-     count += 1
-     if count &amp;lt; 7:
-       header_string += &quot;, &quot;
+ &lt;span class=&quot;c&quot;&gt;# collect all the parameters together for creating the signature&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;signing_parameters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;header_parameters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;signing_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str_param_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;signing_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;
 
-   headers = {
-     &quot;Authorization&quot;: header_string
-   }
+ &lt;span class=&quot;c&quot;&gt;# create the signature and add it to the header parameters&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;header_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;oauth_signature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_signature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signing_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-   # create the full url including parameters
-   url = url + &quot;?&quot; + urllib.parse.urlencode(str_param_data)
-   request = urllib.request.Request(url, headers=headers)
+ &lt;span class=&quot;c&quot;&gt;# add the OAuth headers&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;OAuth &quot;&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;header_parameters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_plus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;, &quot;&lt;/span&gt;
 
-   # make the API request
-   try:
-     response = urllib.request.urlopen(request)
-     except urllib.error.HTTPError as e:
-     print(e)
-   raise e
-     except urllib.error.URLError as e:
-     print(e)
-     raise e
+ &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;s&quot;&gt;&quot;Authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;header_string&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-   # read the response and return the json
-   raw_data = response.read().decode(&quot;utf-8&quot;)
-   return json.loads(raw_data)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ &lt;span class=&quot;c&quot;&gt;# create the full url including parameters&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;?&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlencode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_param_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+ &lt;span class=&quot;c&quot;&gt;# make the API request&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTPError&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;URLError&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
+
+ &lt;span class=&quot;c&quot;&gt;# read the response and return the json&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;raw_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;raw_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Putting this all together, we have a simple Python class that acts as an API wrapper for GET requests to the Twitter REST API, including the signing and authentication of those requests. Using it is as simple as:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ta = Twitter_API()
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt; &lt;span class=&quot;n&quot;&gt;ta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Twitter_API&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
-# retrieve tweets for a user
-params = {
-   &quot;screen_name&quot;: &quot;martinjc&quot;,
-}
+ &lt;span class=&quot;c&quot;&gt;# retrieve tweets for a user&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;screen_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;martinjc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, params)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ &lt;span class=&quot;n&quot;&gt;user_tweets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query_get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;statuses&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;user_timeline&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;As always, the full code is online on Github, in both my &lt;a href=&quot;https://github.com/CompJCDF/Simple-Python-Twitter-API&quot;&gt;personal account&lt;/a&gt; and the &lt;a href=&quot;https://github.com/CompJCDF&quot;&gt;account for&lt;/a&gt; the &lt;a href=&quot;http://compj.cs.cf.ac.uk/&quot;&gt;MSc Computational Journalism&lt;/a&gt;.&lt;/p&gt;
-
 </description>
         <pubDate>Wed, 19 Nov 2014 12:13:11 +0000</pubDate>
-        <link>http://martinchorley.co.uk//research/2014/11/19/quick-and-dirty-twitter-api-in-python.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//research/2014/11/19/quick-and-dirty-twitter-api-in-python.html</guid>
+        <link>http://localhost:9000//2014/11/19/quick-and-dirty-twitter-api-in-python.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2014/11/19/quick-and-dirty-twitter-api-in-python.html</guid>
         
         <category>api</category>
         
@@ -514,8 +478,6 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
         
         <category>web</category>
         
-        
-        <category>Research</category>
         
       </item>
     
@@ -544,12 +506,11 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
 
 &lt;p&gt;This work offers an understanding of how the decision-making process works on Twitter when users are skimming their timelines for something to read, and has particular implications for the display and promotion of non-timeline content within content streams. For instance, readers may pay more attention to adverts and promoted content if the link between themselves and the author is highlighted.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6406256&quot;&gt;Previous results&lt;/a&gt;  from an early experiment were published at &lt;a href=&quot;http://martinjc.com/2012/09/07/socialcom-2012/&quot;&gt;SocialCom&lt;/a&gt;. The results in &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;this new paper&lt;/a&gt; are from a modified and expanded version of &lt;a href=&quot;http://martinjc.com/2012/05/18/tweetcues-twitter-experiment/&quot;&gt;this earlier experiment&lt;/a&gt;.&lt;/p&gt;
-
+&lt;p&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6406256&quot;&gt;Previous results&lt;/a&gt;  from an early experiment were published at &lt;a href=&quot;http://localhost:9000/2012/09/07/socialcom-2012/&quot;&gt;SocialCom&lt;/a&gt;. The results in &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S1071581914001268&quot;&gt;this new paper&lt;/a&gt; are from a modified and expanded version of &lt;a href=&quot;http://localhost:9000/2012/05/18/tweetcues-twitter-experiment/&quot;&gt;this earlier experiment&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Tue, 04 Nov 2014 12:31:40 +0000</pubDate>
-        <link>http://martinchorley.co.uk//research/2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//research/2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</guid>
+        <link>http://localhost:9000//2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2014/11/04/how-do-people-decide-whether-or-not-to-read-a-tweet.html</guid>
         
         <category>content</category>
         
@@ -564,21 +525,20 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
         <category>twitter</category>
         
         
-        <category>Research</category>
-        
       </item>
     
       <item>
         <title>Beards, 'Taches and Testicles</title>
-        <description>&lt;p&gt;This is me:&lt;/p&gt;
+        <description>&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;[caption id=”attachment_1172” align=”aligncenter” width=”225”]&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/10/2014-11-01-07.23.46-copy.jpg&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/10/2014-11-01-07.23.46-copy-225x300.jpg&quot; alt=&quot;mildly hungover morning selfie&quot; /&gt;&lt;/a&gt; mildly hungover morning selfie[/caption]&lt;/p&gt;
+&lt;p&gt;This is me:
+&lt;img src=&quot;http://localhost:9000/img/2014-11-01-beards-taches-and-testicles/2014-11-01-07.23.46-copy-225x300.jpg&quot; alt=&quot;mildly hungover morning selfie&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Obviously the first thing you notice, after my devilishly handsome good looks, is that I have around the lower half of my face what has the potential to be described as,  if one is kind: a ‘beard’. It is patchy, it is more than often unkempt, and it is quite ginger, but it is somewhat beard like. I can no longer remember when I grew this beard, but I like it. I like it so much that I refused to shave it off when I graduated in 2013, and again when I got married earlier this year.&lt;/p&gt;
 
 &lt;p&gt;However, ominous things have happened. Recently, a mate and colleague done a tweet:&lt;/p&gt;
 
-&lt;p&gt;https://twitter.com/pbFeed/status/524291166615789570&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;I beat testicular cancer this year. To contribute to research I&amp;#39;m supporting &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt; - join the team &lt;a href=&quot;http://t.co/7mtTE7kVmD&quot;&gt;http://t.co/7mtTE7kVmD&lt;/a&gt; &lt;a href=&quot;https://twitter.com/cardiffuni&quot;&gt;@cardiffuni&lt;/a&gt;&lt;/p&gt;&amp;mdash; Pete Burnap (@pbFeed) &lt;a href=&quot;https://twitter.com/pbFeed/status/524291166615789570&quot;&gt;October 20, 2014&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;“Good on Pete” I thought. Good cause. I did Movember back in 2011, and it was hard, because quite frankly with a moustache I look like a complete tit. At the time I was doing it, I think Pete and I were sharing an office, so he knows how much of a tit you can look like during Movember, yet he’s chosen to do it anyway. Well done.&lt;/p&gt;
 
@@ -586,13 +546,13 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
 
 &lt;p&gt;Then Vince Knight joined Pete’s team:&lt;/p&gt;
 
-&lt;p&gt;https://twitter.com/drvinceknight/status/524532773080805376&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;I am now apparently putting my facial hair to the test and have joined &lt;a href=&quot;https://twitter.com/pbFeed&quot;&gt;@pbFeed&lt;/a&gt; for &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt;. My page is here: &lt;a href=&quot;http://t.co/IswbUL7sEG&quot;&gt;http://t.co/IswbUL7sEG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Vincent Knight 📎 (@drvinceknight) &lt;a href=&quot;https://twitter.com/drvinceknight/status/524532773080805376&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;“Well done Vince” I thought. Good cause. At least Pete won’t look so daft walking around campus with a ‘tache now. There’ll be two of you at least. Not me of course. No way.&lt;/p&gt;
 
 &lt;p&gt;Then Pete done another tweet:&lt;/p&gt;
 
-&lt;p&gt;https://twitter.com/pbFeed/status/524533385847664640&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/drvinceknight&quot;&gt;@drvinceknight&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MovemberUK&quot;&gt;@MovemberUK&lt;/a&gt; Yeah you have!!! &lt;a href=&quot;https://twitter.com/voxmjw&quot;&gt;@voxmjw&lt;/a&gt; &lt;a href=&quot;https://twitter.com/martinjc&quot;&gt;@martinjc&lt;/a&gt; &lt;a href=&quot;https://twitter.com/walter_colombo1&quot;&gt;@walter_colombo1&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MattLWilliams&quot;&gt;@MattLWilliams&lt;/a&gt; &lt;a href=&quot;https://twitter.com/docjaq&quot;&gt;@docjaq&lt;/a&gt; &lt;a href=&quot;https://twitter.com/flyingSparx&quot;&gt;@flyingSparx&lt;/a&gt; Get involved!!&lt;/p&gt;&amp;mdash; Pete Burnap (@pbFeed) &lt;a href=&quot;https://twitter.com/pbFeed/status/524533385847664640&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Oh.&lt;/p&gt;
 
@@ -600,7 +560,7 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
 
 &lt;p&gt;Then I done a tweet:&lt;/p&gt;
 
-&lt;p&gt;https://twitter.com/martinjc/status/524538880939544576&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/pbFeed&quot;&gt;@pbFeed&lt;/a&gt; &lt;a href=&quot;https://twitter.com/drvinceknight&quot;&gt;@drvinceknight&lt;/a&gt; &lt;a href=&quot;https://twitter.com/voxmjw&quot;&gt;@voxmjw&lt;/a&gt; &lt;a href=&quot;https://twitter.com/walter_colombo1&quot;&gt;@walter_colombo1&lt;/a&gt; &lt;a href=&quot;https://twitter.com/MattLWilliams&quot;&gt;@MattLWilliams&lt;/a&gt; &lt;a href=&quot;https://twitter.com/docjaq&quot;&gt;@docjaq&lt;/a&gt; &lt;a href=&quot;https://twitter.com/flyingSparx&quot;&gt;@flyingSparx&lt;/a&gt; hard to say no, I did look fabulous last time.&lt;/p&gt;&amp;mdash; Martin Chorley (@martinjc) &lt;a href=&quot;https://twitter.com/martinjc/status/524538880939544576&quot;&gt;October 21, 2014&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;WTF? What did I just do? Did I agree to do Movember again? Why? I have no idea. Perhaps I enjoy looking like a tit?&lt;/p&gt;
 
@@ -608,13 +568,13 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
 
 &lt;p&gt;First though, there’s business to take care of. The beard had to go. I had to locate my shaving equipment, which has not been used in many years, and attempt to remove the lovely facial hair to which I have become so attached, without slicing my face apart in the process:&lt;/p&gt;
 
-&lt;p&gt;[caption id=”attachment_1173” align=”aligncenter” width=”604”]&lt;a href=&quot;http://martinjc.com/wp-content/uploads/2014/11/beard_removal.png&quot;&gt;&lt;img src=&quot;http://martinjc.com/wp-content/uploads/2014/11/beard_removal-1024x910.png&quot; alt=&quot;WHAT HAVE I DONE?&quot; /&gt;&lt;/a&gt; WHAT HAVE I DONE?[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:9000/img/2014-11-01-beards-taches-and-testicles/beard_removal-1024x910.png&quot; alt=&quot;WHAT HAVE I DONE?&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So that’s it. The beard is off and I am clean-shaven for the first time in I don’t know how long. This, I think, is quite the sacrifice. But there is more to come. The ‘tache is on its way - slowly working its way out of my upper lip. I am going to look terrible. If you in any way feel inclined, please make it worth it. Donate to &lt;a href=&quot;http://mobro.co/martinjc&quot;&gt;me&lt;/a&gt; or the &lt;a href=&quot;http://moteam.co/cardiff-university&quot;&gt;team&lt;/a&gt;. Don’t let my beard have fallen in vain.  After all (I came up with this last night while very drunk and I LOVE IT):  beards grow back. Balls don’t.&lt;/p&gt;
 </description>
         <pubDate>Sat, 01 Nov 2014 11:16:53 +0000</pubDate>
-        <link>http://martinchorley.co.uk//home/2014/11/01/beards-taches-and-testicles.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//home/2014/11/01/beards-taches-and-testicles.html</guid>
+        <link>http://localhost:9000//2014/11/01/beards-taches-and-testicles.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2014/11/01/beards-taches-and-testicles.html</guid>
         
         <category>beard</category>
         
@@ -623,22 +583,17 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
         <category>movember</category>
         
         
-        <category>Home</category>
-        
       </item>
     
       <item>
         <title>Computational Journalism - 'a Manifesto'</title>
         <description>&lt;p&gt;While Glyn and I have been discussing the new MSc course between ourselves and with others, we have repeatedly come up with the same issues and themes, again and again. As a planning exercise earlier in the summer, we gathered some of these together into a ‘manifesto’.&lt;/p&gt;
 
-&lt;p&gt;The manifesto is online on our main ‘&lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;Computational Journalism&lt;/a&gt;’ website with a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2014/09/26/computational-journalism-the-manifesto/&quot;&gt;bit of extra commentary&lt;/a&gt;, but I thought I’d upload it here as well. Any comments should probably be directed to the article on the CompJ site, so I’ve turned them off just for this article.&lt;/p&gt;
-
-&lt;p&gt;[gallery ids=”1116,1149,1150,1151,1152,1153,1154,1155,1156,1157,1158,1127”]&lt;/p&gt;
-
+&lt;p&gt;The manifesto is online on our main ‘&lt;a href=&quot;http://compj.cs.cf.ac.uk&quot;&gt;Computational Journalism&lt;/a&gt;’ website with a &lt;a href=&quot;http://compj.cs.cf.ac.uk/2014/09/26/computational-journalism-the-manifesto/&quot;&gt;bit of extra commentary&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Oct 2014 09:00:04 +0100</pubDate>
-        <link>http://martinchorley.co.uk//coding/teaching/workdiary/2014/10/03/computational-journalism-a-manifesto.html</link>
-        <guid isPermaLink="true">http://martinchorley.co.uk//coding/teaching/workdiary/2014/10/03/computational-journalism-a-manifesto.html</guid>
+        <link>http://localhost:9000//2014/10/03/computational-journalism-a-manifesto.html</link>
+        <guid isPermaLink="true">http://localhost:9000//2014/10/03/computational-journalism-a-manifesto.html</guid>
         
         <category>coding</category>
         
@@ -654,12 +609,6 @@ user_tweets = ta.query_get(&quot;statuses&quot;, &quot;user_timeline&quot;, para
         
         <category>teaching</category>
         
-        
-        <category>Coding</category>
-        
-        <category>Teaching</category>
-        
-        <category>WorkDiary</category>
         
       </item>
     
