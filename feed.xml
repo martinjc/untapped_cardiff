@@ -6,9 +6,9 @@
 </description>
     <link>http://martinchorley.co.uk//</link>
     <atom:link href="http://martinchorley.co.uk//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Nov 2016 17:01:39 +0000</pubDate>
-    <lastBuildDate>Tue, 22 Nov 2016 17:01:39 +0000</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <pubDate>Mon, 28 Nov 2016 10:34:40 +0000</pubDate>
+    <lastBuildDate>Mon, 28 Nov 2016 10:34:40 +0000</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title>Scraping the Assembly</title>
@@ -53,7 +53,7 @@
 
 &lt;p&gt;A quick google for ‘best atom packages web developer’ will probably get you to a far more comprehensive list than this, but here’s my current pick of useful plugins anyway:&lt;/p&gt;
 
-&lt;h2 id=&quot;emmethttpsatomiopackagesemmet&quot;&gt;&lt;a href=&quot;https://atom.io/packages/emmet&quot;&gt;emmet&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;emmet&quot;&gt;&lt;a href=&quot;https://atom.io/packages/emmet&quot;&gt;emmet&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;This is essential for anyone writing any amount of HTML. This is the magic package that allows me to write ‘html:5’ in a blank document, hit the shortcut keys (CTRL + E in my setup), and suddenly have a simple boilerplate HTML page.&lt;/p&gt;
 
@@ -65,13 +65,13 @@
 
 &lt;p&gt;Great stuff. The documentation is here.&lt;/p&gt;
 
-&lt;h2 id=&quot;atom-beautifyhttpsatomiopackagesatom-beautify&quot;&gt;&lt;a href=&quot;https://atom.io/packages/atom-beautify&quot;&gt;atom-beautify&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;atom-beautify&quot;&gt;&lt;a href=&quot;https://atom.io/packages/atom-beautify&quot;&gt;atom-beautify&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;This will tidy up your code automatically, fixing the indentation and spacing etc. It can even be set to automatically tidy your code every time you save a file. Awesome huh? Imagine being set a coursework where some of the marks were dependent on not writing code that looks like it was written by a five-year old child who’s addicted to hitting the tab key, then finding out that there’s software to strap that five-year olds thumbs to his hands so he can’t hit that tab key. Awesome.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2016-10-05-atom-plugins-for-web-development/out-2.gif&quot; alt=&quot;Beautiful tidy code&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;color-pickerhttpsatomiopackagescolor-picker&quot;&gt;&lt;a href=&quot;https://atom.io/packages/color-picker&quot;&gt;color-picker&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;color-picker&quot;&gt;&lt;a href=&quot;https://atom.io/packages/color-picker&quot;&gt;color-picker&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;This one adds a colour picker right into atom. Just CMD-SHIFT-C and choose your colours!&lt;/p&gt;
 
@@ -79,7 +79,7 @@
 
 &lt;p&gt;Another useful colour related plugin you may want to look at is Pigments, which can highlight colours in your projects, and gather them all together so you can see your palette.&lt;/p&gt;
 
-&lt;h2 id=&quot;linterhttpsatomiopackageslinter&quot;&gt;&lt;a href=&quot;https://atom.io/packages/linter&quot;&gt;linter&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;linter&quot;&gt;&lt;a href=&quot;https://atom.io/packages/linter&quot;&gt;linter&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;My last recommendation is linter. This plugin will automatically check your code for errors. You’ll need to install linters for whatever language you want to check, like linter-tidy, linter-csslint, linter-pylint and linter-jshint.&lt;/p&gt;
 
@@ -358,7 +358,7 @@
 
 &lt;p&gt;The combination of all these things allows us to complete a large set of simple tasks in a short time and often for a reduced cost. It also provides access to global labour markets for users who may not previously have been able to access these resources.&lt;/p&gt;
 
-&lt;h3 id=&quot;participatory-computinghttpmartinchorleycoukimg2014-12-15-extended-mind-crowdsourcingcrowdsourcingimg-1024x428png&quot;&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2014-12-15-extended-mind-crowdsourcing/crowdsourcing_img-1024x428.png&quot; alt=&quot;Participatory Computing&quot; /&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;img src=&quot;http://martinchorley.co.uk/img/2014-12-15-extended-mind-crowdsourcing/crowdsourcing_img-1024x428.png&quot; alt=&quot;Participatory Computing&quot; /&gt;&lt;/h3&gt;
 
 &lt;p&gt;Participatory computing is a related concept to crowdsourcing, based around the idea that the resources and data of computing devices can be shared and used to complete tasks. As with crowdsourcing, these tasks are often large, complex and data-driven, but capable of being broken down into smaller chunks that can be distributed to separate computing devices in order to complete the larger task. &lt;a href=&quot;http://boinc.berkeley.edu/&quot;&gt;BOINC&lt;/a&gt; is a clear example of this class of participatory computing.&lt;/p&gt;
 
