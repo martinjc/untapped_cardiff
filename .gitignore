@@ -1,8 +1,73 @@
+# Ignore hidden folders #
+# This takes care of .tmp, .sass-cache, and many others #
+.*/
 
-_credentials.py
-data/cache/*
-*.json
-img/*
-config.*
-data/node/node_modules/*
-*.scssc
+#
+#
+# Jekyll stuff
+#
+#
+.jekyll-metadata
+*.lock
+dist
+.tmp
+
+
+# Ignore OS generated files #
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Always-ignore files and folders #
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swn
+*.swo
+*.swp
+._*
+*~
+
+# Ignore packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#
+#
+# Sass stuff
+#
+.sass-cache/
+*.css.map
+
+#
+# Node stuff
+#
+#
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directories
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
