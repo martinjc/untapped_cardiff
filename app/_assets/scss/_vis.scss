@@ -1,0 +1,10 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.tooltip {
+  padding: 4px;
+}

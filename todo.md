@@ -8,11 +8,7 @@
 
 ## TODO
 
-## app/_includes/header.html
-
--  [ ] **TODO** `(line 5)`  add untappd link and icon -->
-
 
 * * *
 
-Last generated: Thu Dec 22 2016 08:34:07 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Thu Dec 22 2016 09:34:47 by [grunt-todo](https://github.com/leny/grunt-todo).

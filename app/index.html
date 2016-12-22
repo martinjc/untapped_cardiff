@@ -4,3 +4,63 @@ layout: default
 
 <h1>BarDiff</h1>
 <h2>The number 2 data-driven beer-dashboard in Cardiff since 2017</h2>
+
+<div id="vis">
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+<script src="//d3js.org/colorbrewer.v1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    queue()
+        .defer(d3.xhr, "http://bardiff-martinjc.rhcloud.com/api/venues?from=2016-03-11&to=2016-03-18")
+        .await(function(error, venues){
+            venues = JSON.parse(venues.response);
+
+            // extract names and count, then sort by count
+            venues_data = venues.map(function(d){
+                return {
+                    'x': d.venue_name,
+                    'y': d.count,
+                    'twitter': d.contact.twitter,
+                    'address': d.location.venue_address,
+                    'city': d.location.venue_city,
+                }
+            }).sort(function(a, b){
+                return +b.y - +a.y;
+            });
+
+            var venue_tooltip = function(d) {
+                var text = "";
+                text += d.x + "<br>";
+                if(d.twitter) {
+                    text += d.twitter + "<br>";
+                }
+                if(d.address) {
+                    text += d.address + "<br>";
+                }
+                if(d.city) {
+                    text += d.city;
+                }
+                return text;
+            };
+
+            var chart = barChart();
+
+            chart
+                .data(venues_data.slice(0,20))
+                .width(d3.select('#vis').node().getBoundingClientRect().width)
+                .height(d3.select('#vis').node().getBoundingClientRect().height)
+                .y_label('Number of Checkins')
+                .tooltip_function(venue_tooltip);
+
+            d3.select('#vis')
+                .call(chart);
+
+            window.addEventListener("resize", function(){
+                newWidth = d3.select('#vis').node().getBoundingClientRect().width;
+                newHeight = d3.select('#vis').node().getBoundingClientRect().height
+                chart.width(newWidth).height(newHeight);
+            });
+        });
+</script>
