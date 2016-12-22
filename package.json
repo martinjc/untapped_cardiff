@@ -1,0 +1,41 @@
+{
+  "name": "BarDiff",
+  "version": "1.0.0",
+  "description": "Front end for BarDiff",
+  "main": "gulpfile.js",
+  "author": "Martin Chorley",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-autoprefixer": "~3.0.4",
+    "grunt-build-control": "~0.7.1",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-cssmin": "~1.0.1",
+    "grunt-contrib-htmlmin": "~2.0.0",
+    "grunt-contrib-imagemin": "~1.0.1",
+    "grunt-contrib-uglify": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-critical": "~0.2.1",
+    "grunt-jekyll": "~0.4.2",
+    "grunt-sass": "~1.2.0",
+    "grunt-svgmin": "~3.3.0",
+    "grunt-todo": "^0.5.0",
+    "grunt-uncss": "~0.6.1",
+    "jit-grunt": "~0.10.0",
+    "time-grunt": "~1.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinjc/untapped_cardiff.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martinjc/untapped_cardiff/issues"
+  },
+  "homepage": "https://github.com/martinjc/untapped_cardiff#readme"
+}

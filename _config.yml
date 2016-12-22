@@ -1,0 +1,40 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: bardiff
+email: bardiff@martinjc.com
+description: > # this means to ignore newlines until "baseurl:"
+  BarDiff
+
+url: "http://localhost:9000" # the base hostname & protocol for your site
+# _config.build.yml sets future and show_drafts to false on `grunt build`
+future: true
+show_drafts: true
+
+twitter_username: Bar_Diff
+github_username:  martinjc
+facebook_username: "martin.chorley"
+untappd_username: martinjc
+
+site.name: "bardiff"
+name: "bardiff"
+
+paginate: 5
+paginate_path: "/blog/page:num"
+
+github_repository_url: "martinjc/untapped_cardiff.git"
+github_repository_name: "untapped_cardiff"
+
+# Build settings
+markdown: kramdown
+
+# Grunt handles images and assets.
+exclude: ['img', 'css', 'js', 'fonts',
+          '**.png', '**.jpg', '**.jpeg', '**.gif', '**.webp', '**.svg', '**.ico']
+
+gems: [jekyll-paginate, jekyll/scholar]

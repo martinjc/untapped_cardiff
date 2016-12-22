@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<article class="blogpost">
+    <a class="post__back" href="/blog/">&lt;-- back</a>
+    <h1 class="post__title">{{ page.title }}</h1>
+    <p class="author">
+      <span class="date">{{ page.date | date: '%B %-d, %Y'  }}</span> - by {{ page.author }}
+    </p>
+    <div class="content"?>
+        {{ content }}
+    </div>
+</article>

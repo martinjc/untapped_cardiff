@@ -1,0 +1,37 @@
+---
+---
+
+<p>
+<span class="ref-authors">
+{%for author in entry.author_array%}
+    {%assign f_names = author.first | split: ' '%}
+    {%assign end_count = forloop.length | minus:1%}
+    {%for f_name in f_names%}{{f_name | slice: 0 | strip}}. {%endfor%} {{author.last | strip}}{%if forloop.last == false%}{%if forloop.index < end_count%},{%else%} and{%endif%}{%endif%}
+{% endfor %}
+</span>
+<span class="ref-year">
+({{entry.year}}).
+</span>
+<span class="ref-title">
+"{{entry.title | strip}}"
+</span>
+<span class="ref-journal">
+{% if entry.journal %}
+    <strong>{{entry.journal | strip}}</strong>, {{ entry.volume }} {% if entry.number %}({{ entry.number }}),{% endif %} {{ entry.pages }}.
+{% elsif entry.booktitle %}
+    In {{ entry.booktitle | strip }}, {{ entry.pages }}
+{% endif %}
+</span>
+{% if entry.doi %}
+<br>
+<span class="ref-doi">
+    doi: <a href="https://doi.org/{{ entry.doi }}">{{ entry.doi }}</a>
+</span>
+{% endif %}
+{% if entry.url %}
+<br>
+<span class="ref-url">
+    <a href="{{ entry.url }}">View at Publisher</a>
+</span>
+{% endif %}
+</p>

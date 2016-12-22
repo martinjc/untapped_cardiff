@@ -1,0 +1,8 @@
+future: false
+show_drafts: false
+
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "http://martinchorley.co.uk" # the base hostname & protocol for your site
+
+
+exclude: ['img', 'css', 'js', 'fonts']

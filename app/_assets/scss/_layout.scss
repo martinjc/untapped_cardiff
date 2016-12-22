@@ -1,0 +1,130 @@
+body {
+    margin-bottom: $spacing-unit;
+    margin-left: $gap-size;
+    margin-right: $gap-size;
+    background-color: $background-color;
+}
+
+h1, p {
+    margin-bottom: $spacing-unit;
+}
+
+h2 {
+    margin-bottom: $spacing-unit / 2;
+}
+
+h1, h2 {
+    margin-left: -$gap-size;
+    padding: $spacing-unit/4 0 $spacing-unit/8 $spacing-unit/4;
+}
+
+ul {
+    margin-left: $spacing-unit;
+    margin-bottom: $spacing-unit/2;
+}
+
+ul ul {
+    margin-bottom: 0;
+}
+
+pre {
+    background-color: $grey-color-light;
+    margin-bottom: $spacing-unit / 2;
+    padding: $spacing-unit/4;
+    overflow-x: scroll;
+}
+
+.headshot {
+    width: 35%;
+    float: right;
+    margin-left: $spacing-unit/2;
+    margin-right: 5px;
+}
+
+nav {
+    margin-bottom: $spacing-unit;
+    text-align: center;
+
+    ul {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        display: inline-block;
+    }
+}
+
+.social {
+
+    ul {
+        margin-left: 0;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a, svg {
+        display: block;
+    }
+
+    a {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
+
+.icon {
+    color: $grey-color-dark;
+    fill: $grey-color-dark;
+}
+
+.icon:hover {
+    border-radius: 100%;
+    background: $grey-color-light;
+    color: $brand-color;
+    fill: $brand-color;
+    transform: scale(2);
+    transition: background-color .5s, transform .5s ease-out
+}
+
+@include media-query($small-break) {
+    body {
+        width: 80%;
+        margin: auto;
+    }
+
+    nav {
+        margin-top: $spacing-unit;
+        text-align: right;
+    }
+
+    .social ul {
+        float: left;
+        text-align: left;
+    }
+
+    .headshot {
+        width: 30%;
+    }
+}
+
+@include media-query($medium-break) {
+    body {
+        max-width: $max-content-size;
+    }
+
+    h1, h2, h3 {
+        padding: $spacing-unit/4 0 $spacing-unit/8 $spacing-unit/4;
+    }
+
+    .headshot {
+        width: 20%;
+        float: left;
+        margin-left: 0;
+        margin-right: $spacing-unit/4;
+    }
+}

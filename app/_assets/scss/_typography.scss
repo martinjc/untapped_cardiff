@@ -1,0 +1,36 @@
+body {
+    font-family: $head-font-family;
+    line-height: $base-line-height;
+}
+
+h1, h2 {
+    font-family: $head-font-family;
+}
+
+h1 {
+    font-size: $large-font-size;
+    color: $brand-color;
+}
+
+h2 {
+    font-size: $medium-font-size;
+    color: $theme-dark;
+}
+
+h3 {
+    font-size: $medium-font-size;
+    color: $theme-dark;
+}
+
+strong {
+    font-weight: bold;
+    color: $theme-dark;
+}
+
+a {
+    color: $theme-light;
+}
+
+a:visited {
+    color: $theme-dark;
+}
