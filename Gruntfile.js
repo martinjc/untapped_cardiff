@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                 tasks: ['sass:server', 'autoprefixer']
             },
             scripts: {
-                files: ['<%= app.source %>/_assets/js/**/*.{js}'],
+                files: ['<%= app.source %>/_assets/js/*.js', '<%= app.source %>/_assets/js/**/*.js'],
                 tasks: ['uglify']
             },
             jekyll: {
@@ -137,7 +137,7 @@ module.exports = function(grunt) {
                     sourceMap: true,
                 },
                 files: {
-                    '.tmp/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/**/*.js', '<%= app.source %>/_assets/js/*.js']
+                    '.tmp/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/*.js', '<%= app.source %>/_assets/js/**/*.js']
                 }
             },
             dist: {
