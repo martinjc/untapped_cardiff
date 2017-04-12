@@ -1,9 +1,11 @@
 html, body {
     height: 100%;
+    width: $content-width;
 }
 
 body {
     margin-bottom: $spacing-unit;
+    margin-top: $spacing-unit/2;
     margin-left: $gap-size;
     margin-right: $gap-size;
     background-color: $background-color;
@@ -36,13 +38,6 @@ pre {
     margin-bottom: $spacing-unit / 2;
     padding: $spacing-unit/4;
     overflow-x: scroll;
-}
-
-.headshot {
-    width: 35%;
-    float: right;
-    margin-left: $spacing-unit/2;
-    margin-right: 5px;
 }
 
 nav {
@@ -121,9 +116,6 @@ nav {
         text-align: left;
     }
 
-    .headshot {
-        width: 30%;
-    }
 }
 
 @include media-query($medium-break) {
@@ -135,10 +127,4 @@ nav {
         padding: $spacing-unit/4 0 $spacing-unit/8 $spacing-unit/4;
     }
 
-    .headshot {
-        width: 20%;
-        float: left;
-        margin-left: 0;
-        margin-right: $spacing-unit/4;
-    }
 }

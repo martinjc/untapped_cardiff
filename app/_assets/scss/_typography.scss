@@ -12,6 +12,10 @@ h1 {
     color: $brand-color;
 }
 
+h1.headline {
+    margin-bottom: 0px;
+}
+
 h2 {
     font-size: $medium-font-size;
     color: $theme-dark;

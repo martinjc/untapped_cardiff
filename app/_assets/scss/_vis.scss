@@ -1,15 +1,8 @@
-// .axis path,
-// .axis line {
-//   fill: none;
-//   stroke: black;
-//   shape-rendering: crispEdges;
-// }
-
-.axis, .label {
-  font-family: $base-font-family;
-  font-size: 12px;
-}
 
 .tooltip {
   padding: 4px;
+}
+
+.tick text {
+  font-family: $head-font-family;
 }
