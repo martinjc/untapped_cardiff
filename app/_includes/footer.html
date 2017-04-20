@@ -7,32 +7,12 @@
 <!-- our code -->
 <script src="js/main.js"></script>
 <script>
-    function PageDates(){
 
-        var from_date = moment.utc();
-        var to_date = moment.utc().add(7, 'd');
-
-        var small_format = "D[/]M[/]YY";
-        var large_format = "ddd Do MMM YYYY";
-
-        function page(selection){
-
-            d3.select('.dates')
-                .select('#from-date')
-                .html(from_date.format(small_format));
-
-            d3.select('.dates')
-                .select('#to-date')
-                .html(to_date.format(small_format));
-        }
-
-        return page;
-
-    }
+    var date_request_format = "YYYY[-]MM[-]DD";
 
     function loadVenuesData(from, to){
-        f = "2017-04-09";
-        t = "2017-04-13";
+        f = from.format(date_request_format);
+        t = to.format(date_request_format);
 
         return new Promise(function(resolve, reject){
             d3.request("http://bardifftest-martinjc.rhcloud.com/api/venues?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
@@ -42,8 +22,8 @@
     }
 
     function loadBeersData(from, to) {
-        f = "2017-04-09";
-        t = "2017-04-13";
+        f = from.format(date_request_format);
+        t = to.format(date_request_format);
 
         return new Promise(function(resolve, reject){
             d3.request("http://bardifftest-martinjc.rhcloud.com/api/beers?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
@@ -53,8 +33,8 @@
     }
 
     function loadBreweriesData(from, to) {
-        f = "2017-04-09";
-        t = "2017-04-13";
+        f = from.format(date_request_format);
+        t = to.format(date_request_format);
 
         return new Promise(function(resolve, reject){
             d3.request("http://bardifftest-martinjc.rhcloud.com/api/breweries?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
@@ -63,20 +43,51 @@
         });
     }
 
-    loadVenuesData(false, false)
-        .then(draw_bar)
-        .then(update_venue_info);
-
-    loadBeersData(false, false)
-        .then(update_beer_info);
-
-    loadBreweriesData(false, false)
-        .then(update_brewery_info);
-
+    var chart;
+    init_bar();
     var page = PageDates();
 
-    var dates = d3.select('.dates')
-        .call(page);
+    page.addDateChangeListener(function(from, to){
+        loadVenuesData(from, to)
+            .then(draw_bar)
+            .then(update_venue_info);
+
+        loadBeersData(from, to)
+            .then(update_beer_info);
+
+        loadBreweriesData(from, to)
+            .then(update_brewery_info);
+    });
+
+    page();
+
+    function setInputState() {
+        var prev_button = d3.select('#previous');
+        var next_button = d3.select('#next');
+        if(page.canGoBack()) {
+            prev_button.property('disabled', false);
+        } else {
+            prev_button.property('disabled', true);
+        }
+        if(page.canGoForward()) {
+            next_button.property('disabled', false);
+        } else {
+            next_button.property('disabled', true);
+        }
+    }
+
+    d3.select('#previous')
+        .on('click', function(d){
+            page.back();
+            setInputState();
+        });
+
+    d3.select('#next')
+        .on('click', function(d){
+            page.forward();
+            setInputState();
+        });
+
 
     function update_brewery_info(brewery_data) {
         d3.select('.info-box .brewery.name').html(brewery_data[0].y);
@@ -111,9 +122,7 @@
         d3.select('.info-box .venue.checkins').html(venues_data[0].x);
     }
 
-    function draw_bar(venues) {
-        // extract names and count, then sort by count
-
+    function init_bar() {
         var venue_tooltip = function(d) {
             var text = "";
             text += d.x + " Checkins<br>";
@@ -129,10 +138,7 @@
             return text;
         };
 
-        var chart = barChart();
-
-        chart
-            .data(venues)
+        chart = barChart()
             .width(d3.select('#vis').node().getBoundingClientRect().width)
             .height(d3.select('#vis').node().getBoundingClientRect().height)
             .x_label('Number of Checkins')
@@ -140,6 +146,12 @@
 
         d3.select('#vis')
             .call(chart);
+    }
+
+    function draw_bar(venues) {
+        // extract names and count, then sort by count
+        chart
+            .data(venues)
 
         return venues;
     }

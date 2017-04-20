@@ -37,6 +37,7 @@ function barChart() {
             var words = d
                 .split(/\s+/)
                 .reverse();
+            console.log(words);
             var word;
             var line = [];
             var lineNumber = 0;
@@ -85,12 +86,16 @@ function barChart() {
             svg.append('text')
                 .attr('class', 'x label')
 
+
+
             svg = svg
                 .append('g')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
 
             width = width - margin.left - margin.right;
             height = height - margin.top - margin.bottom;
+
+
 
             var x_scale = d3.scaleLinear()
                 .rangeRound([0, width])
@@ -128,6 +133,16 @@ function barChart() {
 
             var y_axis = d3.axisLeft(y_scale);
 
+            svg.append('g')
+                .attr('class', 'bars');
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")");
+
+            svg.append("g")
+                .attr("class", "y axis");
+
             draw = function() {
 
                 function tooltip_position() {
@@ -138,15 +153,18 @@ function barChart() {
                     return ((full_width - d3.event.pageX) > tooltip_width ? (d3.event.pageX + 10) : (d3.event.pageX - tooltip_width - 10)) + "px";
                 }
 
-                var update = svg.selectAll('rect.bar')
-                    .data(data);
+                var update = svg.select('.bars')
+                    .selectAll('rect.bar')
+                    .data(data, function(d) {
+                        return d.id;
+                    });
 
                 update
                     .exit()
                     .transition()
                     .duration(transition_duration)
                     .attr('y', function(d) {
-                        return height - padding.bottom;
+                        return height - margin.bottom;
                     })
                     .attr('x', function(d) {
                         return 0;
@@ -163,7 +181,6 @@ function barChart() {
                     .enter()
                     .append('rect')
                     .attr('class', 'bar')
-                    .merge(update)
                     .attr('y', function(d) {
                         return y_scale(d[y_property]);
                     })
@@ -176,6 +193,7 @@ function barChart() {
                     .attr('width', function(d) {
                         return 0
                     })
+                    .merge(update)
                     .on("mouseover", function(d) {
                         if (tooltip_function) {
                             tooltip.html(tooltip_function(d));
@@ -214,6 +232,9 @@ function barChart() {
                     })
                     .transition()
                     .duration(transition_duration)
+                    .attr('fill', function(d) {
+                        return colour_scale(d[x_property]);
+                    })
                     .attr('x', function(d) {
                         return 0;
                     })
@@ -225,21 +246,25 @@ function barChart() {
                     })
                     .attr('width', function(d) {
                         return x_scale(d[x_property]);
-                    })
-                    .attr('fill', function(d) {
-                        return colour_scale(d[x_property]);
                     });
 
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
+
+                svg.select('.x.axis')
+                    .transition()
+                    .duration(transition_duration)
                     .call(x_axis);
 
-                svg.append("g")
-                    .attr("class", "y axis")
+                svg.select('.y.axis')
+                    .transition()
+                    .duration(transition_duration)
+                    .on('end', function(d) {
+                        svg.select('.y.axis')
+                            .selectAll('.tick text')
+                            .call(wrap, margin.left - 15);
+                    })
                     .call(y_axis)
-                    .selectAll('.tick text')
-                    .call(wrap, margin.left - 10);
+
+
 
                 if (x_label) {
                     d3.select('.x.label')

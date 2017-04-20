@@ -20,7 +20,7 @@ h1, p {
 }
 
 h2 {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 4;
 }
 
 h1, h2 {
@@ -125,35 +125,58 @@ nav {
   border: 2px solid $theme-dark;
   padding: 5px;
 
-  margin: auto;
+  margin: $gap-size;
   text-align: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 
-  input {
-    width: 70px;
-    margin: 2px;
-    padding: 2px;
-    background-color: $theme-light;
-    border: 2px solid $theme-dark;
-    text-align: center;
-    font-weight: 700;
+  .dateinput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-    &:hover {
-      background-color: darken($theme-light, 30%);
-      border-color: darken($theme-dark, 30%);
+    input {
+      width: 70px;
+      height: 70px;
+      margin: 2px;
+      padding: 2px;
+      background-color: $theme-light;
+      border: 2px solid $theme-dark;
+      text-align: center;
+      font-weight: 700;
+      font-size: $large-font-size;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+
+      &:hover {
+        background-color: darken($theme-light, 30%);
+        border-color: darken($theme-dark, 30%);
+      }
+
+      &[disabled] {
+        background-color: lighten($theme-light, 50%);
+      }
     }
 
-    &[disabled] {
-      background-color: lighten($theme-light, 50%);
+    .datetext {
+      margin-left: 5px;
+      margin-right: 5px;
+      flex-grow: 2;
+      flex-shrink: 1;
+      flex-basis: 0;
     }
   }
+
+
 }
 
 .info-box {
     background-color: rgba($theme-v-light, 0.6);
-    padding-top: $spacing-unit/2;
-    padding-bottom: $spacing-unit/2;
+    padding-top: $spacing-unit/4;
     padding-left: 20px;
-    padding-right: 20px;
     border-radius: 10px;
     margin: $gap-size;
     text-align: center;
@@ -161,8 +184,14 @@ nav {
     flex-shrink: 1;
     flex-basis: 0;
 
-    h3 {
+    .info-wrapper {
+      display: flex;
+      align-items: center;
       margin-bottom: $spacing-unit/2;
+    }
+
+    h3 {
+      margin-bottom: $spacing-unit/4;
     }
 
     p {
@@ -190,10 +219,10 @@ nav {
     }
 
     .icon {
-      margin-top: $spacing-unit/2;
       float: left;
       max-width: 30%;
       height: auto;
+      border-radius: 10px;
     }
 }
 
@@ -246,9 +275,4 @@ nav {
         line-height: $base-line-height;
       }
     }
-
-    input {
-      height: 40px;
-    }
-
 }
