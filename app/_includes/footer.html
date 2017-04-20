@@ -1,0 +1,150 @@
+<!-- libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.4/d3.js"></script>
+<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-queue/3.0.3/d3-queue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<!-- our code -->
+<script src="js/main.js"></script>
+<script>
+    function PageDates(){
+
+        var from_date = moment.utc();
+        var to_date = moment.utc().add(7, 'd');
+
+        var small_format = "D[/]M[/]YY";
+        var large_format = "ddd Do MMM YYYY";
+
+        function page(selection){
+
+            d3.select('.dates')
+                .select('#from-date')
+                .html(from_date.format(small_format));
+
+            d3.select('.dates')
+                .select('#to-date')
+                .html(to_date.format(small_format));
+        }
+
+        return page;
+
+    }
+
+    function loadVenuesData(from, to){
+        f = "2017-04-09";
+        t = "2017-04-13";
+
+        return new Promise(function(resolve, reject){
+            d3.request("http://bardifftest-martinjc.rhcloud.com/api/venues?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
+                resolve(JSON.parse(data.response));
+            })
+        });
+    }
+
+    function loadBeersData(from, to) {
+        f = "2017-04-09";
+        t = "2017-04-13";
+
+        return new Promise(function(resolve, reject){
+            d3.request("http://bardifftest-martinjc.rhcloud.com/api/beers?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
+                resolve(JSON.parse(data.response));
+            })
+        });
+    }
+
+    function loadBreweriesData(from, to) {
+        f = "2017-04-09";
+        t = "2017-04-13";
+
+        return new Promise(function(resolve, reject){
+            d3.request("http://bardifftest-martinjc.rhcloud.com/api/breweries?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
+                resolve(JSON.parse(data.response));
+            })
+        });
+    }
+
+    loadVenuesData(false, false)
+        .then(draw_bar)
+        .then(update_venue_info);
+
+    loadBeersData(false, false)
+        .then(update_beer_info);
+
+    loadBreweriesData(false, false)
+        .then(update_brewery_info);
+
+    var page = PageDates();
+
+    var dates = d3.select('.dates')
+        .call(page);
+
+    function update_brewery_info(brewery_data) {
+        d3.select('.info-box .brewery.name').html(brewery_data[0].y);
+        d3.select('.info-box .brewery.icon').attr('src', brewery_data[0].icon);
+        d3.select('.info-box .brewery.url').attr("href", brewery_data[0].url);
+        d3.select('.info-box .brewery.address').html(brewery_data[0].city + ', ' + brewery_data[0].state);
+        d3.select('.info-box .brewery.twitter')
+            .attr('href', 'https://twitter.com/intent/user?screen_name=' + brewery_data[0].twitter.replace('@', ''))
+            .select('span')
+            .html(brewery_data[0].twitter.replace('@', ''));
+        d3.select('.info-box .brewery.checkins').html(brewery_data[0].x);
+    }
+
+    function update_beer_info(beer_data) {
+        d3.select('.info-box .beer.name').html(beer_data[0].y);
+        d3.select('.info-box .beer.style').html(beer_data[0].style);
+        d3.select('.info-box .beer.icon').attr('src', beer_data[0].icon);
+        d3.select('.info-box .beer.abv').html(beer_data[0].abv);
+        d3.select('.info-box .beer.ibu').html(beer_data[0].ibu);
+        d3.select('.info-box .beer.checkins').html(beer_data[0].x);
+    }
+
+    function update_venue_info(venues_data) {
+        d3.select('.info-box .venue.name').html(venues_data[0].y);
+        d3.select('.info-box .venue.icon').attr('src', venues_data[0].fsq_icon);
+        d3.select('.info-box .venue.foursqurl').attr("href", venues_data[0].fsq_url);
+        d3.select('.info-box .venue.address').html(venues_data[0].address + ', ' + venues_data[0].city);
+        d3.select('.info-box .venue.twitter')
+            .attr('href', 'https://twitter.com/intent/user?screen_name=' + venues_data[0].twitter.replace('@', ''))
+            .select('span')
+            .html(venues_data[0].twitter.replace('@', ''));
+        d3.select('.info-box .venue.checkins').html(venues_data[0].x);
+    }
+
+    function draw_bar(venues) {
+        // extract names and count, then sort by count
+
+        var venue_tooltip = function(d) {
+            var text = "";
+            text += d.x + " Checkins<br>";
+            if(d.twitter) {
+                text += d.twitter + "<br>";
+            }
+            if(d.address) {
+                text += d.address + "<br>";
+            }
+            if(d.city) {
+                text += d.city;
+            }
+            return text;
+        };
+
+        var chart = barChart();
+
+        chart
+            .data(venues)
+            .width(d3.select('#vis').node().getBoundingClientRect().width)
+            .height(d3.select('#vis').node().getBoundingClientRect().height)
+            .x_label('Number of Checkins')
+            .tooltip_function(venue_tooltip);
+
+        d3.select('#vis')
+            .call(chart);
+
+        return venues;
+    }
+
+</script>
+
+<!-- other shit -->
+<script async src="https://platform.twitter.com/widgets.js"></script>

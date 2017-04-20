@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
     width: $content-width;
@@ -41,7 +45,7 @@ pre {
 }
 
 nav {
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit/2;
     text-align: center;
 
     ul {
@@ -74,6 +78,15 @@ nav {
         height: 1.5rem;
         width: 1.5rem;
     }
+
+    .icon:hover {
+        border-radius: 100%;
+        background: $grey-color-light;
+        color: $brand-color;
+        fill: $brand-color;
+        transform: scale(2);
+        transition: background-color .5s, transform .5s ease-out
+    }
 }
 
 .icon {
@@ -81,17 +94,107 @@ nav {
     fill: $grey-color-dark;
 }
 
-.icon:hover {
-    border-radius: 100%;
-    background: $grey-color-light;
-    color: $brand-color;
-    fill: $brand-color;
-    transform: scale(2);
-    transition: background-color .5s, transform .5s ease-out
-}
-
 .wrapper {
     height: 100%;
+}
+
+
+.flex-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0;
+
+  h2 {
+    font-size: $small-font-size;
+    line-height: 1rem;
+  }
+}
+
+.dates {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+
+  background-color: rgba($theme-v-light, 0.4);
+  border: 2px solid $theme-dark;
+  padding: 5px;
+
+  margin: auto;
+  text-align: center;
+
+  input {
+    width: 70px;
+    margin: 2px;
+    padding: 2px;
+    background-color: $theme-light;
+    border: 2px solid $theme-dark;
+    text-align: center;
+    font-weight: 700;
+
+    &:hover {
+      background-color: darken($theme-light, 30%);
+      border-color: darken($theme-dark, 30%);
+    }
+
+    &[disabled] {
+      background-color: lighten($theme-light, 50%);
+    }
+  }
+}
+
+.info-box {
+    background-color: rgba($theme-v-light, 0.6);
+    padding-top: $spacing-unit/2;
+    padding-bottom: $spacing-unit/2;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    margin: $gap-size;
+    text-align: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+
+    h3 {
+      margin-bottom: $spacing-unit/2;
+    }
+
+    p {
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    a, svg {
+      display: inline-block;
+    }
+
+    span {
+      vertical-align: top;
+    }
+
+    svg {
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+
+    .info {
+      padding-left: $gap-size * 2;
+      float: left;
+      width: 65%;
+    }
+
+    .icon {
+      margin-top: $spacing-unit/2;
+      float: left;
+      max-width: 30%;
+      height: auto;
+    }
 }
 
 #vis {
@@ -125,6 +228,27 @@ nav {
 
     h1, h2, h3 {
         padding: $spacing-unit/4 0 $spacing-unit/8 $spacing-unit/4;
+    }
+
+    nav {
+      margin-bottom: $spacing-unit;
+    }
+
+    .flex-wrapper {
+      flex-direction: row;
+    }
+
+    .title {
+      margin-right: $gap-size*4;
+
+      h2 {
+        font-size: $medium-font-size;
+        line-height: $base-line-height;
+      }
+    }
+
+    input {
+      height: 40px;
     }
 
 }
