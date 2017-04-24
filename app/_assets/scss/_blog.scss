@@ -37,11 +37,11 @@
 }
 
 hr{
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    margin: 0;
     color: $brand-color;
     background-color: $brand-color;
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit/4;
 }
 
 @include media-query($small-break) {

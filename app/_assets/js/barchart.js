@@ -5,7 +5,7 @@ function barChart() {
 
     var margin = {
         top: 10,
-        bottom: 100,
+        bottom: 50,
         left: 100,
         right: 10
     };
