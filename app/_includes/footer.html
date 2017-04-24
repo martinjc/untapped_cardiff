@@ -7,59 +7,60 @@
 <!-- our code -->
 <script src="js/main.js"></script>
 <script>
-
     var date_request_format = "YYYY[-]MM[-]DD";
 
-    function loadVenuesData(from, to){
+    function loadData(from, to) {
         f = from.format(date_request_format);
         t = to.format(date_request_format);
 
         return new Promise(function(resolve, reject){
-            d3.request("http://bardifftest-martinjc.rhcloud.com/api/venues?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
+            d3.request("http://bardifftest-martinjc.rhcloud.com/api/data?from=" + f + "&to=" + t + "&limit=" + 10, function(data){
                 resolve(JSON.parse(data.response));
-            })
+            });
         });
     }
 
-    function loadBeersData(from, to) {
-        f = from.format(date_request_format);
-        t = to.format(date_request_format);
+    var venues_chart;
+    var beers_chart;
+    var styles_chart;
+    var breweries_chart;
+    var hours_chart;
+    var days_chart;
 
-        return new Promise(function(resolve, reject){
-            d3.request("http://bardifftest-martinjc.rhcloud.com/api/beers?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
-                resolve(JSON.parse(data.response));
-            })
-        });
-    }
-
-    function loadBreweriesData(from, to) {
-        f = from.format(date_request_format);
-        t = to.format(date_request_format);
-
-        return new Promise(function(resolve, reject){
-            d3.request("http://bardifftest-martinjc.rhcloud.com/api/breweries?from=" + f + "&to=" + t + "&limit=" + 20, function(data){
-                resolve(JSON.parse(data.response));
-            })
-        });
-    }
-
-    var chart;
-    init_bar();
+    init_bars();
     var page = PageDates();
 
     page.addDateChangeListener(function(from, to){
-        loadVenuesData(from, to)
-            .then(draw_bar)
-            .then(update_venue_info);
 
-        loadBeersData(from, to)
-            .then(update_beer_info);
+        showLoader();
 
-        loadBreweriesData(from, to)
-            .then(update_brewery_info);
+        loadData(from, to)
+            .then(update_venue_info)
+            .then(update_beer_info)
+            .then(update_brewery_info)
+            .then(draw_venues_bar)
+            .then(draw_beers_bar)
+            .then(draw_breweries_bar)
+            .then(draw_styles_bar)
+            .then(draw_days_bar)
+            .then(draw_hours_bar)
+            .then(hideLoader);
+
     });
 
     page();
+
+    function hideLoader() {
+        console.log("hideLoader");
+        d3.select('.overlay')
+            .style('display', 'none');
+    }
+
+    function showLoader() {
+        console.log("showLoader");
+        d3.select('.overlay')
+            .style('display', null);
+    }
 
     function setInputState() {
         var prev_button = d3.select('#previous');
@@ -89,7 +90,8 @@
         });
 
 
-    function update_brewery_info(brewery_data) {
+    function update_brewery_info(data) {
+        var brewery_data = data.breweries;
         d3.select('.info-box .brewery.name').html(brewery_data[0].y);
         d3.select('.info-box .brewery.icon').attr('src', brewery_data[0].icon);
         d3.select('.info-box .brewery.url').attr("href", brewery_data[0].url);
@@ -99,18 +101,34 @@
             .select('span')
             .html(brewery_data[0].twitter.replace('@', ''));
         d3.select('.info-box .brewery.checkins').html(brewery_data[0].x);
+        return data;
     }
 
-    function update_beer_info(beer_data) {
+    function update_beer_info(data) {
+        var beer_data = data.beers;
+        var top_beer_id = beer_data[0].id;
+        var checkins = data.checkins.raw.filter(function(c){
+            return c.beer === top_beer_id;
+        });
+        var brewery = checkins[0].brewery;
+        var brewery_data = data.breweries.filter(function(b){
+            return b.id === brewery;
+        });
         d3.select('.info-box .beer.name').html(beer_data[0].y);
+        d3.select('.info-box .beer.brewery')
+            .attr('href', brewery_data[0].url)
+            .select('span')
+            .html(brewery_data[0].y);
         d3.select('.info-box .beer.style').html(beer_data[0].style);
         d3.select('.info-box .beer.icon').attr('src', beer_data[0].icon);
         d3.select('.info-box .beer.abv').html(beer_data[0].abv);
         d3.select('.info-box .beer.ibu').html(beer_data[0].ibu);
         d3.select('.info-box .beer.checkins').html(beer_data[0].x);
+        return data;
     }
 
-    function update_venue_info(venues_data) {
+    function update_venue_info(data) {
+        var venues_data = data.venues;
         d3.select('.info-box .venue.name').html(venues_data[0].y);
         d3.select('.info-box .venue.icon').attr('src', venues_data[0].fsq_icon);
         d3.select('.info-box .venue.foursqurl').attr("href", venues_data[0].fsq_url);
@@ -120,9 +138,10 @@
             .select('span')
             .html(venues_data[0].twitter.replace('@', ''));
         d3.select('.info-box .venue.checkins').html(venues_data[0].x);
+        return data;
     }
 
-    function init_bar() {
+    function init_bars() {
         var venue_tooltip = function(d) {
             var text = "";
             text += d.x + " Checkins<br>";
@@ -138,22 +157,90 @@
             return text;
         };
 
-        chart = barChart()
-            .width(d3.select('#vis').node().getBoundingClientRect().width)
-            .height(d3.select('#vis').node().getBoundingClientRect().height)
+        venues_chart = barChart()
+            .width(d3.select('#venues').node().getBoundingClientRect().width)
             .x_label('Number of Checkins')
             .tooltip_function(venue_tooltip);
 
-        d3.select('#vis')
-            .call(chart);
+        beers_chart = barChart()
+            .width(d3.select('#beers').node().getBoundingClientRect().width)
+            .x_label('Number of Checkins');
+
+        breweries_chart = barChart()
+            .width(d3.select('#breweries').node().getBoundingClientRect().width)
+            .x_label('Number of Checkins');
+
+        styles_chart = barChart()
+            .width(d3.select('#styles').node().getBoundingClientRect().width)
+            .x_label('Number of Checkins');
+
+        days_chart = barChart()
+            .width(d3.select('#days').node().getBoundingClientRect().width)
+            .x_label('Number of Checkins');
+
+        hours_chart = barChart()
+            .width(d3.select('#hours').node().getBoundingClientRect().width)
+            .x_label('Number of Checkins');
+
+        d3.select('#beers')
+            .call(beers_chart);
+
+        d3.select('#breweries')
+            .call(breweries_chart);
+
+        d3.select('#venues')
+            .call(venues_chart);
+
+        d3.select('#styles')
+            .call(styles_chart);
+
+        d3.select('#days')
+            .call(days_chart);
+
+        d3.select('#hours')
+            .call(hours_chart);
     }
 
-    function draw_bar(venues) {
-        // extract names and count, then sort by count
-        chart
-            .data(venues)
+    function draw_venues_bar(data) {
+        venues_chart
+            .data(data.venues);
 
-        return venues;
+        return data;
+    }
+
+    function draw_beers_bar(data) {
+        beers_chart
+            .data(data.beers);
+
+        return data;
+    }
+
+    function draw_breweries_bar(data) {
+        breweries_chart
+            .data(data.breweries);
+
+        return data;
+    }
+
+    function draw_styles_bar(data) {
+        styles_chart
+            .data(data.styles);
+
+        return data;
+    }
+
+    function draw_hours_bar(data) {
+        hours_chart
+            .data(data.checkins.hours);
+
+        return data;
+    }
+
+    function draw_days_bar(data) {
+        days_chart
+            .data(data.checkins.week);
+
+        return data;
     }
 
 </script>

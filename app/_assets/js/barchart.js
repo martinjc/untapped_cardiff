@@ -1,12 +1,12 @@
 function barChart() {
 
     var width = 400;
-    var height = 400;
+    var height = 600;
 
     var margin = {
         top: 10,
         bottom: 100,
-        left: 120,
+        left: 100,
         right: 10
     };
 
@@ -27,9 +27,11 @@ function barChart() {
 
     var tooltip_function = undefined;
 
-    var updateWidth;
-    var updateHeight;
+    var updateSize;
     var updateData;
+    var updateLabel;
+
+    var svg;
 
     function wrap(text, w) {
         text.each(function(d, i) {
@@ -37,7 +39,6 @@ function barChart() {
             var words = d
                 .split(/\s+/)
                 .reverse();
-            console.log(words);
             var word;
             var line = [];
             var lineNumber = 0;
@@ -76,17 +77,14 @@ function barChart() {
         selection.each(function() {
 
             var dom = d3.select(this);
-            var svg = dom
+            svg = dom
                 .append("svg")
                 .attr('class', 'bar-chart')
                 .attr('width', width)
-                .attr('height', height)
-
+                .attr('height', height);
 
             svg.append('text')
-                .attr('class', 'x label')
-
-
+                .attr('class', 'x label');
 
             svg = svg
                 .append('g')
@@ -94,8 +92,6 @@ function barChart() {
 
             width = width - margin.left - margin.right;
             height = height - margin.top - margin.bottom;
-
-
 
             var x_scale = d3.scaleLinear()
                 .rangeRound([0, width])
@@ -143,7 +139,7 @@ function barChart() {
             svg.append("g")
                 .attr("class", "y axis");
 
-            draw = function() {
+            var draw = function() {
 
                 function tooltip_position() {
                     var full_width = +dom.style('width')
@@ -257,21 +253,19 @@ function barChart() {
                 svg.select('.y.axis')
                     .transition()
                     .duration(transition_duration)
-                    .on('end', function(d) {
+                    .on('end', function() {
                         svg.select('.y.axis')
                             .selectAll('.tick text')
-                            .call(wrap, margin.left - 15);
+                            .call(wrap, margin.left - 25);
                     })
                     .call(y_axis)
 
-
-
                 if (x_label) {
-                    d3.select('.x.label')
+                    svg.select('.x.label')
                         .attr("text-anchor", "middle")
                         .attr("font-size", "12px")
                         .attr("x", margin.left + (width / 2))
-                        .attr("y", height + 50)
+                        .attr("y", height)
                         .text(x_label);
                 }
 
@@ -298,14 +292,25 @@ function barChart() {
                 y_scale.domain(data.map(function(d) {
                     return d[y_property];
                 }));
-                x_scale.domain(d3.extent(data, function(d) {
+                x_scale.domain([0, d3.max(data, function(d) {
                     return d[x_property];
-                }));
+                })]);
                 colour_scale.domain(d3.extent(data, function(d) {
                     return d[x_property];
                 }));
                 draw();
             };
+
+            updateLabel = function() {
+                if (x_label) {
+                    svg.select('.x.label')
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "12px")
+                        .attr("x", margin.left + (width / 2))
+                        .attr("y", height)
+                        .text(x_label);
+                }
+            }
 
             draw();
 
@@ -343,6 +348,7 @@ function barChart() {
     chart.x_label = function(value) {
         if (!arguments.length) return x_label;
         x_label = value;
+        if (typeof updateLabel === 'function') updateLabel();
         return chart;
     };
 

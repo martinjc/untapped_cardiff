@@ -109,6 +109,7 @@ nav {
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 0;
+  margin-left: $gap-size;
 
   h2 {
     font-size: $small-font-size;
@@ -123,6 +124,7 @@ nav {
 
   background-color: rgba($theme-v-light, 0.4);
   border: 2px solid $theme-dark;
+  border-radius: 10px;
   padding: 5px;
 
   margin: $gap-size;
@@ -144,6 +146,7 @@ nav {
       padding: 2px;
       background-color: $theme-light;
       border: 2px solid $theme-dark;
+      border-radius: 10px;
       text-align: center;
       font-weight: 700;
       font-size: $large-font-size;
@@ -175,6 +178,7 @@ nav {
 
 .info-box {
     background-color: rgba($theme-v-light, 0.6);
+    border: 2px solid $theme-dark;
     padding-top: $spacing-unit/4;
     padding-left: 20px;
     border-radius: 10px;
@@ -212,6 +216,11 @@ nav {
         width: 1.2rem;
     }
 
+    small {
+      text-align: left;
+      font-size: $small-font-size;
+    }
+
     .info {
       padding-left: $gap-size * 2;
       float: left;
@@ -226,10 +235,14 @@ nav {
     }
 }
 
-#vis {
+.vis {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
     height: 100%;
     width: 100%;
     margin: 0;
+    text-align: center;
 }
 
 @include media-query($small-break) {

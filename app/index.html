@@ -2,6 +2,10 @@
 layout: default
 ---
 
+<div class="overlay">
+    <div class="loader">Loading...</div>
+</div>
+
 <div class="flex-wrapper">
     <div class="title">
         <h1 class="headline">BarDiff</h1>
@@ -32,11 +36,13 @@ layout: default
             <img width="128px" src="#" alt="" class="beer icon">
             <p class="info">
                 <strong><span class="beer name"></span></strong><br>
+                <a href="#" class="beer brewery" title="Brewery URL"><span></span></a><br>
                 <span class="beer style"></span><br>
                 ABV: <span class="beer abv"></span>%, <span class="beer ibu"></span> IBUs<br>
             </p>
         </div>
         <h3><span class="beer checkins"></span> Checkins</h3>
+        <small><a href="beers/">... more about beers</a></small>
     </div>
     <div class="info-box">
         <h3>#1 Venue:</h3>
@@ -49,6 +55,7 @@ layout: default
             </p>
         </div>
         <h3><span class="venue checkins"></span> Checkins</h3>
+        <small><a href="venues/">... more about venues</a></small>
     </div>
     <div class="info-box">
         <h3>#1 Brewery:</h3>
@@ -61,8 +68,49 @@ layout: default
             </p>
         </div>
         <h3><span class="brewery checkins"></span> Checkins</h3>
+        <small><a href="breweries/">... more about breweries</a></small>
     </div>
 </div>
 
-<div id="vis">
+<div>
+    <h2>What's been drunk, and where?</h2>
+    <div class="flex-wrapper">
+        <div class="vis">
+            <h3>Beers</h3>
+            <div id="beers">
+            </div>
+        </div>
+        <div class="vis">
+            <h3>Venues</h3>
+            <div id="venues">
+            </div>
+        </div>
+        <div class="vis">
+            <h3>Breweries</h3>
+            <div id="breweries">
+            </div>
+        </div>
+        <div class="vis">
+            <h3>Styles</h3>
+            <div id="styles">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <h2>When was it drunk?</h2>
+    <div class="flex-wrapper">
+        <div class="vis">
+            <h3>Days</h3>
+            <div id="days">
+            </div>
+        </div>
+        <div class="vis">
+            <h3>Hours</h3>
+            <div id="hours">
+            </div>
+        </div>
+    </div>
 </div>
