@@ -7,26 +7,9 @@ layout: default
         <h1 class="headline">BarDiff</h1>
         <h2>The 2nd best data-driven beer-dashboard in Cardiff since 2017</h2>
     </div>
-    <div class="dates">
-        <form class="dateinput">
-            <div class="left button">
-                <input type="button" id="previous" value="<">
-            </div>
-            <div class="datetext">
-                <span class="bold" id="from-date"></span>
-                to
-                <span class="bold" id="to-date"></span>
-            </div>
-            <div class="right button">
-                <input type="button" id="next" value = ">" disabled>
-            </div>
-        </form>
-    </div>
+    {% include dates.html %}
 </div>
-<script>
 
-
-</script>
 
 
 <div class="flex-wrapper">
@@ -155,6 +138,7 @@ if ('serviceWorker' in navigator) {
 
     init_bars();
 
+
     function checkStorage(from, to, limit) {
         return new Promise(function(resolve, reject){
             if(localStorage.getItem(from + to + limit)){
@@ -180,6 +164,7 @@ if ('serviceWorker' in navigator) {
 
 
     });
+    page();
 
     function cache_data(from, to, limit, data) {
         localStorage.setItem(from + to + limit, JSON.stringify(data));
@@ -199,7 +184,7 @@ if ('serviceWorker' in navigator) {
         return data;
     }
 
-    page();
+
 
 
 
