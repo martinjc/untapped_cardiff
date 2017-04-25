@@ -2,10 +2,6 @@
 layout: default
 ---
 
-<div class="overlay">
-    <div class="loader">Loading...</div>
-</div>
-
 <div class="flex-wrapper">
     <div class="title">
         <h1 class="headline">BarDiff</h1>
@@ -33,7 +29,7 @@ layout: default
     <div class="info-box">
         <h3>#1 Beer:</h3>
         <div class="info-wrapper">
-            <img width="128px" src="#" alt="" class="beer icon">
+            <img width="128px" src="img/128x128_placeholder.png" alt="" class="beer icon">
             <p class="info">
                 <strong><span class="beer name"></span></strong><br>
                 <a href="#" class="beer brewery" title="Brewery URL"><span></span></a><br>
@@ -47,7 +43,7 @@ layout: default
     <div class="info-box">
         <h3>#1 Venue:</h3>
         <div class="info-wrapper">
-            <img width="128px" src="#" alt="" class="venue icon">
+            <img width="128px" src="img/128x128_placeholder.png" alt="" class="venue icon">
             <p class="info">
                 <strong><a href="#" class="venue foursqurl"><span class="venue name"></span></a><br></strong>
                 <span class="venue address"></span><br>
@@ -60,7 +56,7 @@ layout: default
     <div class="info-box">
         <h3>#1 Brewery:</h3>
         <div class="info-wrapper">
-            <img width="128px" src="#" alt="" class="brewery icon">
+            <img width="128px" src="img/128x128_placeholder.png" alt="" class="brewery icon">
             <p class="info">
                 <strong><a href="#" class="brewery url"><span class="brewery name"></span></a><br></strong>
                 <span class="brewery address"></span><br>
@@ -71,7 +67,7 @@ layout: default
         <small><a href="breweries/">... more about breweries</a></small>
     </div>
 </div>
-
+<hr>
 <div id="what">
     <h2>What's been drunk, and where?</h2>
     <div class="flex-wrapper">
@@ -98,7 +94,7 @@ layout: default
     </div>
 </div>
 
-
+<hr>
 <div id="when">
     <h2>When was it drunk?</h2>
     <div class="flex-wrapper">
@@ -115,16 +111,33 @@ layout: default
     </div>
 </div>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
+
 {% include jslibs.html %}
+
 
 <script>
     var date_request_format = "YYYY[-]MM[-]DD";
 
-    function loadData(from, to) {
+
+    function loadData(from, to, limit) {
         f = from.format(date_request_format);
         t = to.format(date_request_format);
 
         return new Promise(function(resolve, reject){
+
             d3.request("http://bardifftest-martinjc.rhcloud.com/api/data?from=" + f + "&to=" + t + "&limit=" + 10, function(data){
                 resolve(JSON.parse(data.response));
             });
@@ -170,6 +183,9 @@ layout: default
     function showLoader() {
         console.log("showLoader");
         d3.select('.overlay')
+            .style('position', 'fixed')
+            .style('top', (window.pageYOffset || document.documentElement.scrollTop)-16)
+            .style('left', 0)
             .style('display', null);
     }
 

@@ -6,3 +6,15 @@
 
 - title: about
   url: /about
+
+- title: beers
+  url: /beers
+
+- title: venues
+  url: /venues
+
+- title: time
+  url: /time
+
+- title: breweries
+  url: /breweries

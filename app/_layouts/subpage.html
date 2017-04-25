@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %}
+
+    <div class="wrapper">
+        <header class="homelink">
+            <a href="/">&lt;-- Back to Home...</a>
+        </header>
+        {{ content }}
+        <footer class="homelink">
+            <a href="/">&lt;-- Back to Home...</a>
+        </footer>
+    </div>
+    {% include footer.html %}
+
+</body>
+
+</html>
