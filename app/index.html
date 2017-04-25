@@ -23,6 +23,10 @@ layout: default
         </form>
     </div>
 </div>
+<script>
+
+
+</script>
 
 
 <div class="flex-wrapper">
@@ -127,10 +131,8 @@ if ('serviceWorker' in navigator) {
 
 {% include jslibs.html %}
 
-
 <script>
     var date_request_format = "YYYY[-]MM[-]DD";
-
 
     function loadData(from, to, limit) {
         f = from.format(date_request_format);
@@ -152,11 +154,11 @@ if ('serviceWorker' in navigator) {
     var days_chart;
 
     init_bars();
-    var page = PageDates();
+
 
     page.addDateChangeListener(function(from, to){
 
-        showLoader();
+        page.showLoader();
 
         loadData(from, to)
             .then(update_venue_info)
@@ -168,53 +170,13 @@ if ('serviceWorker' in navigator) {
             .then(draw_styles_bar)
             .then(draw_days_bar)
             .then(draw_hours_bar)
-            .then(hideLoader);
+            .then(page.hideLoader);
 
     });
 
     page();
 
-    function hideLoader() {
-        console.log("hideLoader");
-        d3.select('.overlay')
-            .style('display', 'none');
-    }
 
-    function showLoader() {
-        console.log("showLoader");
-        d3.select('.overlay')
-            .style('position', 'fixed')
-            .style('top', (window.pageYOffset || document.documentElement.scrollTop)-16)
-            .style('left', 0)
-            .style('display', null);
-    }
-
-    function setInputState() {
-        var prev_button = d3.select('#previous');
-        var next_button = d3.select('#next');
-        if(page.canGoBack()) {
-            prev_button.property('disabled', false);
-        } else {
-            prev_button.property('disabled', true);
-        }
-        if(page.canGoForward()) {
-            next_button.property('disabled', false);
-        } else {
-            next_button.property('disabled', true);
-        }
-    }
-
-    d3.select('#previous')
-        .on('click', function(d){
-            page.back();
-            setInputState();
-        });
-
-    d3.select('#next')
-        .on('click', function(d){
-            page.forward();
-            setInputState();
-        });
 
 
     function update_brewery_info(data) {
