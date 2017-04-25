@@ -140,7 +140,7 @@ if ('serviceWorker' in navigator) {
 
         return new Promise(function(resolve, reject){
 
-            d3.request("http://bardifftest-martinjc.rhcloud.com/api/data?from=" + f + "&to=" + t + "&limit=" + 10, function(data){
+            d3.request("http://bardifftest-martinjc.rhcloud.com/api/data?from=" + f + "&to=" + t + "&limit=" + limit, function(data){
                 resolve(JSON.parse(data.response));
             });
         });
@@ -155,24 +155,49 @@ if ('serviceWorker' in navigator) {
 
     init_bars();
 
+    function checkStorage(from, to, limit) {
+        return new Promise(function(resolve, reject){
+            if(localStorage.getItem(from + to + limit)){
+                resolve(JSON.parse(localStorage.getItem(from + to + limit)));
+            };
+        });
+    }
+
 
     page.addDateChangeListener(function(from, to){
 
         page.showLoader();
 
-        loadData(from, to)
-            .then(update_venue_info)
-            .then(update_beer_info)
-            .then(update_brewery_info)
-            .then(draw_venues_bar)
-            .then(draw_beers_bar)
-            .then(draw_breweries_bar)
-            .then(draw_styles_bar)
-            .then(draw_days_bar)
-            .then(draw_hours_bar)
-            .then(page.hideLoader);
+        checkStorage(from, to, 10)
+            .then(update_charts);
+
+        loadData(from, to, 10)
+            .then(update_charts)
+            .then(function(data){
+                cache_data(from, to, 10, data);
+            });
+
+
 
     });
+
+    function cache_data(from, to, limit, data) {
+        localStorage.setItem(from + to + limit, JSON.stringify(data));
+    }
+
+    function update_charts(data) {
+        update_venue_info(data);
+        update_beer_info(data);
+        update_brewery_info(data);
+        draw_venues_bar(data);
+        draw_beers_bar(data);
+        draw_breweries_bar(data);
+        draw_styles_bar(data);
+        draw_days_bar(data);
+        draw_hours_bar(data);
+        page.hideLoader();
+        return data;
+    }
 
     page();
 

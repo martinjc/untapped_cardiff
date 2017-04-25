@@ -139,7 +139,8 @@ module.exports = function(grunt) {
                     sourceMap: true,
                 },
                 files: {
-                    '.tmp/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/*.js', '<%= app.source %>/_assets/js/**/*.js']
+                    '.tmp/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/*.js', '<%= app.source %>/_assets/js/**/*.js'],
+                    '.tmp/<%= app.baseurl %>/sw.js': ['<%= app.source %>/_assets/sw/*.js', '<%= app.source %>/_assets/sw/**/*.js']
                 }
             },
             dist: {
@@ -149,7 +150,8 @@ module.exports = function(grunt) {
                     report: 'min'
                 },
                 files: {
-                    '<%= app.dist %>/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/**/*.js']
+                    '<%= app.dist %>/<%= app.baseurl %>/js/main.js': ['<%= app.source %>/_assets/js/**/*.js'],
+                    '<%= app.dist %>/<%= app.baseurl %>/sw.js': ['<%= app.source %>/_assets/sw/*.js', '<%= app.source %>/_assets/sw/**/*.js']
                 }
             }
         },
@@ -272,11 +274,28 @@ module.exports = function(grunt) {
         copy: {
             server: {
                 files: [{
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= app.source %>',
+                        src: '**/*.{jpg,jpeg,png,gif,ico,json,svg}',
+                        dest: '.tmp/<%= app.baseurl %>'
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= app.source %>/_assets/vendor',
+                        src: '**/*.{woff2,css,js}',
+                        dest: '.tmp/<%= app.baseurl %>'
+                    }
+                ]
+            },
+            dist: {
+                files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= app.source %>',
-                    src: '**/*.{jpg,jpeg,png,gif,ico,json,svg}',
-                    dest: '.tmp/<%= app.baseurl %>'
+                    cwd: '<%= app.source %>/_assets/vendor',
+                    src: '**/*.{woff2,css,js}',
+                    dest: '<%= app.dist %>/<%= app.baseurl %>'
                 }]
             }
         },
@@ -334,6 +353,7 @@ module.exports = function(grunt) {
         'todo',
         'clean:dist',
         'jekyll:dist',
+        'copy:dist',
         'imagemin',
         'svgmin',
         'sass:dist',
