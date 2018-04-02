@@ -37,4 +37,4 @@ markdown: kramdown
 exclude: ['img', 'css', 'js', 'fonts',
           '**.png', '**.jpg', '**.jpeg', '**.gif', '**.webp', '**.svg', '**.ico']
 
-gems: [jekyll-paginate, jekyll/scholar]
+plugins: []

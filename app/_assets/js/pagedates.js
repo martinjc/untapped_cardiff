@@ -9,7 +9,7 @@ function PageDates() {
         .startOf('week')
         .add(6, 'd');
 
-    var small_format = "YYYY-M-D";
+    var small_format = "YYYY-MM-DD";
     var large_format = "ddd Do MMM YYYY";
 
     var updateDates = function() {};
@@ -18,7 +18,18 @@ function PageDates() {
 
     function page() {
 
+        var params = new URLSearchParams(location.search);
+        if (params.has('to')) {
+            to_date = moment.utc(params.get('to'));
+        }
+        if (params.has('from')) {
+            from_date = moment.utc(params.get('from'));
+        }
+
         updateDates = function() {
+
+            var params = new URLSearchParams(location.search);
+
             d3.select('.dates')
                 .select('#from-date')
                 .html(from_date.format(large_format) + "<br>");
@@ -26,6 +37,10 @@ function PageDates() {
             d3.select('.dates')
                 .select('#to-date')
                 .html("<br>" + to_date.format(large_format));
+
+            params.set('from', from_date.format(small_format));
+            params.set('to', to_date.format(small_format));
+            window.history.replaceState({}, '', location.pathname + '?' + params.toString());
 
             listeners.forEach(function(l) {
                 l(from_date, to_date);
@@ -51,8 +66,9 @@ function PageDates() {
 
     page.back = function() {
         if (!from_date.isSame(MIN_DATE, 'day')) {
-            from_date.subtract(7, 'd');
             to_date.subtract(7, 'd');
+            from_date = moment(to_date)
+                .subtract(7, 'd');
             if (from_date.isBefore(MIN_DATE, 'day')) {
                 from_date = moment(MIN_DATE);
             }
@@ -64,7 +80,8 @@ function PageDates() {
     page.forward = function() {
         if (!to_date.isSame(TODAY, 'day')) {
             from_date.add(7, 'd');
-            to_date.add(7, 'd');
+            to_date = moment(from_date)
+                .add(7, 'd');
             if (to_date.isAfter(TODAY, 'day')) {
                 to_date = moment(TODAY);
             }
@@ -88,7 +105,7 @@ function PageDates() {
     }
 
     page.to = function(_) {
-        if (!argumnets.length) return to_date;
+        if (!arguments.length) return to_date;
         to_date = _;
         if (typeof updateDates === 'function') updateDates();
         return page;

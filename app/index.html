@@ -25,7 +25,7 @@ layout: default
             </p>
         </div>
         <h3><span class="beer checkins"></span> Checkins</h3>
-        <small><a href="beers/">... more about beers</a></small>
+        <!-- <small><a href="beers/">... more about beers</a></small> -->
     </div>
     <div class="info-box">
         <h3>#1 Venue:</h3>
@@ -38,7 +38,7 @@ layout: default
             </p>
         </div>
         <h3><span class="venue checkins"></span> Checkins</h3>
-        <small><a href="venues/">... more about venues</a></small>
+        <!-- <small><a href="venues/">... more about venues</a></small> -->
     </div>
     <div class="info-box">
         <h3>#1 Brewery:</h3>
@@ -51,7 +51,7 @@ layout: default
             </p>
         </div>
         <h3><span class="brewery checkins"></span> Checkins</h3>
-        <small><a href="breweries/">... more about breweries</a></small>
+        <!-- <small><a href="breweries/">... more about breweries</a></small> -->
     </div>
 </div>
 <hr>
@@ -98,19 +98,6 @@ layout: default
     </div>
 </div>
 
-<script>
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', function() {
-//     navigator.serviceWorker.register('/sw.js').then(function(registration) {
-//       // Registration was successful
-//       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-//     }, function(err) {
-//       // registration failed :(
-//       console.log('ServiceWorker registration failed: ', err);
-//     });
-//   });
-// }
-</script>
 
 {% include jslibs.html %}
 
@@ -123,7 +110,7 @@ layout: default
 
         return new Promise(function(resolve, reject){
 
-            d3.request("http://bardifftest-martinjc.rhcloud.com/api/data?from=" + f + "&to=" + t + "&limit=" + limit, function(data){
+            d3.request("https://bardiff.com/api/data?from=" + f + "&to=" + t + "&limit=" + limit, function(data){
                 resolve(JSON.parse(data.response));
             });
         });
@@ -161,10 +148,9 @@ layout: default
                 cache_data(from, to, 10, data);
             });
 
-
-
     });
     page();
+    page.setInputState();
 
     function cache_data(from, to, limit, data) {
         localStorage.setItem(from + to + limit, JSON.stringify(data));
@@ -183,11 +169,6 @@ layout: default
         page.hideLoader();
         return data;
     }
-
-
-
-
-
 
     function update_brewery_info(data) {
         var brewery_data = data.breweries;
@@ -213,11 +194,14 @@ layout: default
         var brewery_data = data.breweries.filter(function(b){
             return b.id === brewery;
         });
+        console.log(brewery_data);
         d3.select('.info-box .beer.name').html(beer_data[0].y);
-        d3.select('.info-box .beer.brewery')
-            .attr('href', brewery_data[0].url)
-            .select('span')
-            .html(brewery_data[0].y);
+        if(brewery_data[0]) {
+            d3.select('.info-box .beer.brewery')
+                .attr('href', brewery_data[0].url)
+                .select('span')
+                .html(brewery_data[0].y);
+        }
         d3.select('.info-box .beer.style').html(beer_data[0].style);
         d3.select('.info-box .beer.icon').attr('src', beer_data[0].icon);
         d3.select('.info-box .beer.abv').html(beer_data[0].abv);
