@@ -18,7 +18,7 @@ function barChart() {
     var y_property = 'y';
 
     var colour_scale = d3.scaleQuantile()
-        .range(colorbrewer.Reds[7])
+        .range(colorbrewer.Reds[9])
         .domain(d3.extent(data, function(d) {
             return d[x_property];
         }));
@@ -126,6 +126,7 @@ function barChart() {
                 .text("a simple tooltip");
 
             var x_axis = d3.axisBottom(x_scale)
+                .ticks(5, 'd');
 
             var y_axis = d3.axisLeft(y_scale);
 
@@ -189,6 +190,8 @@ function barChart() {
                     .attr('width', function(d) {
                         return 0
                     })
+                    .attr('stroke', '#67000d')
+                    .attr('stroke-width', '0.5px')
                     .merge(update)
                     .on("mouseover", function(d) {
                         if (tooltip_function) {
@@ -315,6 +318,12 @@ function barChart() {
             draw();
 
         });
+    }
+
+    chart.transition_duration = function(value) {
+        if (!arguments.length) return transition_duration;
+        transition_duration = value;
+        return chart;
     }
 
     chart.width = function(value) {

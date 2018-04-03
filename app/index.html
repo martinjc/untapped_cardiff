@@ -102,19 +102,6 @@ layout: default
 {% include jslibs.html %}
 
 <script>
-    var date_request_format = "YYYY[-]MM[-]DD";
-
-    function loadData(from, to, limit) {
-        f = from.format(date_request_format);
-        t = to.format(date_request_format);
-
-        return new Promise(function(resolve, reject){
-
-            d3.request("https://bardiff.com/api/data?from=" + f + "&to=" + t + "&limit=" + limit, function(data){
-                resolve(JSON.parse(data.response));
-            });
-        });
-    }
 
     var venues_chart;
     var beers_chart;
@@ -124,16 +111,6 @@ layout: default
     var days_chart;
 
     init_bars();
-
-
-    function checkStorage(from, to, limit) {
-        return new Promise(function(resolve, reject){
-            if(localStorage.getItem(from + to + limit)){
-                resolve(JSON.parse(localStorage.getItem(from + to + limit)));
-            };
-        });
-    }
-
 
     page.addDateChangeListener(function(from, to){
 
@@ -151,10 +128,6 @@ layout: default
     });
     page();
     page.setInputState();
-
-    function cache_data(from, to, limit, data) {
-        localStorage.setItem(from + to + limit, JSON.stringify(data));
-    }
 
     function update_charts(data) {
         update_venue_info(data);

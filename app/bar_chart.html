@@ -1,0 +1,67 @@
+---
+layout: chart
+---
+
+{% include jslibs.html %}
+
+<script>
+
+var chart;
+var params;
+var count;
+
+init_bars();
+
+page.addDateChangeListener(function(from, to){
+
+    page.showLoader();
+
+    params = new URLSearchParams(location.search);
+    count = params.get('count') || 5;
+
+    checkStorage(from, to, count)
+        .then(update_charts);
+
+    loadData(from, to, count)
+        .then(update_charts)
+        .then(function(data){
+            cache_data(from, to, 5, data);
+        });
+
+});
+page();
+page.setInputState();
+
+function update_charts(data) {
+    draw_bar(data);
+    return data;
+}
+
+function init_bars() {
+
+    chart = barChart()
+        .width(d3.select('#vis').node().getBoundingClientRect().width)
+        .height(d3.select('#vis').node().getBoundingClientRect().height)
+        .transition_duration(0)
+        .x_label('Number of Checkins');
+
+    d3.select('#vis')
+        .call(chart);
+
+}
+
+function draw_bar(data) {
+
+    var type = params.get('type');
+
+    d3.select('#title span.type').html(type);
+    d3.select('#title span.count').html(count);
+    d3.select('#title span.from').html(page.from().format("ddd Do MMM YYYY"));
+    d3.select('#title span.to').html(page.to().format("ddd Do MMM YYYY"));
+
+    chart
+        .data(data[type]);
+
+    return data;
+}
+</script>
