@@ -82,9 +82,9 @@ function PageDates() {
             from_date.add(7, 'd');
             to_date = moment(from_date)
                 .add(6, 'd');
-            if (to_date.isAfter(TODAY, 'day')) {
-                to_date = moment(TODAY);
-            }
+            // if (to_date.isAfter(TODAY, 'day')) {
+            //     to_date = moment(TODAY);
+            // }
         }
         if (typeof updateDates === 'function') updateDates();
         return page;
