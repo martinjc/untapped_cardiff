@@ -68,7 +68,7 @@ function PageDates() {
         if (!from_date.isSame(MIN_DATE, 'day')) {
             to_date.subtract(7, 'd');
             from_date = moment(to_date)
-                .subtract(7, 'd');
+                .subtract(6, 'd');
             if (from_date.isBefore(MIN_DATE, 'day')) {
                 from_date = moment(MIN_DATE);
             }
@@ -81,7 +81,7 @@ function PageDates() {
         if (!to_date.isSame(TODAY, 'day')) {
             from_date.add(7, 'd');
             to_date = moment(from_date)
-                .add(7, 'd');
+                .add(6, 'd');
             if (to_date.isAfter(TODAY, 'day')) {
                 to_date = moment(TODAY);
             }
@@ -93,7 +93,7 @@ function PageDates() {
     page.thisweek = function() {
         to_date = moment(TODAY);
         from_date = moment(TODAY)
-            .subtract(7, 'd');
+            .subtract(6, 'd');
         if (typeof updateDates === 'function') updateDates();
     }
 
